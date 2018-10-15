@@ -1,0 +1,42 @@
+usage() {
+	echo "Usage: $0 [-f filename] [-a]" 1>&2
+	echo " -f               Disables a single Module." 1>&2
+	echo " -a		Disables ALL Modules in Folder." 1>&2
+	echo " -h		Show this help text." 1>&2
+}
+
+disable() {
+	mv $1.mdu $1.tmp
+}
+
+disable_all() {
+for file in *.mdu; do
+    mv "$file" "$(basename "$file" .mdu).tmp"
+done
+}
+
+while getopts "f:ha" o; do
+    case "${o}" in
+
+        f)
+            disable $2
+	        echo "Disabling Module $2.."
+		exit 0
+            ;;
+		a)
+			disable_all
+			echo "Disabling ALL Modules.."
+			exit 0
+			;;
+		
+		h)
+			usage
+			exit 0
+			;;
+        *)
+            usage
+			exit 1
+            ;;
+    esac
+done
+exit 0

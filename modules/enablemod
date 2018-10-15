@@ -1,0 +1,40 @@
+usage() {
+        echo "Usage: $0 [-f filename] [-a]" 1>&2
+        echo " -f               Enables a single Module." 1>&2
+        echo " -a               Enables ALL Modules in Folder." 1>&2
+        echo " -h               Show this help text." 1>&2
+}
+
+enable() {
+        mv $1.tmp $1.mdu
+}
+
+enable_all() {
+for file in *.tmp; do
+    mv "$file" "$(basename "$file" .tmp).mdu"
+done
+}
+
+while getopts "f:ha" o; do
+    case "${o}" in
+
+        f)
+            enable $2
+            ;;
+                a)
+                        enable_all
+                        exit 1
+                        ;;
+
+                h)
+                        usage
+                        exit 0
+                        ;;
+        *)
+            usage
+                        exit 1
+            ;;
+    esac
+done
+
+exit 0

@@ -1,0 +1,161 @@
+#!/bin/bash
+#
+########################################################
+#    REDD's Recon Script for Raspbain/Debian/Ubuntu    #
+#-------------------------------------------------------
+#
+#     This tool pings Google, then uses Ipcalc to 
+# calculate the Subnet of the Network. After Subnet
+# is calculated, script executes a simple but complex
+# Nmap scan to output only Local IP's with Open Ports
+# to a simple .txt file into the ~/reports directory.
+#
+########################################################
+
+# Script Variables
+cwd=$(pwd)
+REPORTS=~/reports
+########################################################
+#            Optional Mailer Script Add-on
+########################################################
+## This Add-on requires you to install and configure
+## Mutt/Postfix and any Mailer Service you use.
+########################################################
+########## ON = ACTIVE  OFF = DEACTIVE  ################
+########################################################
+## ALL MAIL WILL GOTO SPAM FOLDER DUE TO THIS IS JUST
+## A ALERT SYSTEM VIA EMAIL.
+#
+MAILER=OFF
+ADDRESS=EMAIL_HERE@EMAIL_HOST
+# - Prints Hostname Report as Senders Name
+NAME=$(echo -e "$HOSTNAME Report")
+SENDER='DESIRED_EMAIL@EMAIL_HOST'
+TIME=$(TZ='America/Los_Angeles' date)
+##
+
+mod_status "Checking for needed software.."
+check_depends(){
+	if ! command_exists ipcalc ; then
+                mod_noti "Attempting to install ipcalc..";
+                check_root;
+		sudo -k apt-get install -y ipcalc &>/dev/null
+                check_success;
+        fi
+        if ! command_exists postfix ; then
+                mod_noti "Attempting to install postfix..";
+                check_root;
+                sudo -k apt-get install -y postfix &>/dev/null
+                check_success;
+        fi
+        if ! command_exists mutt ; then
+                mod_noti "Attempting to install mutt..";
+                check_root;
+                sudo -k apt-get install -y mutt &>/dev/null
+                check_success;
+        fi
+        if ! command_exists mailutils ; then
+                mod_noti "Attempting to install mailutils..";
+                check_root;
+                sudo -k apt-get install -y mailutils &>/dev/null
+                check_success;
+        fi
+        if ! command_exists nmap ; then
+                mod_noti "Attempting to install nmap..";
+                check_root;
+                sudo -k apt-get install -y nmap &>/dev/null
+                check_success;
+        fi
+}
+check_depends;
+do_break
+mod_status "Pinging Google to check Internet...";
+wget -q --spider http://google.com
+if [ $? -eq 0 ]; then
+	mod_noti "Internet Connection active..";
+	mod_status "Continuing Script...";
+	IP=$(curl -s http://whatismyip.akamai.com/)
+	LOGFILE=$REPORTS/$d-$IP
+	LOGFILETEMP=$REPORTS/$d-$IP-temp
+	do_break
+	if [ ! -d "$REPORTS" ]; then
+	mkdir $REPORTS
+	fi
+	mod_arrowstat "Scanning Public IP ($IP) for Open Ports.."
+	mod_noti "This may take awhile..."
+        do_break > $LOGFILETEMP.txt
+        echo "   Public IP Address Open Port Scan ">> $LOGFILETEMP.txt
+        echo "--------------------------------------">> $LOGFILETEMP.txt
+        echo "">> $LOGFILETEMP.txt
+	# Only change "nmap -sT" part of the string.
+	nmap -sT -p- -oG - $IP | awk '/open/{ s = ""; for (i = 5; i <= NF-4; i++) s = s substr($i,1,length($i)-3) "\n"; print $2 " " $3 "\n" s} ' | sed 's/\// /g' | sed 's/[)(]//g'  >> $LOGFILETEMP.txt
+	echo "" >> $LOGFILETEMP.txt
+	do_break
+        mod_status "Subnet of IP: $SUBNET"
+        mod_noti "Scanning entire Subnet for Open Ports.."
+        do_break
+        do_break >> $LOGFILETEMP.txt
+        echo "   Internal IP Addresses Open Ports ">> $LOGFILETEMP.txt
+        echo "--------------------------------------">> $LOGFILETEMP.txt
+        do_break>> $LOGFILETEMP.txt
+	# Only change "nmap -sT" part of the string.
+	nmap -sT -F -oG - $SUBNET | awk '/open/{ s = ""; for (i = 5; i <= NF-4; i++) s = s substr($i,1,length($i)-3) "\n"; print $2 " " $3 "\n" s} ' | sed 's/\// /g' | sed 's/[)(]//g'  >> $LOGFILETEMP.txt
+	if  cmp -s $LOGFILE.txt $LOGFILETEMP.txt ; then 
+		mod_error "Logfile is the same.."
+		rm -rf $LOGFILETEMP.txt
+		do_break
+	else
+		mod_arrowstat "Appending to new log file..."
+		if [[ -e $LOGFILE.txt ]] ; then
+    			i=0
+    			while [[ -e $LOGFILE-$i.txt ]] ; do
+        			let i++
+			done
+			LOGFILETEMP2=$LOGFILE-$i
+                	mv $LOGFILETEMP.txt $LOGFILETEMP2.txt
+    		else
+			mv $LOGFILETEMP.txt $LOGFILE.txt
+		fi
+	fi
+	mod_checkg "Finished.."
+	do_break
+	mod_noti "Logfile found at:"
+	if [[ -e $LOGFILETEMP2.txt ]]; then
+		mod_noti "$LOGFILETEMP2.txt"
+	else
+		mod_noti "$LOGFILE.txt"
+	fi
+	# Email Report Add-on - Email Contents of Logfile to Email Address.
+	if [ $MAILER = "ON" ]; then
+		SERVICE=postfix
+		if (( $(ps -ef | grep -v grep | grep $SERVICE | wc -l) > 0 )); then
+			do_break
+			mod_noti "$SERVICE is running, continuing script."
+		else
+			/etc/init.d/$SERVICE start
+		fi
+		# Variable for Timestamp in Mail Log.
+        	if [[ -e $LOGFILETEMP2.txt ]]; then
+			LOGVIEW=$(cat $LOGFILETEMP2.txt)
+			do_break
+			mod_checkg "Mailer Service is ACTIVE."
+                	mod_status "$LOGFILETEMP2.txt was sent to:"
+			mod_status " -> $ADDRESS"
+			echo -e "Date: $TIME \nPublic IP: $IP\nLocal IP: $LOCAL\n\n\nOpen Port Scan:\n\n$LOGVIEW\n" | mutt -s "Open Ports of $IP" $ADDRESS -e "my_hdr From: $NAME <$SENDER>" -a "$LOGFILETEMP2.txt"
+
+        	else
+			LOGVIEW=$(cat $LOGFILE.txt)
+			do_break
+			mod_checkg "Mailer Service is ACTIVE."
+                	mod_status "$LOGFILE.txt was sent to:"
+			mod_status " -> $ADDRESS"
+			echo -e "Date: $TIME \nPublic IP: $IP\nLocal IP: $LOCAL\n\n\nOpen Port Scan:\n\n$LOGVIEW\n" | mutt -s "Open Ports of $IP" $ADDRESS -e "my_hdr From: $NAME <$SENDER>" -a "$LOGFILE.txt"
+		fi
+	fi
+	do_break
+	do_break
+else
+    mod_error "Offline. Please Check Internet Connection."
+fi
+
+

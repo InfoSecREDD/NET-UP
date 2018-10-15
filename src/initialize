@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+VERS=0.3BETA
+source $DIR/etc/auth.mk
+start_notice(){
+    echo -e "\x1B[01;33m[!]\x1B[0m $1"
+}
+start_notice "Initializing Functions & Variables..";
+source $DIR/src/init.sh
+source $DIR/src/symchk.sh
+source $DIR/src/checkdep.sh
+source $DIR/src/chkconn.sh
+source $DIR/src/oscheck.sh
+source $DIR/src/core
+BREAK=$(do_break)
+MODULE=$DIR/modules
+LOG=$DIR/logs
+LOCAL=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk -F'[/ ]+' '{print $3}')
+SUBNET=$(ipcalc $LOCAL | awk '/Network/ {print $2}')
+d=$(date +%Y-%m-%d)
+
