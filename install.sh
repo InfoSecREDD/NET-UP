@@ -1,17 +1,10 @@
 #!/usr/bin/env bash
-get_dir () {
-     SOURCE="${BASH_SOURCE[0]}"
-     while [ -h "$SOURCE" ]; do
-          DIRECTORY="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-          SOURCE="$( readlink "$SOURCE" )"
-          [[ $SOURCE != /* ]] && SOURCE="$DIRECTORY/$SOURCE"
-     done
-     DIRECTORY="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-     echo "$DIRECTORY"
-}
-DIR=$(get_dir)
-HOMEDIR=$DIR/netup
-git clone 
+HOMEDIR=$HOME/netup
+cd $HOME
+echo "Cloning from GitHub..";
+git clone https://github.com/private-locker/Net-UP.git netup
+cd $HOMEDIR
+chmod +x $HOMEDIR/netup
+source $HOMEDIR/netup
 
-source $DIR/src/initialize
 
