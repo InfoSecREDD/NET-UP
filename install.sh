@@ -8,6 +8,7 @@ root_check_init(){
         echo "Root Access Granted!"
     fi
 }
+cd $HOME
 root_check_init;
 HOMEDIR=$HOME/netup
 if [[ -d "$HOMEDIR" ]] ; then
