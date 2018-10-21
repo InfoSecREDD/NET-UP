@@ -17,7 +17,7 @@ into a secure network to gain intelligence about the network. (subscan module)
 
 ## Easy Install Script
 ```sh
- wget https://raw.githubusercontent.com/private-locker/Net-UP/master/install.sh | sudo bash install.sh
+wget https://raw.githubusercontent.com/private-locker/Net-UP/master/install.sh | sudo bash install.sh
 ```
 
 ### TODO List:
