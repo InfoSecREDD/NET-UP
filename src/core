@@ -1,25 +1,28 @@
 run_netup(){
-	while true; do
-        	for i in {1..25}; do
-                	if ifup $INTERFACE; then
-                        	print_good "Online. [1]";
-                        	sleep 5
-                                	if ifup $INTERFACE; then
-                                        	print_good "Online. [2]";
-                                        	sleep 5
-                                        	check_good "Internet Test Passed!";
-                                        	arrow_status "Moving to External Modules.."
-                                         	start_modules;
-                                        	exit
-                                	else
-                                        	print_error "Offline! [2]";
-                                	fi
-                	else
-                        	print_error "Offline. [$i]";
-                        	sleep 5
-                	fi
-        	done
-        	print_notification "Rebooting Now..";
-        	sudo -k reboot now
-	done
+        while true; do
+                for i in {1..25}; do
+                        if ifup $INTERFACE; then
+                                print_good "Online. [1]";
+                                sleep 5
+                                        if ifup $INTERFACE; then
+                                                print_good "Online. [2]";
+                                                sleep 5
+                                                check_good "Internet Test Passed!";
+                                                arrow_status "Moving to External Modules.."
+                                                start_modules;
+                                                exit
+                                        else
+                                                print_error "Offline! [2]";
+                                        fi
+                        else
+                                print_error "Offline. [$i]";
+                                sleep 5
+                        fi
+                done
+                if [[ AUTOREBOOT == "YES" ]] ; then
+                        print_notification "Rebooting Now..";
+                sudo -k reboot now
+                fi
+                exit
+        done
 }
