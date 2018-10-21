@@ -26,7 +26,5 @@ chmod +x $HOMEDIR/netup
 chmod +x $HOMEDIR/modules/enablemod
 chmod +x $HOMEDIR/modules/disablemod
 source $HOMEDIR/netup
-rm -rf "$0"
 exit
-
 
