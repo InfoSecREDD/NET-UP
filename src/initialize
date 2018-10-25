@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-VERS=0.3BETA
+VERS=1.0
 source $DIR/etc/auth.mk
 start_notice(){
     echo -e "\x1B[01;33m[!]\x1B[0m $1"

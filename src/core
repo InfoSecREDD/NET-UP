@@ -19,7 +19,7 @@ run_netup(){
                                 sleep 5
                         fi
                 done
-                if [[ AUTOREBOOT == "YES" ]] ; then
+                if [[ "$AUTOREBOOT" == "YES" ]] ; then
                         print_notification "Rebooting Now..";
                 sudo -k reboot now
                 fi
