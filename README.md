@@ -13,12 +13,19 @@ into a secure network to gain intelligence about the network. (subscan module)
     (Read README.txt inside modules folder)
 - Enablemod/Disablemod commands to help with toggling Modules ON/OFF. - Located in Modules
     folder.
-
+### Modules:
+- Subscan - Original Subnet Nmap Scan by -REDD-
+- PythonBackdoor - Python Tunnel Backdoor by -REDD-
+- HackCaptivePortals - Script forked from https://github.com/systematicat/hack-captive-portals
+- IPInfo - Script forked from https://github.com/niklasberglund/ipinfo
+- More to come.. (Community Published Modules are welcome)
 
 ## Easy Install Script
 ```sh
 wget https://raw.githubusercontent.com/private-locker/Net-UP/master/install.sh && sudo /bin/bash install.sh
 ```
+
+
 
 ### TODO List:
 - Adding stuff here later.
