@@ -21,11 +21,11 @@ fi
 cd $HOME
 echo "Cloning from GitHub..";
 git clone https://github.com/private-locker/Net-UP.git netup
-cd $HOMEDIR
 chmod +x $HOMEDIR/netup
 chmod +x $HOMEDIR/modules/enablemod
 chmod +x $HOMEDIR/modules/disablemod
 /bin/sh $HOMEDIR/modules/enablemod -f listmods
 /bin/sh $HOMEDIR/netup
+rm -rf "$0";
 exit
 
