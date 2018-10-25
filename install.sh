@@ -27,7 +27,9 @@ chmod +x $HOMEDIR/netup
 chmod +x $HOMEDIR/modules/enablemod
 chmod +x $HOMEDIR/modules/disablemod
 echo -e "Activating Default Module.. (Listmods)"
-bash $HOMEDIR/modules/enablemod -f listmods
+cd $HOMEDIR/modules
+bash enablemod -f listmods
+cd $HOME
 bash $HOMEDIR/netup
 echo -e "Cleaning up Install Script File.."
 rm -rf "$HOMEDIR/install.sh"
