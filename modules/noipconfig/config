@@ -1,0 +1,10 @@
+# No-IP uses your email address for the username.
+USERNAME="email@address.com"
+PASSWORD="password"
+
+# Multiple hosts associated with a single IP address can be entered by
+# separating them with commas: HOST="host1.domain.org,host2.domain.org"
+HOST="host.domain.com"
+
+# The directory where logs will be stored (required)
+LOGDIR="$HOME/logs"
