@@ -30,10 +30,11 @@ echo -e "Activating Default Module.. (Listmods)"
 cd $HOMEDIR/modules
 bash enablemod -f listmods
 cd $HOME
-bash $HOMEDIR/netup
 echo -e "Cleaning up Install Script File.."
 rm -rf "$HOMEDIR/install.sh"
 rm -rf "$0";
+echo -e "Running Net-UP..";
+bash $HOMEDIR/netup
 echo -e "Exiting.. You can now use netup anywhere in the system."
 exit
 
