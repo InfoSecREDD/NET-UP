@@ -25,8 +25,8 @@ cd $HOMEDIR
 chmod +x $HOMEDIR/netup
 chmod +x $HOMEDIR/modules/enablemod
 chmod +x $HOMEDIR/modules/disablemod
-/bin/sh $HOMEDIR/modules/enablemod -f listmods
-/bin/sh $HOMEDIR/netup
+./$HOMEDIR/modules/enablemod -f listmods
+./$HOMEDIR/netup
 rm -rf "$0";
 exit
 
