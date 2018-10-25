@@ -22,11 +22,15 @@ cd $HOME
 echo "Cloning from GitHub..";
 git clone https://github.com/private-locker/Net-UP.git netup
 cd $HOMEDIR
+echo -e "Changing Permissions of Files..";
 chmod +x $HOMEDIR/netup
 chmod +x $HOMEDIR/modules/enablemod
 chmod +x $HOMEDIR/modules/disablemod
+echo -e "Activating Default Module.. (Listmods)"
 ./$HOMEDIR/modules/enablemod -f listmods
 ./$HOMEDIR/netup
+echo -e "Cleaning up Install Script File.."
 rm -rf "$0";
+echo -e "Exiting.. You can now use netup anywhere in the system."
 exit
 
