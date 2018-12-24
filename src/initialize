@@ -13,6 +13,7 @@ source $DIR/src/checkdep.sh
 source $DIR/src/chkconn.sh
 source $DIR/src/oscheck.sh
 source $DIR/src/updatemodules
+source $DIR/src/update
 source $DIR/src/core
 BREAK=$(do_break)
 MODULE=$DIR/modules
