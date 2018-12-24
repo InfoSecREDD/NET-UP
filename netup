@@ -13,7 +13,7 @@ if [[ $1 = "help" ]]; then
         echo -e "    ./netup list                    - Shows all enabled/disabled modules."
         echo -e "    ./netup run subscan             - Runs specific module/script using NET-UP."
         echo -e "    ./netup enable subscan          - Enables Subscan module for NET-UP."
-        echo -e "    ./netup disable pythonbackdoor  - Disables Backdoor module for NET-UP."
+        echo -e "    ./netup disable subscan         - Disables Backdoor module for NET-UP."
         echo -e ""
         exit 0
 fi

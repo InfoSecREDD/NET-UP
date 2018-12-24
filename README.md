@@ -13,6 +13,7 @@ into a secure network to gain intelligence about the network. (subscan module)
     (Read README.txt inside modules folder)
 - Enablemod/Disablemod commands to help with toggling Modules ON/OFF. - Located in Modules
     folder.
+	
 ### Modules:
 - Subscan - Original Subnet Nmap Scan by -REDD-
 - PythonBackdoor - Python Tunnel Backdoor by -REDD-
@@ -20,10 +21,26 @@ into a secure network to gain intelligence about the network. (subscan module)
 - IPInfo - Script forked from https://github.com/niklasberglund/ipinfo
 - More to come.. (Community Published Modules are welcome)
 
+(For More Reference on Modules/Scripts used for NET-UP, Please Check https://github.com/private-locker/modules)
+
 ## Easy Install Script:
 ```sh
 wget https://raw.githubusercontent.com/private-locker/Net-UP/master/install.sh && sudo /bin/bash install.sh
 ```
+
+Once Installed, allows you to:
+
+## Easy Update Command:
+```sh
+netup update
+```
+(Press y when prompted.)
+
+## Easy Update Modules Command:
+```sh
+netup updatemods
+```
+(Press y when prompted.)
 
 ## Syntax/Examples:
 ```sh
@@ -38,7 +55,7 @@ Examples:
     ./netup list                    - Shows all enabled/disabled modules.
     ./netup run listmods            - Runs specific module/script using NET-UP.
     ./netup enable subscan          - Enables Subscan module for NET-UP.
-    ./netup disable pythonbackdoor  - Disables Backdoor module for NET-UP.
+    ./netup disable subscan         - Disables Subscan module for NET-UP.
     
 ```
 
@@ -46,7 +63,9 @@ Examples:
 
 
 ### TODO List:
-- Adding stuff here later.
+- Add script to detect name of Network Interface of NET-UP machine.
+- Add more OSINT Scripts to https://github.com/private-locker/modules
+
 
 
 ### Huge Thanks to -REDD- of Private-Locker for building this whole Project.
