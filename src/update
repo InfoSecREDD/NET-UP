@@ -21,7 +21,7 @@ updategithub(){
 				chmod +x modules/disablemod
 				chmod +x modules/enablemod
                 echo -e "";
-                print_status "Entire NET-UP was synced to Private-Locker's Modules Repo.";
+                print_status "Entire NET-UP was synced to Private-Locker's Repo including Modules.";
 				echo -e "";
 				print_error "Removing install script.";
 				rm -rf netup/install.sh
