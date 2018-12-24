@@ -33,6 +33,7 @@ Syntax: ./netup
 
 Examples:
     ./netup help                    - This help screen displayed.
+    ./netup update                  - Updates entire NET-UP & Modules with Public Repo.
     ./netup updatemods              - Sync's all Modules with Public Repo.
     ./netup list                    - Shows all enabled/disabled modules.
     ./netup run listmods            - Runs specific module/script using NET-UP.
