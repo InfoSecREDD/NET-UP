@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Module Update
 updategithub(){
-	if [ $2 = "" ]; then
         echo -e "";
         print_status "Update/sync with Private-Locker's GitHub?";
         echo -e "";
@@ -37,32 +36,26 @@ updategithub(){
 				print_status "Not Updating NET-UP Framework. Exiting.";
 
 		fi
-	fi
-	if [ $2 = "-y" ]; then
+}
+fastupdategithub() {
                 print_status "Removing Old NET-UP Directory..";
-				cd;
+                                cd;
                 rm -rf netup;
                 echo -e "";
                 git clone $GITHUBREPO netup
-				chmod +x netup/netup;
-				cd netup
-				rm -rf modules
-			    git clone $MODULEREPO modules
-				chmod +x modules/disablemod
-				chmod +x modules/enablemod
+                                chmod +x netup/netup;
+                                cd netup
+                                rm -rf modules
+                            git clone $MODULEREPO modules
+                                chmod +x modules/disablemod
+                                chmod +x modules/enablemod
                 echo -e "";
                 print_status "Entire NET-UP was synced to Private-Locker's Repo including Modules.";
-				echo -e "";
-				print_error "Removing install script.";
-				rm -rf netup/install.sh
-				touch .conf
-				echo -e "";
-				cd;
+                                echo -e "";
+                                print_error "Removing install script.";
+                                rm -rf netup/install.sh
+                                touch .conf
+                                echo -e "";
+                                cd;
 
-        else
-                echo -e ""
-				print_status "Not Updating NET-UP Framework. Exiting.";
-
-        fi
-	fi
 }

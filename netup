@@ -60,6 +60,9 @@ if [[ $1 = "run" ]]; then
                 exitnetup;
         fi
 elif [[ $1 = "update" ]]; then
+		if [ "$2" = "-y" ]; then
+			fastupdategithub;
+		else
         updategithub;
         exitnetup;
 elif [[ $1 = "updatemods" ]]; then
