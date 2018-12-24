@@ -71,7 +71,14 @@ elif [[ $1 = "updatemods" ]]; then
         updatemods;
         exitnetup;
 elif [[ $1 = "autostart" ]]; then
-        cron_function;
+        if [ "$2" = "off" ] ||  [ "$2" = "OFF" ] || [ "$2" = "" ]; then
+			disable_cron;
+		elif [ "$2" = "on" ] ||  [ "$2" = "ON" ]; then
+			install_cron;
+		else
+			really;
+        exit 0
+	fi
         exitnetup;
 elif [[ $1 = "listmods" ]]; then
         list_modules;

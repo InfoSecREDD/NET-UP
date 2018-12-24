@@ -67,13 +67,3 @@ really(){
 	COMEON=${ANSWERS[$RANDOM % ${#ANSWERS[@]}]}
 	echo -e "$COMEON";
 }
-cron_function(){
-	if [ "$1" = "off" ] ||  [ "$1" = "OFF" ] || [ "$1" = "" ]; then
-        disable_cron;
-	elif [ "$1" = "on" ] ||  [ "$1" = "ON" ]; then
-        install_cron;
-	else
-        really;
-        exit 0
-	fi
-}
