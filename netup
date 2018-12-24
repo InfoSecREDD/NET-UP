@@ -65,6 +65,7 @@ elif [[ $1 = "update" ]]; then
 		else
         updategithub;
         exitnetup;
+		fi
 elif [[ $1 = "updatemods" ]]; then
         updatemods;
         exitnetup;
