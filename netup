@@ -4,10 +4,12 @@
 if [[ $1 = "help" ]]; then
         echo -e ""
         echo -e "Syntax: ./netup"
-        echo -e "        ./netup [enable/disable/list] [module]"
+        echo -e "        ./netup [enable/disable/list/run] [module]"
         echo -e ""
         echo -e "Examples:"
+        echo -e "    ./netup help                    - This help screen displayed."
         echo -e "    ./netup list                    - Shows all enabled/disabled modules."
+        echo -e "    ./netup run listmods            - Runs specific module/script using NET-UP."
         echo -e "    ./netup enable subscan          - Enables Subscan module for NET-UP."
         echo -e "    ./netup disable pythonbackdoor  - Disables Backdoor module for NET-UP."
         echo -e ""
@@ -20,7 +22,7 @@ nocommands() {
         echo -e ""
         exit 0
 }
-if [[ $1 != "" && $1 != "enable" && $1 != "enablemods" && $1 != "list" && $1 != "listmods" && $1 != "disable" && $1 != "disablemods" ]]; then
+if [[ $1 != "" && $1 != "enable" && $1 != "enablemods" && $1 != "list" && $1 != "listmods" && $1 != "disable" && $1 != "disablemods" && $1 != "run" ]]; then
         nocommands;
 fi
 get_dir () {
@@ -37,54 +39,67 @@ DIR=$(get_dir)
 source $DIR/src/initialize
 sym_check;
 
+exitnetup () {
+        echo -e ""
+        echo -e "[X] $NETUPCRED1";
+        echo -e "[X] $NETUPCRED2";
+        echo -e ""
+        exit 0
+}
 
 SELECTED=$2
-if [[ $1 = "listmods" ]]; then
+if [[ $1 = "run" ]]; then
+        if [ -z "$2" ]; then
+                echo -e "No Module input given."
+                exit 0
+        else
+                FILE=$2
+                runmodcommand;
+                exitnetup;
+        fi
+elif [[ $1 = "listmods" ]]; then
         list_modules;
-        echo -e "<---"
-        exit 0
-
+        exitnetup;
 elif [[ $1 = "list" ]]; then
         list_modules;
-        echo "<---"
-        exit 0
+        exitnetup;
 
 elif [[ $1 = "enablemod" ]]; then
         if [ -z "$2" ]; then
                 echo -e "No Module input given."
+                exit 0
         else
                 echo -e "Attempting to enable $SELECTED"
                 /bin/bash modules/enablemod -f modules/$SELECTED
+                exitnetup;
         fi
-        echo "<---"
-        exit 0
 elif [[ $1 = "enable" ]]; then
         if [ -z "$2" ]; then
                 echo -e "No Module input given."
+                exit 0
         else
                 echo -e "Attempting to enable $SELECTED"
                 /bin/bash modules/enablemod -f modules/$SELECTED
+                exitnetup;
         fi
-        echo "<---"
-        exit 0
 elif [[ $1 = "disablemod" ]]; then
         if [ -z "$2" ]; then
                 echo -e "No Module input given."
+                exit 0
         else
                 echo -e "Attempting to disable $SELECTED"
                 /bin/bash modules/disablemod -f modules/$SELECTED
+                exitnetup;
         fi
-        echo "<---"
-        exit 0
 elif [[ $1 = "disable" ]]; then
         if [ -z "$2" ]; then
                 echo -e "No Module input given."
+                exit 0
         else
                 echo -e "Attempting to disable $SELECTED"
                 /bin/bash modules/disablemod -f modules/$SELECTED
+                exitnetup;
         fi
-        echo "<---"
-        exit 0
 fi
 
 
@@ -95,6 +110,7 @@ fi
 
 INTERFACE=eth0
 AUTOREBOOT=NO
+AUTOEXIT=YES
 
 # Future Debugging Variables
 #DEBUG=1
@@ -105,6 +121,8 @@ AUTOREBOOT=NO
 #       printf 'DEBUG: '
 #}
 
+# AutoExit Check.
+autoexitcheck;
 # Check OS type.
 os_check;
 # Check if anything needs installed.
@@ -115,4 +133,4 @@ check_good "Done!";
 print_notification "Starting Net-UP Core..";
 run_netup;
 check_good "Net-UP Core has finished..";
-exit
+exitnetup;

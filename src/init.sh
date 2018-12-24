@@ -52,37 +52,75 @@ mod_noti(){
 }
 
 do_break(){
-	echo -e "";
+        echo -e "";
+}
+
+runmodcommand(){
+        print_status "Starting Module Loader..";
+        mod_noti "Module Directory: $MODULE";
+        do_break;
+        mod_status "Executing module: $FILE";
+        mod_status "-------------------------- ";
+        source $MODULE/$FILE.*
+        mod_checkg "Module $FILE completed.";
+        do_break;
+        check_good "Module Loader has finished..";
 }
 
 start_modules(){
-	print_status "Starting Module Loader..";
-	mod_noti "Module Directory: $MODULE";
-	for FILE in $(ls $MODULE);do 
-		if [ "${FILE##*.}" = "mdu" ]; then
-			do_break;
-			mod_status "Executing module: $FILE";
-			mod_status "-------------------------- ";
-			source $MODULE/$FILE
-			mod_checkg "Module $FILE completed.";
-		fi
-	done
-	do_break;
-	[ -n "$(find . -maxdepth 1 -name '*.mdu' -type f -print -quit)" ] || mod_error 'No Module Scripts were found!' && do_break;
-	check_good "Module Loader has finished..";
+        print_status "Starting Module Loader..";
+        mod_noti "Module Directory: $MODULE";
+        for FILE in $(ls $MODULE);do
+                if [ "${FILE##*.}" = "mdu" ]; then
+                        do_break;
+                        mod_status "Executing module: $FILE";
+                        mod_status "-------------------------- ";
+                        source $MODULE/$FILE
+                        mod_checkg "Module $FILE completed.";
+                fi
+        done
+        do_break;
+        [ -n "$(find . -maxdepth 1 -name '*.mdu' -type f -print -quit)" ] || mod_error 'No Module Scripts were found!' && do_break;
+        check_good "Module Loader has finished..";
 }
 
 list_modules(){
-	mod_noti "Listing ALL Modules:";
-	mod_noti "---------------------- ";
+        mod_noti "Listing ALL Modules:";
+        mod_noti "---------------------- ";
         for FILE2 in $(ls $MODULE);do
                 if [ "${FILE2##*.}" = "mdu" ]; then
                         mod_checkg "${FILE2%%*} \x1B[01;32m(Enabled)\x1B[0m";
-		fi
-		if [ "${FILE2##*.}" = "tmp" ]; then
-                        mod_error "${FILE2%%*} \x1B[01;31m(Disabled)\x1B[0m";
+                fi
+                if [ "${FILE2##*.}" = "tmp" ]; then
+                        mod_error "${FILE2%%.*} \x1B[01;31m(Disabled)\x1B[0m";
                 fi
         done
+}
+
+autoexitcheck(){
+        CONFIGFILE="$DIR/.conf"
+        if [ ! -f "$CONFIGFILE" ]; then
+                echo -e "";
+                print_error "Auto-Exit is ON. (by Default)";
+                echo -e "";
+                print_status "Please check the source of netup File and change";
+                print_status "AUTOEXIT to NO to continue with NET-UP Framework.";
+                echo -e "";
+                touch $CONFIGFILE
+                exitnetup;
+        else
+                if [ "$AUTOEXIT" = "NO" ]; then
+                        print_good "Auto-Exit is OFF.";
+                        echo -e "";
+                        print_good "Continuing with NET-UP Framework..";
+                fi
+                if [ "$AUTOEXIT" = "YES" ]; then
+                        print_error "Auto-Exit is ON.";
+                        echo -e "";
+                        print_good "NET-UP Complete. Exiting.."
+                        exitnetup;
+                fi
+        fi
 }
 
 update(){
@@ -105,7 +143,7 @@ check_root(){
     print_status "Checking for Root.."
     if [[ $EUID -ne 0 ]]; then
         print_error "This script must be ran with sudo or root privileges, or this isn't going to work."
-	    exit 1
+            exit 1
     else
         check_good "Root Access Granted!"
     fi
@@ -146,4 +184,3 @@ show_help(){
     echo "Usage: netup [-h]"
     echo "-h - help message"
 }
-
