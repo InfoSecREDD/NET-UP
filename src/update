@@ -37,6 +37,7 @@ updategithub(){
 				print_status "Not Updating NET-UP Framework. Exiting.";
 
 		fi
+	fi
 	if [ $2 = "-y" ]; then
                 print_status "Removing Old NET-UP Directory..";
 				cd;
