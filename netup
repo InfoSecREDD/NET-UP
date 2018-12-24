@@ -1,6 +1,28 @@
 #!/bin/bash
 #
 ## Internal Required Variables. (DO NOT CHANGE!)
+if [[ $1 = "help" ]]; then
+        echo -e ""
+        echo -e "Syntax: ./netup"
+        echo -e "        ./netup [enable/disable/list] [module]"
+        echo -e ""
+        echo -e "Examples:"
+        echo -e "    ./netup list                    - Shows all enabled/disabled modules."
+        echo -e "    ./netup enable subscan          - Enables Subscan module for NET-UP."
+        echo -e "    ./netup disable pythonbackdoor  - Disables Backdoor module for NET-UP."
+        echo -e ""
+        exit 0
+fi
+nocommands() {
+        echo -e "There is no command for NET-UP like that."
+        echo -e ""
+        echo -e "Please type './netup help' to see syntax examples of this command."
+        echo -e ""
+        exit 0
+}
+if [[ $1 != "" && $1 != "enable" && $1 != "enablemods" && $1 != "list" && $1 != "listmods" && $1 != "disable" && $1 != "disablemods" ]]; then
+        nocommands;
+fi
 get_dir () {
      SOURCE="${BASH_SOURCE[0]}"
      while [ -h "$SOURCE" ]; do
@@ -14,6 +36,58 @@ get_dir () {
 DIR=$(get_dir)
 source $DIR/src/initialize
 sym_check;
+
+
+SELECTED=$2
+if [[ $1 = "listmods" ]]; then
+        list_modules;
+        echo -e "<---"
+        exit 0
+
+elif [[ $1 = "list" ]]; then
+        list_modules;
+        echo "<---"
+        exit 0
+
+elif [[ $1 = "enablemod" ]]; then
+        if [ -z "$2" ]; then
+                echo -e "No Module input given."
+        else
+                echo -e "Attempting to enable $SELECTED"
+                /bin/bash modules/enablemod -f modules/$SELECTED
+        fi
+        echo "<---"
+        exit 0
+elif [[ $1 = "enable" ]]; then
+        if [ -z "$2" ]; then
+                echo -e "No Module input given."
+        else
+                echo -e "Attempting to enable $SELECTED"
+                /bin/bash modules/enablemod -f modules/$SELECTED
+        fi
+        echo "<---"
+        exit 0
+elif [[ $1 = "disablemod" ]]; then
+        if [ -z "$2" ]; then
+                echo -e "No Module input given."
+        else
+                echo -e "Attempting to disable $SELECTED"
+                /bin/bash modules/disablemod -f modules/$SELECTED
+        fi
+        echo "<---"
+        exit 0
+elif [[ $1 = "disable" ]]; then
+        if [ -z "$2" ]; then
+                echo -e "No Module input given."
+        else
+                echo -e "Attempting to disable $SELECTED"
+                /bin/bash modules/disablemod -f modules/$SELECTED
+        fi
+        echo "<---"
+        exit 0
+fi
+
+
 #############################################################
 ## User Adjustable Variables. - For More info please read  ##
 ##   the README.txt in the modules folder.                 ##
@@ -28,7 +102,7 @@ AUTOREBOOT=NO
 
 # Future Debuggin Logfiles..
 #function debug() {
-#	printf 'DEBUG: '
+#       printf 'DEBUG: '
 #}
 
 # Check OS type.
