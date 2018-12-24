@@ -11,8 +11,10 @@ updatemods(){
 		echo -e "";
         if [[ $REPLY =~ ^[Yy]$ ]]; then
                 print_status "Removing Old Modules Directory..";
-                rm -rf $DIR/modules
                 echo -e "";
+				cd;
+				cd netup;
+				rm -rf modules
                 git clone $MODULEREPO modules
 				chmod +x modules/disablemod
 				chmod +x modules/enablemod
