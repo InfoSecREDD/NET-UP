@@ -23,7 +23,7 @@ echo "Cloning from GitHub..";
 git clone https://github.com/private-locker/Net-UP.git netup
 cd $HOMEDIR
 echo "Cloning Modules from Repo.";
-git clone https://github.com/private-locker/modules netup/modules
+git clone https://github.com/private-locker/modules $HOMEDIR/modules
 echo -e "Changing Permissions of Files..";
 chmod +x $HOMEDIR/netup
 chmod +x $HOMEDIR/modules/enablemod
