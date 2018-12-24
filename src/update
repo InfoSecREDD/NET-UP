@@ -25,7 +25,9 @@ updategithub(){
 				echo -e "";
 				print_error "Removing install script.";
 				rm -rf netup/install.sh
+				touch .conf
 				echo -e "";
+				cd;
         else
                 print_status "Not Updating NET-UP.";
         fi
