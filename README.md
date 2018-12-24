@@ -20,10 +20,27 @@ into a secure network to gain intelligence about the network. (subscan module)
 - IPInfo - Script forked from https://github.com/niklasberglund/ipinfo
 - More to come.. (Community Published Modules are welcome)
 
-## Easy Install Script
+## Easy Install Script:
 ```sh
 wget https://raw.githubusercontent.com/private-locker/Net-UP/master/install.sh && sudo /bin/bash install.sh
 ```
+
+## Syntax/Examples:
+```sh
+
+Syntax: ./netup
+        ./netup [enable/disable/list/run/updatemods] [module]
+
+Examples:
+    ./netup help                    - This help screen displayed.
+    ./netup updatemods              - Sync's all Modules with Public Repo.
+    ./netup list                    - Shows all enabled/disabled modules.
+    ./netup run listmods            - Runs specific module/script using NET-UP.
+    ./netup enable subscan          - Enables Subscan module for NET-UP.
+    ./netup disable pythonbackdoor  - Disables Backdoor module for NET-UP.
+    
+```
+
 
 
 
