@@ -82,8 +82,12 @@ elif [[ $1 = "enablemod" ]]; then
                 exit 0
         else
                 echo -e "Attempting to enable $SELECTED"
-                /bin/bash $DIR/modules/enablemod -f $DIR/modules/$SELECTED
+				if [ -f $DIR/modules/$SELECTED.tmp ]; then
+					/bin/bash $DIR/modules/enablemod -f $DIR/modules/$SELECTED
+				else
+					echo "There is No Module named that, Please Try again."
                 exitnetup;
+				fi
         fi
 elif [[ $1 = "enable" ]]; then
         if [ -z "$2" ]; then
@@ -91,8 +95,12 @@ elif [[ $1 = "enable" ]]; then
                 exit 0
         else
                 echo -e "Attempting to enable $SELECTED"
-                /bin/bash $DIR/modules/enablemod -f $DIR/modules/$SELECTED
+				if [ -f $DIR/modules/$SELECTED.tmp ]; then
+					/bin/bash $DIR/modules/enablemod -f $DIR/modules/$SELECTED
+				else
+					echo "There is No Module named that, Please Try again."
                 exitnetup;
+				fi
         fi
 elif [[ $1 = "disablemod" ]]; then
         if [ -z "$2" ]; then
