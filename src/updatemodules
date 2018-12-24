@@ -14,6 +14,8 @@ updatemods(){
                 rm -rf $DIR/modules
                 echo -e "";
                 git clone $MODULEREPO modules
+				chmod +x modules/disablemod
+				chmod +x modules/enablemod
                 echo -e "";
                 print_status "Modules have been synced to Private-Locker's Modules Repo.";
         else
