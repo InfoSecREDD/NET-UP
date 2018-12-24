@@ -21,5 +21,5 @@ LOG=$DIR/logs
 LOCAL=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk -F'[/ ]+' '{print $3}')
 SUBNET=$(ipcalc $LOCAL | awk '/Network/ {print $2}')
 d=$(date +%Y-%m-%d)
-NETUPCRED1="    - Huge Thanks to REDD -"
-NETUPCRED2="        & Private-Locker"
+NETUPCRED1="          - Huge Thanks to REDD -"
+NETUPCRED2="              & Private-Locker"

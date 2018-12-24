@@ -10,6 +10,7 @@ updategithub(){
         echo -e "";
         read -p " Are you sure? [Y/n]" -n 1 -r
         echo -e "";
+		echo -e "";
         if [[ $REPLY =~ ^[Yy]$ ]]; then
                 print_status "Removing Old NET-UP Directory..";
 				cd;
@@ -31,6 +32,8 @@ updategithub(){
 				echo -e "";
 				cd;
         else
-                print_status "Not Updating NET-UP.";
+                echo -e ""
+				print_status "Not Updating NET-UP.";
+				
         fi
 }
