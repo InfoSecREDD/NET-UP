@@ -77,10 +77,10 @@ list_modules(){
 	mod_noti "---------------------- ";
         for FILE2 in $(ls $MODULE);do
                 if [ "${FILE2##*.}" = "mdu" ]; then
-                        mod_checkg "$FILE2 \x1B[01;32m(Enabled)\x1B[0m";
+                        mod_checkg "${FILE2%%*} \x1B[01;32m(Enabled)\x1B[0m";
 		fi
 		if [ "${FILE2##*.}" = "tmp" ]; then
-                        mod_error "$FILE2 \x1B[01;31m(Disabled)\x1B[0m";
+                        mod_error "${FILE2%%*} \x1B[01;31m(Disabled)\x1B[0m";
                 fi
         done
 }
