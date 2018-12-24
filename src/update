@@ -14,13 +14,17 @@ updategithub(){
                 rm -rf netup;
                 echo -e "";
                 git clone $GITHUBREPO netup
+				chmod +x netup/netup;
+				cd netup
+				rm -rf netup/modules
+				chmod +x netup/modules/disablemod
+				chmod +x netup/modules/enablemod
+			    git clone $MODULEREPO modules
                 echo -e "";
                 print_status "Entire NET-UP was synced to Private-Locker's Modules Repo.";
 				echo -e "";
 				print_error "Removing install script.";
 				rm -rf netup/install.sh
-				echo -e "";
-				print_status "Please type 'netup updatemods' to Re-Sync your Modules folder.";
 				echo -e "";
         else
                 print_status "Not Updating NET-UP.";
