@@ -16,6 +16,9 @@ updategithub(){
                 git clone $GITHUBREPO netup
                 echo -e "";
                 print_status "Entire NET-UP was synced to Private-Locker's Modules Repo.";
+				echo -e "";
+				print_error "Attempting to re-run install script.";
+				sudo /bin/bash netup/install.sh
         else
                 print_status "Not Updating NET-UP.";
         fi
