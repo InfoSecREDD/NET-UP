@@ -108,8 +108,12 @@ elif [[ $1 = "disablemod" ]]; then
                 exit 0
         else
                 echo -e "Attempting to disable $SELECTED"
-                /bin/bash $DIR/modules/disablemod -f $DIR/modules/$SELECTED
+				if [ -f $DIR/modules/$SELECTED.mdu ]; then
+					/bin/bash $DIR/modules/disablemod -f $DIR/modules/$SELECTED
+				else
+					echo "There is No Module named that, Please Try again."
                 exitnetup;
+				fi
         fi
 elif [[ $1 = "disable" ]]; then
         if [ -z "$2" ]; then
@@ -117,11 +121,13 @@ elif [[ $1 = "disable" ]]; then
                 exit 0
         else
                 echo -e "Attempting to disable $SELECTED"
-                /bin/bash $DIR/modules/disablemod -f $DIR/modules/$SELECTED
+				if [ -f $DIR/modules/$SELECTED.mdu ]; then
+					/bin/bash $DIR/modules/disablemod -f $DIR/modules/$SELECTED
+				else
+					echo "There is No Module named that, Please Try again."
                 exitnetup;
+				fi
         fi
-fi
-
 
 #############################################################
 ## User Adjustable Variables. - For More info please read  ##
