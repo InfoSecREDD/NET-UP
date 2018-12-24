@@ -64,4 +64,5 @@ updategithub(){
 				print_status "Not Updating NET-UP Framework. Exiting.";
 
         fi
+	fi
 }
