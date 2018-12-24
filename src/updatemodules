@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Module Update
+updatemods(){
+        echo -e "";
+        print_status "Update your Modules Directory and sync with Private-Locker's GitHub?";
+        echo -e "";
+        print_error "THIS WILL REMOVE YOUR MODULES DIRECTORY!";
+        echo -e "";
+        read -p " Are you sure? [Y/n]" -n 1 -r
+        echo -e "";
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+                print_status "Removing Old Modules Directory..";
+                rm -rf $DIR/modules
+                echo -e "";
+                git clone $MODULEREPO modules
+                echo -e "";
+                print_status "Modules have been synced to Private-Locker's Modules Repo.";
+        else
+                print_status "Not Updating Modules.";
+        fi
+}

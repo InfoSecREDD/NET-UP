@@ -4,10 +4,11 @@
 if [[ $1 = "help" ]]; then
         echo -e ""
         echo -e "Syntax: ./netup"
-        echo -e "        ./netup [enable/disable/list/run] [module]"
+        echo -e "        ./netup [enable/disable/list/run/updatemods] [module]"
         echo -e ""
         echo -e "Examples:"
         echo -e "    ./netup help                    - This help screen displayed."
+        echo -e "    ./netup updatemods              - Sync's all Modules with Public Repo."
         echo -e "    ./netup list                    - Shows all enabled/disabled modules."
         echo -e "    ./netup run listmods            - Runs specific module/script using NET-UP."
         echo -e "    ./netup enable subscan          - Enables Subscan module for NET-UP."
@@ -22,7 +23,7 @@ nocommands() {
         echo -e ""
         exit 0
 }
-if [[ $1 != "" && $1 != "enable" && $1 != "enablemods" && $1 != "list" && $1 != "listmods" && $1 != "disable" && $1 != "disablemods" && $1 != "run" ]]; then
+if [[ $1 != "" && $1 != "enable" && $1 != "enablemods" && $1 != "list" && $1 != "listmods" && $1 != "disable" && $1 != "disablemods" && $1 != "run" && $1 != "updatemods" ]]; then
         nocommands;
 fi
 get_dir () {
@@ -57,6 +58,9 @@ if [[ $1 = "run" ]]; then
                 runmodcommand;
                 exitnetup;
         fi
+elif [[ $1 = "updatemods" ]]; then
+        updatemods;
+        exitnetup;
 elif [[ $1 = "listmods" ]]; then
         list_modules;
         exitnetup;

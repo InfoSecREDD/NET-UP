@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 VERS=1.3
+MODULEREPO=https://github.com/private-locker/modules
+GITHUBREPO=https://github.com/private-locker/Net-UP
 source $DIR/etc/auth.mk
 start_notice(){
     echo -e "\x1B[01;33m[!]\x1B[0m $1"
@@ -10,6 +12,7 @@ source $DIR/src/symchk.sh
 source $DIR/src/checkdep.sh
 source $DIR/src/chkconn.sh
 source $DIR/src/oscheck.sh
+source $DIR/src/updatemodules
 source $DIR/src/core
 BREAK=$(do_break)
 MODULE=$DIR/modules
