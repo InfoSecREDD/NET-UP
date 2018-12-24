@@ -16,10 +16,10 @@ updategithub(){
                 git clone $GITHUBREPO netup
 				chmod +x netup/netup;
 				cd netup
-				rm -rf netup/modules
-				chmod +x netup/modules/disablemod
-				chmod +x netup/modules/enablemod
+				rm -rf modules
 			    git clone $MODULEREPO modules
+				chmod +x modules/disablemod
+				chmod +x modules/enablemod
                 echo -e "";
                 print_status "Entire NET-UP was synced to Private-Locker's Modules Repo.";
 				echo -e "";
