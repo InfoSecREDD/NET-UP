@@ -82,7 +82,7 @@ elif [[ $1 = "enablemod" ]]; then
                 exit 0
         else
                 echo -e "Attempting to enable $SELECTED"
-                /bin/bash $DIR/modules/enablemod -f modules/$SELECTED
+                /bin/bash $DIR/modules/enablemod -f $DIR/modules/$SELECTED
                 exitnetup;
         fi
 elif [[ $1 = "enable" ]]; then
@@ -91,7 +91,7 @@ elif [[ $1 = "enable" ]]; then
                 exit 0
         else
                 echo -e "Attempting to enable $SELECTED"
-                /bin/bash $DIR/modules/enablemod -f modules/$SELECTED
+                /bin/bash $DIR/modules/enablemod -f $DIR/modules/$SELECTED
                 exitnetup;
         fi
 elif [[ $1 = "disablemod" ]]; then
@@ -100,7 +100,7 @@ elif [[ $1 = "disablemod" ]]; then
                 exit 0
         else
                 echo -e "Attempting to disable $SELECTED"
-                /bin/bash $DIR/modules/disablemod -f modules/$SELECTED
+                /bin/bash $DIR/modules/disablemod -f $DIR/modules/$SELECTED
                 exitnetup;
         fi
 elif [[ $1 = "disable" ]]; then
@@ -109,7 +109,7 @@ elif [[ $1 = "disable" ]]; then
                 exit 0
         else
                 echo -e "Attempting to disable $SELECTED"
-                /bin/bash $DIR/modules/disablemod -f modules/$SELECTED
+                /bin/bash $DIR/modules/disablemod -f $DIR/modules/$SELECTED
                 exitnetup;
         fi
 fi
