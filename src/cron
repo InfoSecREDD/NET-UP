@@ -1,0 +1,79 @@
+#!/bin/bash
+cronscript=/usr/bin/netup
+if [[ $EUID -ne 0 ]]; then
+   echo "To Install/Check Cronjob, run this script as root."
+   exit 1
+fi
+install_cron(){
+        if [[ ! $(crontab -l) ]]; then
+                echo -e ""
+                echo -e "There is no Crontab for this user, please use 'crontab -e' to"
+                echo -e "generate a new crontab and add a additional line to the"
+                echo -e "configuration. Then save and exit the Editor."
+                echo -e ""
+                exit
+        fi
+        if [[ $(crontab -l) = *$cronscript* ]]; then
+                echo -e "Cronjob already exists."
+                exit 0
+        else
+                echo -e "Cronjob doesn't exist."
+                tmp=${TMPDIR:-/tmp}/tmpnetup.$$
+                backup=backup.crontab
+                trap "rm -f $tmp; exit 1" 0 1 2 3 13 15
+                CRONTABCONTENT=$(crontab -l)
+                echo -e "Writing Content of Previous Crontab.";
+                echo -e "$CRONTABCONTENT" > $tmp
+                echo -e "Adding Backup of Current Crontab.";
+                echo -e "$CRONTABCONTENT" > $backup
+                echo -e "@reboot /bin/bash $cronscript" >> $tmp
+                crontab < $tmp
+                echo -e "Cleaning Up..";
+                rm -f $tmp
+                trap 0
+        fi
+}
+
+disable_cron(){
+        if [[ $(crontab -l) = *$cronscript* ]]; then
+                TASK=netup
+                CRONTABEXIST=$(crontab -l)
+                tmp=${TMPDIR:-/tmp}/tmpnetup.$$
+                backup=backup.crontab
+                trap "rm -f $tmp; exit 1" 0 1 2 3 13 15
+                echo -e "Removing NET-UP Cronjob from user's crontab.";
+                echo -e "$CRONTABEXIST" > $tmp
+                sed -i "/$TASK/d" $tmp
+                echo -e "Applying fixed for Cronjob.";
+                crontab < $tmp
+                echo -e "Cleaning Up..";
+                rm -rf $tmp
+                trap 0
+        else
+                echo -e "Could not located a Cronjob for NET-UP."
+                exit 0
+        fi
+}
+really(){
+	ANSWERS=(
+        "Really? Common dude.."
+        "We playing games now?.."
+        "Oh yeah, thats the command!"
+        "No! The answer is 42."
+        ".....Huh? Were you talking to me?"
+        "Bad Middlefork! No Guides for you!"
+        "Is that your Final Answer?..." )
+	RANDOM=$$$(date +%s)
+	COMEON=${ANSWERS[$RANDOM % ${#ANSWERS[@]}]}
+	echo -e "$COMEON";
+}
+cron_function(){
+	if [ "$1" = "off" ] ||  [ "$1" = "OFF" ] || [ "$1" = "" ]; then
+        disable_cron;
+	elif [ "$1" = "on" ] ||  [ "$1" = "ON" ]; then
+        install_cron;
+	else
+        really;
+        exit 0
+	fi
+}
