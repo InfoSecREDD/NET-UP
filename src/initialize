@@ -24,3 +24,7 @@ SUBNET=$(ipcalc $LOCAL | awk '/Network/ {print $2}')
 d=$(date +%Y-%m-%d)
 NETUPCRED1="          - Huge Thanks to REDD -"
 NETUPCRED2="              & Private-Locker"
+AUTOBOOTON="AUTOREBOOT=YES"
+AUTOBOOTOFF="AUTOREBOOT=NO"
+AUTOEXITON="AUTOEXIT=YES"
+AUTOEXITOFF="AUTOEXIT=NO"
