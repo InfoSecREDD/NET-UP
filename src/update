@@ -19,9 +19,9 @@ updategithub(){
 				chmod +x $HOME/netup/netup;
 				cd $HOME/netup
 				rm -rf $HOME/netup/modules
-			    git clone $MODULEREPO $HOME/modules
-				chmod +x $HOME/modules/disablemod
-				chmod +x $HOME/modules/enablemod
+			    git clone $MODULEREPO $HOME/netup/modules
+				chmod +x $HOME/netup/modules/disablemod
+				chmod +x $HOME/netup/modules/enablemod
                 echo -e "";
                 print_status "Entire NET-UP was synced to Private-Locker's Repo including Modules.";
 				echo -e "";
