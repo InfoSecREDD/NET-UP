@@ -4,15 +4,17 @@
 if [[ $1 = "help" ]]; then
         echo -e ""
         echo -e "Syntax: ./netup"
-        echo -e "        ./netup [enable/disable/list/run/update/updatemods] [module]"
+        echo -e "        ./netup [option] [module]/[on/off]"
         echo -e ""
         echo -e "Examples:"
         echo -e "    ./netup help                    - This help screen displayed."
-		echo -e "    ./netup update                  - Updates entire NET-UP & Modules with Public Repo."
+	echo -e "    ./netup update                  - Updates entire NET-UP & Modules with Public Repo."
+        echo -e "    ./netup enablemods              - Enables all Modules in the Modules Folder."
+        echo -e "    ./netup disablemods             - Disables all Modules in the Modules Folder."
         echo -e "    ./netup updatemods              - Sync's all Modules with Public Repo."
-		echo -e "    ./netup autostart [on/off]      - Turns on/off crontab for NET-UP.";
-		echo -e "    ./netup autoreboot [on/off]     - Turns on/off AUTOREBOOT for NET-UP.";
-		echo -e "    ./netup autoexit [on/off]       - Turns on/off AUTOEXIT for NET-UP.";
+	echo -e "    ./netup autostart [on/off]      - Turns on/off crontab for NET-UP.";
+	echo -e "    ./netup autoreboot [on/off]     - Turns on/off AUTOREBOOT for NET-UP.";
+	echo -e "    ./netup autoexit [on/off]       - Turns on/off AUTOEXIT for NET-UP.";
         echo -e "    ./netup list                    - Shows all enabled/disabled modules."
         echo -e "    ./netup run subscan             - Runs specific module/script using NET-UP."
         echo -e "    ./netup enable subscan          - Enables Subscan module for NET-UP."
@@ -46,8 +48,8 @@ sym_check;
 
 exitnetup () {
         echo -e ""
-        echo -e "[X] $NETUPCRED1";
-        echo -e "[X] $NETUPCRED2";
+        check_good "$NETUPCRED1";
+        check_good "$NETUPCRED2";
         echo -e ""
         exit 0
 }
@@ -73,18 +75,22 @@ elif [[ $1 = "autoexit" ]]; then
         if [ "$2" = "off" ] ||  [ "$2" = "OFF" ] || [ "$2" = "" ]; then
                 if grep -q "$AUTOEXITOFF" "$HOME/netup/netup";
                         then
-                        echo -e "Already disabled.";
+			echo -e "";
+                        print_notification "Automatic Exit is already disabled.";
                 else
+			echo -e "";
                         replace "$AUTOEXITON" "$AUTOEXITOFF" -- $HOME/netup/netup >/dev/null;
-                        echo -e "Changed Automatic Exit of Script to OFF.";
+                        check_good "Changed Automatic Exit of Script to OFF.";
                 fi
                 elif [ "$2" = "on" ] ||  [ "$2" = "ON" ]; then
                         if grep -q "$AUTOEXITON" "$HOME/netup/netup";
                         then
-                        echo -e "Already enabled.";
+			echo -e "";
+                        print_notification "Automatic Exit is already enabled.";
                 else
+			echo -e "";
                         replace "$AUTOEXITOFF" "$AUTOEXITON" -- $HOME/netup/netup >/dev/null;
-                        echo -e "Changed Automatic Exit of Script to ON.";
+                        check_good "Changed Automatic Exit of Script to ON.";
                 fi
                 else
         exit 0
@@ -94,18 +100,22 @@ elif [[ $1 = "autoreboot" ]]; then
         if [ "$2" = "off" ] ||  [ "$2" = "OFF" ] || [ "$2" = "" ]; then
 		if grep -q "$AUTOBOOTOFF" "$HOME/netup/netup";
 			then
-    			echo -e "Already disabled.";
+			echo -e "";
+    			print_notification "Automatic Reboot is already disabled.";
 		else
+			echo -e "";
                         replace "$AUTOBOOTON" "$AUTOBOOTOFF" -- $HOME/netup/netup >/dev/null;
-			echo -e "Changed Automatic Reboot after Script Completes to OFF.";
+			check_good "Changed Automatic Reboot after Script Completes to OFF.";
 		fi
                 elif [ "$2" = "on" ] ||  [ "$2" = "ON" ]; then
 			if grep -q "$AUTOBOOTON" "$HOME/netup/netup";
                         then
-			echo -e "Already enabled.";
+			echo -e "";
+			print_notification "Automatic Reboot is already enabled.";
 		else
+			echo -e "";
                         replace "$AUTOBOOTOFF" "$AUTOBOOTON" -- $HOME/netup/netup >/dev/null;
-			echo -e "Changed Automatic Reboot after Script Completes to ON.";
+			check_good "Changed Automatic Reboot after Script Completes to ON.";
 		fi
                 else
         exit 0
