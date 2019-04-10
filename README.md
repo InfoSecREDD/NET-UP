@@ -46,17 +46,22 @@ netup updatemods
 ```sh
 
 Syntax: ./netup
-        ./netup [enable/disable/list/run/updatemods] [module]
+        ./netup [enable/disable/disablemods/enablemods/autoreboot/autoexit/autostart/list/run/update/updatemods] [module]/[on/off]
 
 Examples:
     ./netup help                    - This help screen displayed.
     ./netup update                  - Updates entire NET-UP & Modules with Public Repo.
+    ./netup enablemods              - Enables all Modules in the Modules Folder.
+    ./netup disablemods             - Disables all Modules in the Modules Folder.
     ./netup updatemods              - Sync's all Modules with Public Repo.
+    ./netup autostart [on/off]      - Turns on/off crontab for NET-UP.
+    ./netup autoreboot [on/off]     - Turns on/off AUTOREBOOT for NET-UP.
+    ./netup autoexit [on/off]       - Turns on/off AUTOEXIT for NET-UP.
     ./netup list                    - Shows all enabled/disabled modules.
-    ./netup run listmods            - Runs specific module/script using NET-UP.
+    ./netup run subscan             - Runs specific module/script using NET-UP.
     ./netup enable subscan          - Enables Subscan module for NET-UP.
-    ./netup disable subscan         - Disables Subscan module for NET-UP.
-    
+    ./netup disable subscan         - Disables Backdoor module for NET-UP.
+
 ```
 
 
