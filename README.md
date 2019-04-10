@@ -46,7 +46,7 @@ netup updatemods
 ```sh
 
 Syntax: ./netup
-        ./netup [enable/disable/disablemods/enablemods/autoreboot/autoexit/autostart/list/run/update/updatemods] [module]/[on/off]
+        ./netup [option] [module]/[on/off]
 
 Examples:
     ./netup help                    - This help screen displayed.
