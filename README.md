@@ -53,7 +53,7 @@ Examples:
     ./netup update                  - Updates entire NET-UP & Modules with Public Repo.
     ./netup enablemods              - Enables all Modules in the Modules Folder.
     ./netup disablemods             - Disables all Modules in the Modules Folder.
-    ./netup updatemods              - Sync's all Modules with Public Repo.
+    ./netup updatemods              - Syncs all Modules with Public Repo.
     ./netup autostart [on/off]      - Turns on/off crontab for NET-UP.
     ./netup autoreboot [on/off]     - Turns on/off AUTOREBOOT for NET-UP.
     ./netup autoexit [on/off]       - Turns on/off AUTOEXIT for NET-UP.
