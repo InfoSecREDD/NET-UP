@@ -9,6 +9,7 @@ if [[ $1 = "help" ]]; then
         echo -e "Examples:"
         echo -e "    ./netup help                    - This help screen displayed."
 	echo -e "    ./netup update                  - Updates entire NET-UP & Modules with Public Repo."
+	echo -e "    ./netup interface               - Automattically sets INTERFACE Variable."
         echo -e "    ./netup enablemods              - Enables all Modules in the Modules Folder."
         echo -e "    ./netup disablemods             - Disables all Modules in the Modules Folder."
         echo -e "    ./netup updatemods              - Sync's all Modules with Public Repo."
@@ -29,7 +30,7 @@ nocommands() {
         echo -e ""
         exit 0
 }
-if [[ $1 != "" && $1 != "update" && $1 != "enable" && $1 != "enablemods" && $1 != "autostart" && $1 != "list" && $1 != "listmods" && $1 != "disable" && $1 != "autoreboot" && $1 != "disablemods" && $1 != "run" && $1 != "updatemods" && $1 != "autoexit" ]]; then
+if [[ $1 != "" && $1 != "update" && $1 != "enable" && $1 != "enablemods" && $1 != "autostart" && $1 != "list" && $1 != "listmods" && $1 != "interface" && $1 != "disable" && $1 != "autoreboot" && $1 != "disablemods" && $1 != "run" && $1 != "updatemods" && $1 != "autoexit" ]]; then
         nocommands;
 fi
 get_dir () {
@@ -154,6 +155,17 @@ elif [[ $1 = "enablemod" ]]; then
                 exitnetup;
 				fi
         fi
+elif [[ $1 = "interface" ]]; then
+	if [ "$2" = "auto" ] || [ "$2" = "" ]; then
+		AUTO1=$(ip link | awk -F: '$0!~"lo|vir|wl|^[^0-9]"{print $2;getline}')
+		AUTODETECT=${AUTO1## }
+		echo -e "";
+		print_notification "Automatticially detecting active Adapter.";
+		print_notification "Setting $INTVAR Variable to $AUTODETECT";
+		sed -i "s/$INTVAR=.*/$INTVAR=$AUTODETECT/g" "$HOME/netup/netup";
+		check_good "Done."
+	exitnetup;
+	fi
 elif [[ $1 = "enable" ]]; then
         if [ -z "$2" ]; then
                 echo -e "No Module input given."
