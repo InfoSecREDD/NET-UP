@@ -212,9 +212,9 @@ fi
 ##   the README.txt in the modules folder.                 ##
 #############################################################
 
-INTERFACE=wlan0
+INTERFACE=eth0
 AUTOREBOOT=NO
-AUTOEXIT=NO
+AUTOEXIT=YES
 
 # Future Debugging Variables
 #DEBUG=1
