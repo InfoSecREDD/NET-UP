@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-VERS=1.4.2
+VERS=1.4.3
 MODULEREPO=https://github.com/private-locker/modules
 GITHUBREPO=https://github.com/private-locker/Net-UP
 source $DIR/etc/auth.mk
