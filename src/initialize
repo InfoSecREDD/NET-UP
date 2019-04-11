@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-VERS=1.4.1
+VERS=1.4.2
 MODULEREPO=https://github.com/private-locker/modules
 GITHUBREPO=https://github.com/private-locker/Net-UP
 source $DIR/etc/auth.mk
@@ -28,3 +28,4 @@ AUTOBOOTON="AUTOREBOOT=YES"
 AUTOBOOTOFF="AUTOREBOOT=NO"
 AUTOEXITON="AUTOEXIT=YES"
 AUTOEXITOFF="AUTOEXIT=NO"
+INTVAR="INTERFACE"
