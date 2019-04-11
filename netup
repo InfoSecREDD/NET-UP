@@ -157,7 +157,7 @@ elif [[ $1 = "enablemod" ]]; then
         fi
 elif [[ $1 = "interface" ]]; then
 	if [ "$2" = "auto" ] || [ "$2" = "" ]; then
-		AUTO1=$(ip link | awk -F: '$0!~"lo|vir|wl|^[^0-9]"{print $2;getline}')
+		AUTO1=$(ip link | grep "state UP" | awk -F: '$0!~"lo|vir|^[^0-9]"{print $2;getline}')
 		AUTODETECT=${AUTO1## }
 		echo -e "";
 		print_notification "Automatticially detecting active Adapter.";
@@ -212,9 +212,9 @@ fi
 ##   the README.txt in the modules folder.                 ##
 #############################################################
 
-INTERFACE=eth0
+INTERFACE=wlan0
 AUTOREBOOT=NO
-AUTOEXIT=YES
+AUTOEXIT=NO
 
 # Future Debugging Variables
 #DEBUG=1
@@ -229,6 +229,10 @@ AUTOEXIT=YES
 autoexitcheck;
 # Check OS type.
 os_check;
+# Check if anything needs installed.
+print_status "Checking for dependencies..";
+check_dep;
+check_good "Done!";
 # Start NET-UP
 print_notification "Starting Net-UP Core..";
 run_netup;
