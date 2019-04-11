@@ -51,6 +51,7 @@ Syntax: ./netup
 Examples:
     ./netup help                    - This help screen displayed.
     ./netup update                  - Updates entire NET-UP & Modules with Public Repo.
+    ./netup interface               - Automattically sets INTERFACE Variable.
     ./netup enablemods              - Enables all Modules in the Modules Folder.
     ./netup disablemods             - Disables all Modules in the Modules Folder.
     ./netup updatemods              - Syncs all Modules with Public Repo.
