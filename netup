@@ -81,7 +81,6 @@ elif [[ $1 = "autoexit" ]]; then
                 else
 			echo -e "";
 			sed -i "s/$AUTOEXITON/$AUTOEXITOFF/g" "$HOME/netup/netup"
-#                        replace "$AUTOEXITON" "$AUTOEXITOFF" -- $HOME/netup/netup >/dev/null;
                         check_good "Changed Automatic Exit of Script to OFF.";
                 fi
                 elif [ "$2" = "on" ] ||  [ "$2" = "ON" ]; then
@@ -92,7 +91,6 @@ elif [[ $1 = "autoexit" ]]; then
                 else
 			echo -e "";
 			sed -i "s/$AUTOEXITOFF/$AUTOEXITON/g" "$HOME/netup/netup"
-#                        replace "$AUTOEXITOFF" "$AUTOEXITON" -- $HOME/netup/netup >/dev/null;
                         check_good "Changed Automatic Exit of Script to ON.";
                 fi
                 else
@@ -108,7 +106,6 @@ elif [[ $1 = "autoreboot" ]]; then
 		else
 			echo -e "";
 			sed -i "s/$AUTOBOOTON/$AUTOBOOTOFF/g" "$HOME/netup/netup"
-#                        replace "$AUTOBOOTON" "$AUTOBOOTOFF" -- $HOME/netup/netup >/dev/null;
 			check_good "Changed Automatic Reboot after Script Completes to OFF.";
 		fi
                 elif [ "$2" = "on" ] ||  [ "$2" = "ON" ]; then
@@ -119,7 +116,6 @@ elif [[ $1 = "autoreboot" ]]; then
 		else
 			echo -e "";
 			sed -i "s/$AUTOBOOTOFF/$AUTOBOOTON/g" "$HOME/netup/netup"
-#                        replace "$AUTOBOOTOFF" "$AUTOBOOTON" -- $HOME/netup/netup >/dev/null;
 			check_good "Changed Automatic Reboot after Script Completes to ON.";
 		fi
                 else
