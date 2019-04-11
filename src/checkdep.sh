@@ -24,9 +24,9 @@ check_dep(){
         	sudo -k apt-get install -y ipcalc &>/dev/null
         	check_success;
 	fi
-	if ! command_exists replace ; then
-        	print_notification "Attempting to install replace..";
-		sudo -k apt-get install -y replace &>/dev/null
-        	check_success;
+	if ! command_exists mysql ; then
+        	print_notification "Attempting to install MySQL Server..";
+		sudo -k apt-get install -y mysql-server &>/dev/null
+		check_success;
 	fi
 }
