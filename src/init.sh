@@ -82,6 +82,7 @@ start_modules(){
         do_break;
         [ -n "$(find . -maxdepth 1 -name '*.mdu' -type f -print -quit)" ] || mod_error 'No Module Scripts were found!' && do_break;
         check_good "Module Loader has finished..";
+        exitnetup;
 }
 
 list_modules(){
