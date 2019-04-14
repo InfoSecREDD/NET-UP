@@ -23,15 +23,6 @@ do_help() {
         echo -e ""
         exit 0
 }
-
-nocommands() {
-        echo -e "There is no command for NET-UP like that."
-        echo -e ""
-        echo -e "Please type './netup help' to see syntax examples of this command."
-        echo -e ""
-        exit 0
-}
-
 get_dir () {
      SOURCE="${BASH_SOURCE[0]}"
      while [ -h "$SOURCE" ]; do
@@ -42,7 +33,7 @@ get_dir () {
      	DIRECTORY="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
      		echo "$DIRECTORY"
 }
-
+source $HOME/netup/src/commandchk;
 exitnetup () {
         echo -e ""
         check_good "$NETUPCRED1"
