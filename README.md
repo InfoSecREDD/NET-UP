@@ -74,7 +74,9 @@ Examples:
 
 
 
-### Huge Thanks to -REDD- of Private-Locker for building this whole Project.
+## Contributors:
+ - -REDD- of Private-Locker (Main Developer)
+ - Sero of Thoth (Bugfixes and alternate Coding Methods)
 
 License
 ----
