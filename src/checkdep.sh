@@ -1,15 +1,27 @@
 #!/usr/bin/env bash
 ## Checking Device for Commands needed.
-
-check_dep() {
-	declare -a deps=('curl' 'ethtool' 'ipcalc')
-
-	for j in ${deps[@]}
-	do
-		if ! command_exists $j ; then
-			print_notification "Attempting to install $j..."
-			sudo -k apt-get install -y $j &>/dev/null
-			check_success
-		fi
-	done
+check_dep(){
+#	echo "curl ethtool ipcalc" | tr ' ' '\n' > deps
+#	while read -ru 3 DEPS; do
+#        if ! command_exists $DEPS ; then
+#                print_notification "Attempting to install $DEPS..";
+#                sudo -k apt-get install -y $DEPS &>/dev/null
+#                check_success;
+#        fi
+#	done < "deps"
+	if ! command_exists curl ; then
+        	print_notification "Attempting to install curl..";
+        	sudo -k apt-get install -y curl &>/dev/null
+        	check_success;
+	fi
+	if ! command_exists ethtool ; then
+        	print_notification "Attempting to install ethtool..";
+        	sudo -k apt-get install -y ethtool &>/dev/null
+        	check_success;
+	fi
+	if ! command_exists ipcalc ; then
+        	print_notification "Attempting to install ipcalc..";
+        	sudo -k apt-get install -y ipcalc &>/dev/null
+        	check_success;
+	fi
 }
