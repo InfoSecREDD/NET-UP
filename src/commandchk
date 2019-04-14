@@ -5,6 +5,28 @@ nocommands() {
         echo -e ""
         exit 0
 }
-if [[ $1 != "" && $1 != "update" && $1 != "enable" && $1 != "enablemods" && $1 != "autostart" && $1 != "list" && $1 != "listmods" && $1 != "interface" && $1 != "disable" && $1 != "autoreboot" && $1 != "disablemods" && $1 != "run" && $1 != "updatemods" && $1 != "autoexit" ]]; then
+if [[ $1 != "" && $1 != "update" && $1 != "enable" && $1 != "enablemods" && $1 != "autostart" && $1 != "list" && $1 != "listmods" && $1 != "interface" && $1 != "disable" && $1 != "autoreboot"$
         nocommands;
+fi
+if [[ $1 = "help" ]]; then
+        echo -e ""
+        echo -e "Syntax: ./netup"
+        echo -e "        ./netup [option] [module]/[on/off]"
+        echo -e ""
+        echo -e "Examples:"
+        echo -e "    ./netup help                    - This help screen displayed."
+        echo -e "    ./netup update                  - Updates entire NET-UP & Modules with Public Repo."
+        echo -e "    ./netup interface               - Automattically sets INTERFACE Variable."
+        echo -e "    ./netup enablemods              - Enables all Modules in the Modules Folder."
+        echo -e "    ./netup disablemods             - Disables all Modules in the Modules Folder."
+        echo -e "    ./netup updatemods              - Sync's all Modules with Public Repo."
+        echo -e "    ./netup autostart [on/off]      - Turns on/off crontab for NET-UP.";
+        echo -e "    ./netup autoreboot [on/off]     - Turns on/off AUTOREBOOT for NET-UP.";
+        echo -e "    ./netup autoexit [on/off]       - Turns on/off AUTOEXIT for NET-UP.";
+        echo -e "    ./netup list                    - Shows all enabled/disabled modules."
+        echo -e "    ./netup run subscan             - Runs specific module/script using NET-UP."
+        echo -e "    ./netup enable subscan          - Enables Subscan module for NET-UP."
+        echo -e "    ./netup disable subscan         - Disables Backdoor module for NET-UP."
+        echo -e ""
+        exit 0
 fi
