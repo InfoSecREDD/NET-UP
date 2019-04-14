@@ -15,7 +15,6 @@ DIR=$(get_dir)
 source $DIR/src/commandchk
 source $DIR/src/initialize
 source $DIR/src/exec
-sym_check;
 
 
 #############################################################
