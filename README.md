@@ -69,7 +69,6 @@ Examples:
 
 
 ### TODO List:
-- Add script to detect name of Network Interface of NET-UP machine.
 - Add more OSINT Scripts to https://github.com/private-locker/modules
 
 
