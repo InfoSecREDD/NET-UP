@@ -200,7 +200,7 @@ do_usage() {
 		*)
 			if [ -z "$1" ]
   			then
-    				run_netup
+    				do_init
 			else
 				nocommands
 			fi
