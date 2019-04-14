@@ -36,13 +36,22 @@ AUTOEXIT=YES
 #       printf 'DEBUG: '
 #}
 
-# AutoExit Check.
-autoexitcheck;
-# Check if anything needs installed.
-print_status "Checking for dependencies..";
-check_dep;
-check_good "Done!";
-# Start NET-UP
-print_notification "Starting Net-UP Core..";
-run_netup;
+
+do_init() {
+	# Check for or create symlink to system wide script
+	sym_check
+
+	# AutoExit Check.
+	autoexitcheck
+
+	# Check if anything needs installed.
+	print_status "Checking for dependencies.."
+	check_dep
+	check_good "Done!"
+
+	# Start NET-UP
+	print_notification "Starting Net-UP Core.."
+	run_netup
+	check_good "Finished."
+}
 exitnetup;
