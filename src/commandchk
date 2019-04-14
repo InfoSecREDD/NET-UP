@@ -5,7 +5,7 @@ nocommands() {
         echo -e ""
         exit 0
 }
-if [[ $1 != "" && $1 != "update" && $1 != "enable" && $1 != "enablemods" && $1 != "autostart" && $1 != "list" && $1 != "listmods" && $1 != "interface" && $1 != "disable" && $1 != "autoreboot"$
+if [[ $1 != "" && $1 != "update" && $1 != "enable" && $1 != "enablemods" && $1 != "autostart" && $1 != "list" && $1 != "listmods" && $1 != "interface" && $1 != "disable" && $1 != "autoreboot"  && $1 != "disablemods" && $1 != "run" && $1 != "updatemods" && $1 != "autoexit" && $1 != "help" ]]; then
         nocommands;
 fi
 if [[ $1 = "help" ]]; then
