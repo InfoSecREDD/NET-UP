@@ -160,14 +160,15 @@ do_disablemod() {
 do_disablemods() {
 	tempmodcount=0
 	for file in `ls $DIR/modules/*.mdu`; do
+		basefile=$(basename "$file" .mdu)
 		tempmodcount=1
-		print_notification "Disabling Module: $file."
+		print_notification "Disabling Module: $basefile."
 		mv "$file" "$DIR/modules/$(basename "$file" .mdu).tmp"
 		print_notification "Checking if Module was Disabled."
-		if [ ! -f "$DIR/modules/$SELECTED.tmp" ]; then
-			check_good "Module $SELECTED Disabled!"
+		if [ ! -f "$DIR/modules/$file.tmp" ]; then
+			check_good "Module $basefile Disabled!"
 		else
-			print_error "Module $SELECTED was not Disabled please contact contact@private-locker.com";
+			print_error "Module $basefile was not Disabled please contact contact@private-locker.com";
 		fi
 	done
 	if [ ! -f "$DIR/modules/*.mdu" ] && [ "$tempmodcount" -eq "0" ]; then
@@ -180,14 +181,15 @@ do_disablemods() {
 do_enablemods() {
 	tempmodcount=0
 	for file in `ls $DIR/modules/*.tmp`; do
+		basefile=$(basename "$file" .tmp)
 		tempmodcount=1
-		print_notification "Enabling Module: $file."
+		print_notification "Enabling Module: $basefile."
 		mv "$file" "$DIR/modules/$(basename "$file" .tmp).mdu"
 		print_notification "Checking if Module was Enabled."
 		if [ ! -f "$DIR/modules/$file.tmp" ]; then
-			check_good "Module $file Enabled!"
+			check_good "Module $basefile Enabled!"
 		else
-			print_error "Module $file was not Enabled please contact contact@private-locker.com";
+			print_error "Module $basefile was not Enabled please contact contact@private-locker.com";
 		fi
 		
 	done
