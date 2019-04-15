@@ -168,6 +168,7 @@ do_disablemods() {
 			print_error "Module $SELECTED was not Disabled please contact contact@private-locker.com";
 		fi
 	done
+	exitnetup
 }
 
 do_enablemods() {
@@ -182,6 +183,7 @@ do_enablemods() {
 		fi
 		
 	done
+	exitnetup
 }
 
 do_usage() {
