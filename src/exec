@@ -158,7 +158,9 @@ do_disablemod() {
 }
 
 do_disablemods() {
+	tempmodcount=0
 	for file in `ls $DIR/modules/*.mdu`; do
+		tempmodcount=1
 		print_notification "Disabling Module: $file."
 		mv "$file" "$DIR/modules/$(basename "$file" .mdu).tmp"
 		print_notification "Checking if Module was Disabled."
@@ -168,7 +170,7 @@ do_disablemods() {
 			print_error "Module $SELECTED was not Disabled please contact contact@private-locker.com";
 		fi
 	done
-	if [ ! -f "$DIR/modules/*.mdu" ]; then
+	if [ ! -f "$DIR/modules/*.mdu" ] && [ "$tempmodcount" -eq "0" ]; then
 		print_error "There is no Enabled Modules."
 		exitnetup
 	fi
@@ -176,7 +178,9 @@ do_disablemods() {
 }
 
 do_enablemods() {
+	tempmodcount=0
 	for file in `ls $DIR/modules/*.tmp`; do
+		tempmodcount=1
 		print_notification "Enabling Module: $file."
 		mv "$file" "$DIR/modules/$(basename "$file" .tmp).mdu"
 		print_notification "Checking if Module was Enabled."
@@ -187,7 +191,7 @@ do_enablemods() {
 		fi
 		
 	done
-	if [ ! -f "$DIR/modules/*.mdu" ]; then
+	if [ ! -f "$DIR/modules/*.mdu" ] && [ "$tempmodcount" -eq "0" ]; then
 		print_error "There is no Disabled Modules."
 		exitnetup
 	fi
