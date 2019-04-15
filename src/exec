@@ -159,7 +159,7 @@ do_disablemod() {
 
 do_disablemods() {
 	tempmodcount=0
-	for file in `ls $DIR/modules/*.mdu`; do
+	for file in `ls $DIR/modules/*.mdu 2>/dev/null`; do
 		basefile=$(basename "$file" .mdu)
 		tempmodcount=1
 		print_notification "Disabling Module: $basefile."
@@ -180,7 +180,7 @@ do_disablemods() {
 
 do_enablemods() {
 	tempmodcount=0
-	for file in `ls $DIR/modules/*.tmp`; do
+	for file in `ls $DIR/modules/*.tmp 2>/dev/null`; do
 		basefile=$(basename "$file" .tmp)
 		tempmodcount=1
 		print_notification "Enabling Module: $basefile."
