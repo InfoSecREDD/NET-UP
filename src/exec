@@ -161,6 +161,7 @@ do_disablemods() {
 	for file in `ls $DIR/modules/*.mdu`; do
 		print_notification "Disabling Module: $file."
 		mv "$file" "$DIR/modules/$(basename "$file" .mdu).tmp"
+		print_notification "Checking if Module was Disabled."
 		if [ ! -f "$DIR/modules/$SELECTED.tmp" ]; then
 			check_good "Module $SELECTED Disabled!"
 		else
@@ -173,6 +174,7 @@ do_enablemods() {
 	for file in `ls $DIR/modules/*.tmp`; do
 		print_notification "Enabling Module: $file."
 		mv "$file" "$DIR/modules/$(basename "$file" .tmp).mdu"
+		print_notification "Checking if Module was Enabled."
 		if [ ! -f "$DIR/modules/$file.tmp" ]; then
 			check_good "Module $file Enabled!"
 		else
