@@ -120,6 +120,7 @@ do_enablemod() {
                 echo -e "Attempting to enable $SELECTED"
 		if [ -f $DIR/modules/$SELECTED.tmp ]; then
 			/bin/bash $DIR/modules/enablemod -f $DIR/modules/$SELECTED
+			exitnetup
 		else
 			echo "There is No Module named that, Please Try again."
                 	exitnetup
@@ -136,6 +137,7 @@ do_disablemod() {
 		echo -e "Attempting to disable $SELECTED"
 		if [ -f $DIR/modules/$SELECTED.mdu ]; then
 			/bin/bash $DIR/modules/disablemod -f $DIR/modules/$SELECTED
+			exitnetup
 		else
 			echo "There is No Module named that, Please Try again."
                 	exitnetup
