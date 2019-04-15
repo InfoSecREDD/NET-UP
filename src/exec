@@ -113,12 +113,13 @@ do_interface() {
 
 do_enablemod() {
 	if [ -z "$1" ]; then
-                echo -e "No Module input given."
+                print_error "No Module input given."
                 exit 0
         else
 		SELECTED=$1
-                print_notification "Attempting to enable $SELECTED"
+                print_notification "Attempting to Enable Module: $SELECTED."
 		if [ -f $DIR/modules/$SELECTED.tmp ]; then
+			print_notification "Checking if Module was Enabled."
 			/bin/bash $DIR/modules/enablemod -f $DIR/modules/$SELECTED
 			if [ -f "$DIR/modules/$SELECTED.mdu" ]; then
 				check_good "Module $SELECTED Enabled!"
@@ -127,7 +128,7 @@ do_enablemod() {
 			fi
 			exitnetup
 		else
-			echo "There is No Module named that, Please Try again."
+			print_error "There is No Module named that, Please Try again."
                 	exitnetup
 		fi
         fi
@@ -135,12 +136,13 @@ do_enablemod() {
 
 do_disablemod() {
         if [ -z "$1" ]; then
-                echo -e "No Module input given."
+                print_error "No Module input given."
                 exit 0
         else
 		SELECTED=$1
-		echo -e "Attempting to disable $SELECTED"
+		print_notification "Attempting to Disable Module: $SELECTED"
 		if [ -f $DIR/modules/$SELECTED.mdu ]; then
+			print_notification "Checking if Module was Disabled."
 			/bin/bash $DIR/modules/disablemod -f $DIR/modules/$SELECTED
 			if [ -f "$DIR/modules/$SELECTED.tmp" ]; then
 				check_good "Module $SELECTED Disabled!"
@@ -149,7 +151,7 @@ do_disablemod() {
 			fi
 			exitnetup
 		else
-			echo "There is No Module named that, Please Try again."
+			print_error "There is No Module named that, Please Try again."
                 	exitnetup
 		fi
         fi
