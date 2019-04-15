@@ -168,6 +168,10 @@ do_disablemods() {
 			print_error "Module $SELECTED was not Disabled please contact contact@private-locker.com";
 		fi
 	done
+	if [ ! -f "$DIR/modules/*.mdu" ]; then
+		print_error "There is no Enabled Modules."
+		exitnetup
+	fi
 	exitnetup
 }
 
@@ -183,6 +187,10 @@ do_enablemods() {
 		fi
 		
 	done
+	if [ ! -f "$DIR/modules/*.mdu" ]; then
+		print_error "There is no Disabled Modules."
+		exitnetup
+	fi
 	exitnetup
 }
 
