@@ -117,9 +117,14 @@ do_enablemod() {
                 exit 0
         else
 		SELECTED=$1
-                echo -e "Attempting to enable $SELECTED"
+                print_notification "Attempting to enable $SELECTED"
 		if [ -f $DIR/modules/$SELECTED.tmp ]; then
 			/bin/bash $DIR/modules/enablemod -f $DIR/modules/$SELECTED
+			if [ -f "$DIR/modules/$SELECTED.mdu" ]; then
+				check_good "Module $SELECTED Enabled!"
+			else
+				print_error "Module $SELECTED was not Enabled please contact contact@private-locker.com";
+			fi
 			exitnetup
 		else
 			echo "There is No Module named that, Please Try again."
@@ -137,6 +142,11 @@ do_disablemod() {
 		echo -e "Attempting to disable $SELECTED"
 		if [ -f $DIR/modules/$SELECTED.mdu ]; then
 			/bin/bash $DIR/modules/disablemod -f $DIR/modules/$SELECTED
+			if [ -f "$DIR/modules/$SELECTED.tmp" ]; then
+				check_good "Module $SELECTED Disabled!"
+			else
+				print_error "Module $SELECTED was not Disabled please contact contact@private-locker.com";
+			fi
 			exitnetup
 		else
 			echo "There is No Module named that, Please Try again."
