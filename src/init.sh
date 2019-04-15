@@ -68,11 +68,13 @@ runmodcommand(){
 }
 
 start_modules(){
+        modcount=0
         print_status "Starting Module Loader..";
         mod_noti "Module Directory: $MODULE";
         for FILE in $(ls $MODULE);do
                 if [ "${FILE##*.}" = "mdu" ]; then
                         do_break;
+                        modcount=1
                         mod_status "Executing module: $FILE";
                         mod_status "-------------------------- ";
                         source $MODULE/$FILE
@@ -80,7 +82,9 @@ start_modules(){
                 fi
         done
         do_break;
-        [ -n "$(find . -maxdepth 1 -name '*.mdu' -type f -print -quit)" ] || mod_error 'No Module Scripts were found!' && do_break;
+        [ -n "$(find . -maxdepth 1 -name '*.mdu' -type f -print -quit)" ] || if [ "$modcount" -eq "0" ];then
+            mod_error 'No Module Scripts were found!' && do_break;
+            fi
         check_good "Module Loader has finished..";
         exitnetup;
 }
