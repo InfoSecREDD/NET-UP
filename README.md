@@ -2,23 +2,33 @@
 Network-based Startup Module Framework (Network Dropper)
 
 Net-UP is a Bash Framework to make loading Scripts that depend on internet connectivity
-to start ONLY when connected. We (Private-Locker & Myself) use this Framework with a 
-series of "Homemade Modules". Net-UP also allows use to drop a network scan script,
-into a secure network to gain intelligence about the network. (subscan module)
+to start ONLY when connected. Private-Locker and Myself (-REDD-) use this Framework with a 
+series of "Homemade Modules" to do Security Auditing at local Corperations. NET-UP also 
+allows the use of a network scan script, into a secure network to gain intelligence about
+the network. (subscan module)
 
 ### Features:
 - Network-based Startup Script. -- If no Connection on selected INTERFACE, 120 seconds,
-    then restarts device. (Set in a loop with a Cronjob)
+    then restarts device. (Set in a loop with a Cronjob - "netup autostart on" command.)
 - Easy intergration with Existing Bash/Python/Perl/Ruby Scripts. via Modules 
-    (Read README.txt inside modules folder)
-- Enablemod/Disablemod commands to help with toggling Modules ON/OFF. - Located in Modules
-    folder.
-	
+    (Read README.txt inside modules folder.)
+
+### Supported OS(s):
+ - Ubuntu
+ - Debian
+ - Kali
+ - Parrot
+ - Mint
+
+### Developed on:
+ - Kali 2019.2 Operating System
+ - Raspberry Pi 3 B
+
 ### Modules:
 - Subscan - Original Subnet Nmap Scan by -REDD-
 - PythonBackdoor - Python Tunnel Backdoor by -REDD-
-- HackCaptivePortals - Script forked from https://github.com/systematicat/hack-captive-portals
-- IPInfo - Script forked from https://github.com/niklasberglund/ipinfo
+- HackCaptivePortals - Script forked from https://github.com/systematicat/hack-captive-portals (needs work)
+- IPInfo - Script forked from https://github.com/niklasberglund/ipinfo (needs work)
 - More to come.. (Community Published Modules are welcome)
 
 (For More Reference on Modules/Scripts used for NET-UP, Please Check https://github.com/private-locker/modules)
@@ -30,17 +40,25 @@ wget https://raw.githubusercontent.com/private-locker/Net-UP/master/install.sh &
 
 Once Installed, allows you to:
 
+## Auto-detect Active Network Interface:
+```sh
+netup interface
+```
+## List all Modules:
+```sh
+netup list
+```
 ## Easy Update Command:
 ```sh
 netup update
 ```
-(Press y when prompted.)
+(Press y when prompted. or "netup update -y" to force update.)
 
 ## Easy Update Modules Command:
 ```sh
 netup updatemods
 ```
-(Press y when prompted.)
+(Press y when prompted. or "netup updatemods -y" to force update of modules.)
 
 ## Syntax/Examples:
 ```sh
@@ -59,9 +77,9 @@ Examples:
     ./netup autoreboot [on/off]     - Turns on/off AUTOREBOOT for NET-UP.
     ./netup autoexit [on/off]       - Turns on/off AUTOEXIT for NET-UP.
     ./netup list                    - Shows all enabled/disabled modules.
-    ./netup run subscan             - Runs specific module/script using NET-UP.
-    ./netup enable subscan          - Enables Subscan module for NET-UP.
-    ./netup disable subscan         - Disables Backdoor module for NET-UP.
+    ./netup run [module]            - Runs specific module/script using NET-UP.
+    ./netup enable [module]         - Enables Selected module for NET-UP.
+    ./netup disable [module]        - Disables Selected module for NET-UP.
 
 ```
 
