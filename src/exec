@@ -22,7 +22,7 @@ do_update() {
 	if [ "$1" = "-y" ]; then
 		fastupdategithub
 	else
-		updategithub
+		checkvers
 		exitnetup
 	fi
 }
