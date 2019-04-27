@@ -12,6 +12,10 @@ checkvers(){
                 echo -e "";
                 echo -e "Your NET-UP Version is Up-to-date."
                 exitnetup;
+	elif [ $(verschk "$TEMPVER") -le $(verschk "$VERS") ]; then
+                echo -e "";
+                echo -e "Your NET-UP Version is Higher than GitHub Version.";
+                exitnetup;
         else
                 echo -e "";
                 updategithub;
