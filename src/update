@@ -18,8 +18,8 @@ checkvers(){
                 exitnetup;
         else
                 echo -e "";
-                updategithub;
-        fi
+		continue;
+		fi
 }
 
 updatenetuponly(){
@@ -34,14 +34,15 @@ updatenetuponly(){
                 ls | grep -v modules | xargs rm -rf
                 echo -e "";
 		mkdir -p /tmp/netuptmpmods
-		mv "$HOME/netup/modules/*" /tmp/netuptmpmods/*
+		cp -rf "$HOME/netup/modules/*" /tmp/netuptmpmods/
 		rm -rf $HOME/netup
 		cd $HOME;
                 git clone $GITHUBREPO $HOME/netup
                 chmod +x $HOME/netup/netup;
                 cd $HOME/netup
 		mkdir -p modules;
-		mv "/tmp/netuptmpmods/*" $HOME/netup/modules;
+		cp -rf "/tmp/netuptmpmods/*" $HOME/netup/modules;
+		rm -rf "/tmp/netuptmpmods";
                 print_status "Entire NET-UP was synced to Private-Locker's Repo.";
                 echo -e "";
                 print_error "Removing install script.";
@@ -49,6 +50,7 @@ updatenetuponly(){
                 touch $HOME/netup/.conf
                 echo -e "";
                 cd;
+		exitnetup;
         else
                 echo -e ""
                 print_status "Not Updating NET-UP Framework. Exiting.";
