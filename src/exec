@@ -21,7 +21,7 @@ do_run() {
 do_update() {
 	if [ "$1" = "-y" ]; then
 		fastupdategithub
-	elif [ "$1 = "--netup-only" ]; then
+	elif [ "$1" = "--netup-only" ]; then
 		checkvers
 		updatenetuponly
 	else
