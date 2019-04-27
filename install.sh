@@ -28,9 +28,6 @@ echo -e "Changing Permissions of Files..";
 chmod +x $HOMEDIR/netup
 chmod +x $HOMEDIR/modules/enablemod
 chmod +x $HOMEDIR/modules/disablemod
-echo -e "Activating Default Module.. (Listmods)"
-cd $HOMEDIR/modules
-bash enablemod -f listmods
 cd $HOME
 echo -e "Cleaning up Install Script File.."
 rm -rf "$HOMEDIR/install.sh"
