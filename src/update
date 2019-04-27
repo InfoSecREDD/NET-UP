@@ -23,11 +23,12 @@ checkvers(){
 
 updatenetuponly(){
         echo -e "";
-        print_status "Update/sync with Private-Locker's GitHub?";
+        print_status "Update/Sync NET-UP Repo and Backup/Restore Modules?";
         echo -e "";
         read -p " Are you sure? [Y/n]" -n 1 -r
         echo -e "";
         if [[ $REPLY =~ ^[Yy]$ ]]; then
+		echo -e "";
                 print_status "Removing Old NET-UP Directory Contents except Modules Folder..";
                 cd $HOME/netup;
                 ls | grep -v modules | xargs rm -rf
@@ -35,18 +36,21 @@ updatenetuponly(){
 		print_status "Backing up Existing Modules..";
 		mkdir -p /tmp/netuptmpmods
 		cp -rf $HOME/netup/modules/. /tmp/netuptmpmods/
+		echo -e "";
 		print_status "Cloning NET-UP and setting Permissions..";
 		rm -rf $HOME/netup
 		cd $HOME;
                 git clone $GITHUBREPO $HOME/netup
                 chmod +x $HOME/netup/netup;
                 cd $HOME/netup
+		echo -e "";
 		print_status "Re-Creating Modules Folder.";
 		mkdir -p modules;
 		print_status "Restoring Old Modules to Current NET-UP Directory..";
 		cp -rf /tmp/netuptmpmods/. $HOME/netup/modules;
 		rm -rf /tmp/netuptmpmods;
-                print_status "Entire NET-UP was synced to Private-Locker's Repo.";
+                echo -e "";
+		print_status "Entire NET-UP was synced to Private-Locker's Repo.";
                 echo -e "";
                 print_error "Removing install script.";
                 rm -rf $HOME/netup/install.sh
