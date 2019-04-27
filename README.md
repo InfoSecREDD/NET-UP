@@ -8,6 +8,10 @@ allows the use of a network scan script, into a secure network to gain intellige
 the network. (subscan module)
 
 ### Features:
+- Based on Native Bash Shell to allow flexibility. 
+- Easy to Configure Commands and Variables.
+- Easy to Install script. (located below)
+- One Command runs the whole Script. - Can be used for Cronjobs/and other Scripting.
 - Network-based Startup Script. -- If no Connection on selected INTERFACE, 120 seconds,
     then restarts device. (Set in a loop with a Cronjob - "netup autostart on" command.)
 - Easy intergration with Existing Bash/Python/Perl/Ruby Scripts. via Modules 
@@ -40,6 +44,10 @@ wget https://raw.githubusercontent.com/private-locker/Net-UP/master/install.sh &
 
 Once Installed, allows you to:
 
+## Run NET-UP:
+```sh
+netup
+```
 ## Auto-detect Active Network Interface:
 ```sh
 netup interface
@@ -53,6 +61,12 @@ netup list
 netup update
 ```
 (Press y when prompted. or "netup update -y" to force update.)
+
+## Update only NET-UP (Backup & Restore Current Modules)
+```sh
+netup update --netup-only   (or netup update -n)
+```
+(Press y when prompted.)
 
 ## Easy Update Modules Command:
 ```sh
