@@ -22,6 +22,9 @@ do_update() {
 	if [ "$1" = "-y" ]; then
 		fastupdategithub
 	elif [ "$1" = "--netup-only" ] || [ "$1" = "-n" ]; then
+		if [ "$2" = "-y" ]; then
+			fastupdatenetuponly
+		fi
 		checkvers
 		updatenetuponly
 	else
