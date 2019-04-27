@@ -32,14 +32,18 @@ updatenetuponly(){
                 cd $HOME/netup;
                 ls | grep -v modules | xargs rm -rf
                 echo -e "";
+		print_status "Backing up Existing Modules..";
 		mkdir -p /tmp/netuptmpmods
 		cp -rf $HOME/netup/modules/. /tmp/netuptmpmods/
+		print_status "Cloning NET-UP and setting Permissions..";
 		rm -rf $HOME/netup
 		cd $HOME;
                 git clone $GITHUBREPO $HOME/netup
                 chmod +x $HOME/netup/netup;
                 cd $HOME/netup
+		print_status "Re-Creating Modules Folder.";
 		mkdir -p modules;
+		print_status "Restoring Old Modules to Current NET-UP Directory..";
 		cp -rf /tmp/netuptmpmods/. $HOME/netup/modules;
 		rm -rf /tmp/netuptmpmods;
                 print_status "Entire NET-UP was synced to Private-Locker's Repo.";
