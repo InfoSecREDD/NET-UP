@@ -33,11 +33,15 @@ updatenetuponly(){
                 cd $HOME/netup;
                 ls | grep -v modules | xargs rm -rf
                 echo -e "";
-                git init .
-                git remote add origin $GITHUBREPO     
-                git pull origin master
+		mkdir -p /tmp/netuptmpmods
+		mv "$HOME/netup/modules/*" /tmp/netuptmpmods/*
+		rm -rf $HOME/netup
+		cd $HOME;
+                git clone $GITHUBREPO $HOME/netup
                 chmod +x $HOME/netup/netup;
                 cd $HOME/netup
+		mkdir -p modules;
+		mv "/tmp/netuptmpmods/*" $HOME/netup/modules;
                 print_status "Entire NET-UP was synced to Private-Locker's Repo.";
                 echo -e "";
                 print_error "Removing install script.";
