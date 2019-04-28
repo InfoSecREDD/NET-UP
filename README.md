@@ -69,7 +69,7 @@ netup update
 ```sh
 netup update --netup-only   (or netup update -n)
 ```
-(Press y when prompted.)
+(Press y when prompted. or "netup update --netup-only -y" to force update.)
 
 ## Easy Update Modules Command:
 ```sh
