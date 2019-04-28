@@ -1,14 +1,17 @@
-# Net-UP
+# NET-UP
 Network-based Startup Module Framework (Network Dropper)
 
-Net-UP is a Bash Framework to make loading Scripts that depend on internet connectivity
-to start ONLY when connected. Private-Locker and Myself (-REDD-) use this Framework with a 
-series of "Homemade Modules" to do Security Auditing at local Corperations. NET-UP also 
-allows the use of a network scan script, into a secure network to gain intelligence about
-the network. (subscan module)
+NET-UP is a Custom Bash Framework to make loading and launching Scripts that depend on
+internet connectivity to start ONLY when connected. Private-Locker and Myself (-REDD-)
+use this Framework with a series of Modules (see below for more information) to do Security
+Auditing at local Corperations. NET-UP also allows the use of MANY scripts to run - OSINT
+Scripts, Network Monitoring Scripts (MitM Attacks), Packet Capturing, and Basic Security 
+Auditing. NET-UP was also designed to just use One Command to run. Doing so allow easy
+execution of cronjobs or startup based scripts. 
 
 ### Features:
-- Based on Native Bash Shell to allow flexibility. 
+- Based on Native Bash Shell to allow flexibility.
+- Auto Interface Detected Script (to manually set interface see below)
 - Easy to Configure Commands and Variables.
 - Easy to Install script. (located below)
 - One Command runs the whole Script. - Can be used for Cronjobs/and other Scripting.
@@ -97,7 +100,34 @@ Examples:
 
 ```
 
+## To Manually Set Network Interface of NET-UP:
+```sh
+Inside of "netup" file -
+...
+#############################################################
+## User Adjustable Variables. - For More info please read  ##
+##   the README.txt in the modules folder.                 ##
+#############################################################
 
+INTERFACE=eth0
+AUTOREBOOT=NO
+AUTOEXIT=YES
+...
+```
+Change eth0 on INTERFACE Variable to desired Interface Name.
+example:
+```sh
+...
+#############################################################
+## User Adjustable Variables. - For More info please read  ##
+##   the README.txt in the modules folder.                 ##
+#############################################################
+
+INTERFACE=ensp0
+AUTOREBOOT=NO
+AUTOEXIT=YES
+...
+```
 
 
 ### TODO List:
