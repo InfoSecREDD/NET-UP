@@ -115,7 +115,8 @@ AUTOEXIT=YES
 ...
 ```
 Change eth0 on INTERFACE Variable to desired Interface Name.
-example:
+
+Example:
 ```sh
 ...
 #############################################################
