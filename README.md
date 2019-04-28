@@ -101,8 +101,8 @@ Examples:
 ```
 
 ## To Manually Set Network Interface of NET-UP:
-```sh
 Inside of "netup" file -
+```sh
 ...
 #############################################################
 ## User Adjustable Variables. - For More info please read  ##
