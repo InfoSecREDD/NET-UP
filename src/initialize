@@ -25,7 +25,6 @@ LOCAL=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk -F'[/ ]+' '{print $3}')
 SUBNET=$(ipcalc $LOCAL | awk '/Network/ {print $2}')
 d=$(date +%Y-%m-%d)
 NETUPCRED1="          - NET-UP has Finished. -"
-NETUPCRED2=" "
 AUTOBOOTON="AUTOREBOOT=YES"
 AUTOBOOTOFF="AUTOREBOOT=NO"
 AUTOEXITON="AUTOEXIT=YES"
