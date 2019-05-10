@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Script-Wide Variables/Functions
 
 SLEEP=$(sleep 5)
@@ -53,6 +53,16 @@ mod_noti(){
 
 do_break(){
         echo -e "";
+}
+
+modcreds(){
+        do_break;
+        mod_status "-----------------------------";
+        mod_status "- Module Name   : $MODULENAME";
+        mod_status "- Module Version: $MODULEVERS";
+        mod_status "- Module Credits: $MODULECRED";
+        mod_status "-----------------------------";
+        do_break;
 }
 
 runmodcommand(){
