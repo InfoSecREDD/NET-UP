@@ -1,7 +1,6 @@
 exitnetup () {
         echo -e ""
         check_good "$NETUPCRED1"
-        check_good "$NETUPCRED2"
         echo -e ""
         exit 0
 }
