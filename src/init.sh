@@ -56,8 +56,9 @@ do_break(){
 }
 
 modcreds(){
-    mod_status "-----------------------------";
     do_break;
+    mod_noti "   Module Information:";
+    mod_status "-----------------------------";
         if [ -z "$MODULENAME" ]; then
                 mod_status "- Module Name   : Module Not Named";
         else
