@@ -56,13 +56,25 @@ do_break(){
 }
 
 modcreds(){
-        do_break;
-        mod_status "-----------------------------";
-        mod_status "- Module Name   : $MODULENAME";
-        mod_status "- Module Version: $MODULEVERS";
-        mod_status "- Module Credits: $MODULECRED";
-        mod_status "-----------------------------";
-        do_break;
+    mod_status "-----------------------------";
+    do_break;
+        if [ -z "$MODULENAME" ]; then
+                mod_status "- Module Name   : Module Not Named";
+        else
+                mod_status "- Module Name   : $MODULENAME";
+        fi
+        if [ -z "$MODULEVERS" ]; then
+                mod_status "- Module Version: Not Specified";
+        else
+                mod_status "- Module Version: $MODULEVERS";
+        fi
+        if [ -z "$MODULECRED" ]; then
+                mod_status "- Module Credits: Not Specified";
+        else
+                mod_status "- Module Credits: $MODULECRED";
+        fi
+    mod_status "-----------------------------";
+    do_break;
 }
 
 runmodcommand(){
