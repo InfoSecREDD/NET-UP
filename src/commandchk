@@ -1,3 +1,9 @@
+exit_check() {
+    if [ -z $NETUP_CONSOLE ]; then
+        exit 0
+    fi
+}
+
 do_help() {
         echo -e ""
         echo -e "Syntax: ./netup"
@@ -20,9 +26,7 @@ do_help() {
         echo -e "    ./netup disable [module]        - Disables Selected module for NET-UP."
         echo -e ""
 
-        if [ -z $NETUP_CONSOLE ]; then
-                exit 0
-        fi
+        exit_check # Check for console before exit
 }
 
 nocommands() {
@@ -31,9 +35,7 @@ nocommands() {
         echo -e "Please type './netup help' to see syntax examples of this command."
         echo -e ""
 
-        if [ -z $NETUP_CONSOLE ]; then
-                exit 0
-        fi
+	exit_check # Check for console before exit
 }
 
 if [[ $1 = "help" ]]; then
@@ -58,9 +60,7 @@ if [[ $1 = "help" ]]; then
         echo -e "    ./netup disable [module]        - Disables Selected module for NET-UP."
         echo -e ""
 
-        if [ -v $NETUP_CONSOLE ]; then
-                exit 0
-        fi
+	exit_check # Check for console before exit
 fi
 
 if [[ $1 != ""

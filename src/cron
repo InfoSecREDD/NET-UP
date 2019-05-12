@@ -11,11 +11,11 @@ install_cron(){
                 echo -e "generate a new crontab and add a additional line to the"
                 echo -e "configuration. Then save and exit the Editor."
                 echo -e ""
-                exit
+                exit_check # Check for console before exit
         fi
         if [[ $(crontab -l) = *$cronscript* ]]; then
                 echo -e "Cronjob already exists."
-                exit 0
+                exit_check # Check for console before exit
         else
                 echo -e "Cronjob doesn't exist."
                 tmp=${TMPDIR:-/tmp}/tmpnetup.$$
@@ -51,7 +51,7 @@ disable_cron(){
                 trap 0
         else
                 echo -e "Could not located a Cronjob for NET-UP."
-                exit 0
+                exit_check # Check for console before exit
         fi
 }
 really(){

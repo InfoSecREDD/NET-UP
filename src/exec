@@ -11,7 +11,7 @@ do_run() {
 	SELECTED=$1
         if [ -z "$1" ]; then
                 echo -e "No Module input given."
-                exit 0
+		exit_check # Check for console before exit
         else
                 FILE=$1
                 runmodcommand
@@ -56,7 +56,7 @@ do_autoexit() {
                         check_good "Changed Automatic Exit of Script to ON."
                 fi
                 else
-        exit 0
+        exit_check # Check for console before exit
         fi
         exitnetup
 }
@@ -83,7 +83,7 @@ do_autoreboot() {
 			check_good "Changed Automatic Reboot after Script Completes to ON."
 		fi
                 else
-        exit 0
+        exit_check # Check for console before exit
         fi
         exitnetup
 }
@@ -100,7 +100,7 @@ do_autostart() {
 		install_cron;
 	else
 		really;
-        	exit 0
+        	exit_check # Check for console before exit
 	fi
         exitnetup
 }
@@ -121,7 +121,7 @@ do_interface() {
 do_enablemod() {
 	if [ -z "$1" ]; then
                 print_error "No Module input given."
-                exit 0
+                exit_check # Check for console before exit
         else
 		SELECTED=$1
                 print_notification "Attempting to Enable Module: $SELECTED."
@@ -144,7 +144,7 @@ do_enablemod() {
 do_disablemod() {
         if [ -z "$1" ]; then
                 print_error "No Module input given."
-                exit 0
+                exit_check # Check for console before exit
         else
 		SELECTED=$1
 		print_notification "Attempting to Disable Module: $SELECTED"
