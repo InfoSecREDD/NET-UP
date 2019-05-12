@@ -1,8 +1,10 @@
 exitnetup () {
-        echo -e ""
-        check_good "$NETUPCRED1"
-        echo -e ""
-        exit 0
+        if [ -z $NETUP_CONSOLE ]; then
+                echo -e ""
+                check_good "$NETUPCRED1"
+                echo -e ""
+                exit 0
+        fi
 }
 
 do_run() {
@@ -205,6 +207,23 @@ do_enablemods() {
 	exitnetup
 }
 
+do_console() {
+        if [ -z "$NETUP_CONSOLE" ]; then
+                print_notification "Initializing console."
+                export NETUP_CONSOLE=TRUE
+        fi
+
+        declare -a user_input
+        read -p "Netup Console> " user_input
+
+        if [ -z "$user_input" ]; then
+                do_console
+        fi
+
+        do_usage ${user_input[@]}
+        do_console
+}
+
 do_usage() {
 	case "$1" in
 		update)
@@ -216,6 +235,8 @@ do_usage() {
 		run)
 			shift
 			do_run $@ ;;
+        console)
+            do_console ;;
 		enable|enablemod)
 			shift
 			do_enablemod $@ ;;
@@ -245,7 +266,10 @@ do_usage() {
 			do_interface $@ ;;
 		help)
 			do_help ;;
-		*)
+        exit)
+            unset NETUP_CONSOLE
+            exitnetup ;;
+        *)
 			if [ -z "$1" ]
   			then
     				do_init
