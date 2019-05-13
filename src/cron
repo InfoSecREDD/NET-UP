@@ -50,7 +50,7 @@ disable_cron(){
                 rm -rf $tmp
                 trap 0
         else
-                echo -e "Could not located a Cronjob for NET-UP."
+                echo -e "Could not locate a Cronjob for NET-UP."
                 exit 0
         fi
 }
@@ -67,3 +67,4 @@ really(){
 	COMEON=${ANSWERS[$RANDOM % ${#ANSWERS[@]}]}
 	echo -e "$COMEON";
 }
+
