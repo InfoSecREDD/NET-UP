@@ -1,15 +1,17 @@
 exitnetup () {
-        echo -e ""
-        check_good "$NETUPCRED1"
-        echo -e ""
-        exit 0
+        if [ -z $NETUP_CONSOLE ]; then
+                echo -e ""
+                check_good "$NETUPCRED1"
+                echo -e ""
+                exit 0
+        fi
 }
 
 do_run() {
 	SELECTED=$1
         if [ -z "$1" ]; then
                 echo -e "No Module input given."
-                exit 0
+		exit_check # Check for console before exit
         else
                 FILE=$1
                 runmodcommand
@@ -54,7 +56,7 @@ do_autoexit() {
                         check_good "Changed Automatic Exit of Script to ON."
                 fi
                 else
-        exit 0
+        exit_check # Check for console before exit
         fi
         exitnetup
 }
@@ -81,7 +83,7 @@ do_autoreboot() {
 			check_good "Changed Automatic Reboot after Script Completes to ON."
 		fi
                 else
-        exit 0
+        exit_check # Check for console before exit
         fi
         exitnetup
 }
@@ -98,7 +100,7 @@ do_autostart() {
 		install_cron;
 	else
 		really;
-        	exit 0
+        	exit_check # Check for console before exit
 	fi
         exitnetup
 }
@@ -119,7 +121,7 @@ do_interface() {
 do_enablemod() {
 	if [ -z "$1" ]; then
                 print_error "No Module input given."
-                exit 0
+                exit_check # Check for console before exit
         else
 		SELECTED=$1
                 print_notification "Attempting to Enable Module: $SELECTED."
@@ -142,7 +144,7 @@ do_enablemod() {
 do_disablemod() {
         if [ -z "$1" ]; then
                 print_error "No Module input given."
-                exit 0
+                exit_check # Check for console before exit
         else
 		SELECTED=$1
 		print_notification "Attempting to Disable Module: $SELECTED"
@@ -205,6 +207,23 @@ do_enablemods() {
 	exitnetup
 }
 
+do_console() {
+        if [ -z "$NETUP_CONSOLE" ]; then
+                print_notification "Initializing console."
+                export NETUP_CONSOLE=TRUE
+        fi
+
+        declare -a user_input
+        read -p "Netup Console> " user_input
+
+        if [ -z "$user_input" ]; then
+                do_console
+        fi
+
+        do_usage ${user_input[@]}
+        do_console
+}
+
 do_usage() {
 	case "$1" in
 		update)
@@ -216,6 +235,8 @@ do_usage() {
 		run)
 			shift
 			do_run $@ ;;
+        console)
+            do_console ;;
 		enable|enablemod)
 			shift
 			do_enablemod $@ ;;
@@ -245,7 +266,10 @@ do_usage() {
 			do_interface $@ ;;
 		help)
 			do_help ;;
-		*)
+        exit)
+            unset NETUP_CONSOLE
+            exitnetup ;;
+        *)
 			if [ -z "$1" ]
   			then
     				do_init
