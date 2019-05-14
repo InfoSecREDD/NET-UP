@@ -43,6 +43,14 @@ execution of cronjobs or startup based scripts.
 ## Easy Install Script:
 ```sh
 wget https://raw.githubusercontent.com/private-locker/Net-UP/master/install.sh && sudo /bin/bash install.sh
+
+```
+## Install NET-UP:
+```sh
+$ su
+# cd
+# git clone https://github.com/private-locker/NET-UP.git netup
+# ./netup
 ```
 
 Once Installed, allows you to:
