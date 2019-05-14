@@ -50,6 +50,7 @@ wget https://raw.githubusercontent.com/private-locker/Net-UP/master/install.sh &
 $ su
 # cd
 # git clone https://github.com/private-locker/NET-UP.git netup
+# cd netup
 # ./netup
 ```
 
