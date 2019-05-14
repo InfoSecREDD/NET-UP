@@ -41,8 +41,8 @@ execution of cronjobs or startup based scripts.
 (For More Reference on Modules/Scripts used for NET-UP, Please Check https://github.com/private-locker/modules)
 
 ## Easy Install Script:
-```sh
-wget https://raw.githubusercontent.com/private-locker/Net-UP/master/install.sh && sudo /bin/bash install.sh
+```
+# wget https://raw.githubusercontent.com/private-locker/Net-UP/master/install.sh && sudo /bin/bash install.sh
 
 ```
 ## Install NET-UP:
@@ -57,37 +57,37 @@ $ su
 Once Installed, allows you to:
 
 ## Run NET-UP:
-```sh
-netup
+```
+# netup
 ```
 ## Auto-detect Active Network Interface:
-```sh
-netup interface
+```
+# netup interface
 ```
 ## List all Modules:
-```sh
-netup list
+```
+# netup list
 ```
 ## Easy Update Command:
-```sh
-netup update
+```
+# netup update
 ```
 (Press y when prompted. or "netup update -y" to force update.)
 
 ## Update only NET-UP (Backup & Restore Current Modules)
-```sh
-netup update --netup-only   (or netup update -n)
+```
+# netup update --netup-only   (or netup update -n)
 ```
 (Press y when prompted. or "netup update --netup-only -y" to force update.)
 
 ## Easy Update Modules Command:
-```sh
-netup updatemods
+```
+# netup updatemods
 ```
 (Press y when prompted. or "netup updatemods -y" to force update of modules.)
 
 ## Syntax/Examples:
-```sh
+```
 
 Syntax: ./netup
         ./netup [option] [module]/[on/off]
