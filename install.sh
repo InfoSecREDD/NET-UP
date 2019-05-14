@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 root_check_init(){
     echo "Checking for Root.."
     if [[ $EUID -ne 0 ]]; then
