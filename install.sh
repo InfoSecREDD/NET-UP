@@ -60,6 +60,14 @@ if [ "$DIR" != "$HOMEDIR" ]; then
 		changeperm;
 		cleanup;
 		run;
+	else
+		cd /root/
+		clonemain;
+		clonemods;
+		cd "$HOMEDIR"
+		changeperm;
+		cleanup;
+		run;
 	fi
 else
 	cd /root/
