@@ -73,4 +73,5 @@ changeperm;
 cleanup;
 run;
 echo -e "Exiting.. You can now use netup anywhere in the system."
+rm -rf "$0";
 exit
