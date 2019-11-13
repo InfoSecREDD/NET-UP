@@ -42,7 +42,7 @@ execution of cronjobs or startup based scripts.
 
 ## Easy Install Script:
 ```
-# wget https://raw.githubusercontent.com/private-locker/Net-UP/master/install.sh && sudo /bin/bash install.sh
+# wget https://raw.githubusercontent.com/private-locker/NET-UP/master/install.sh && sudo /bin/bash install.sh
 
 ```
 ## Install NET-UP:
