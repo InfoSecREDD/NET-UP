@@ -57,26 +57,20 @@ if [ "$DIR" != "$HOMEDIR" ]; then
 		rm -rf "$DIR"
 		cd "$HOMEDIR"
 		clonemods;
-		changeperm;
-		cleanup;
-		run;
 	else
 		cd /root/
 		clonemain;
 		clonemods;
 		cd "$HOMEDIR"
-		changeperm;
-		cleanup;
-		run;
 	fi
 else
 	cd /root/
 	clonemain;
 	clonemods;
 	cd "$HOMEDIR"
-	changeperm;
-	cleanup;
-	run;
 fi
+changeperm;
+cleanup;
+run;
 echo -e "Exiting.. You can now use netup anywhere in the system."
 exit
