@@ -8,6 +8,7 @@ getdir(){
 	done
 	DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 }
+getdir;
 DELFILE="$DIR/$0"
 root_check_init(){
     echo "Checking for Root.."
@@ -41,7 +42,6 @@ run(){
 	echo -e "Running Net-UP..";
 	bash $HOMEDIR/netup
 }
-getdir;
 root_check_init;
 HOMEDIR=/root/netup
 if [[ -d "$HOMEDIR" ]] ; then
