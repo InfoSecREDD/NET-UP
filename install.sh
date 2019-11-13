@@ -8,6 +8,7 @@ getdir(){
 	done
 	DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 }
+DELFIL="$DIR/$0"
 root_check_init(){
     echo "Checking for Root.."
     if [[ $EUID -ne 0 ]]; then
@@ -73,5 +74,5 @@ changeperm;
 cleanup;
 run;
 echo -e "Exiting.. You can now use netup anywhere in the system."
-rm -rf "$0";
+rm -rf "$DELFILE";
 exit
