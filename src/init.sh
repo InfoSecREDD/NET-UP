@@ -1,116 +1,112 @@
 #!/bin/bash
 # Script-Wide Variables/Functions
 
-SLEEP=$(sleep 5)
-LOG=NULL
+SLOGVERBOSE=NULL
+LOGFILE=$DIR/netup.log
+chklog_status(){
+    if [[ $LOGVERBOSE != NULL ]]; then
+	if [[ ! -f "$LOGFILE" ]]; then
+	     touch "$LOGFILE";
+	fi
+    fi
+}
+chklog_status;
 check_good(){
-    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+    if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
     else
         echo -e "\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
-        echo -e "$1" > "$LOGFILE"
+        echo -e "$1" >> "$LOGFILE"
     fi
 }
-
 arrow_status(){
-    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+    if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x1B[01;34m[\x3E]\x1B[0m $1"
     else
         echo -e "\x1B[01;34m[\x3E]\x1B[0m $1"
-        echo -e "$1" > "$LOGFILE"
+        echo -e "$1" >> "$LOGFILE"
     fi
 }
-
 print_status(){
-    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+    if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x1B[01;34m[-]\x1B[0m $1"
     else
         echo -e "\x1B[01;34m[-]\x1B[0m $1"
-        echo -e "$1" > "$LOGFILE"
+        echo -e "$1" >> "$LOGFILE"
     fi
 }
-
 print_good(){
-    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+    if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x1B[01;32m[*]\x1B[0m $1"
     else
         echo -e "\x1B[01;32m[*]\x1B[0m $1"
-        echo -e "$1" > "$LOGFILE"
+        echo -e "$1" >> "$LOGFILE"
     fi
 }
-
 print_error(){
-    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+    if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x1B[01;31m[!]\x1B[0m $1"
     else
         echo -e "\x1B[01;31m[!]\x1B[0m $1"
-        echo -e "$1" > "$LOGFILE"
+        echo -e "$1" >> "$LOGFILE"
     fi
 }
-
 print_notification(){
-    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+    if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x1B[01;33m[!]\x1B[0m $1"
     else
         echo -e "\x1B[01;33m[!]\x1B[0m $1"
-        echo -e "$1" > "$LOGFILE"
+        echo -e "$1" >> "$LOGFILE"
     fi
 }
-
 mod_checkg(){
-    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+    if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x20\x20\x20\x20\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
     else
         echo -e "\x20\x20\x20\x20\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
-        echo -e "$1" > "$LOGFILE"
+        echo -e "$1" >> "$LOGFILE"
     fi
 }
-
 mod_arrowstat(){
-    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+    if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x20\x20\x20\x20\x1B[01;34m[\x3E]\x1B[0m $1"
     else
         echo -e "\x20\x20\x20\x20\x1B[01;34m[\x3E]\x1B[0m $1"
-        echo -e "$1" > "$LOGFILE"
+        echo -e "$1" >> "$LOGFILE"
     fi
 }
-
 mod_status(){
-    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+    if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x20\x20\x20\x20\x1B[01;34m[-]\x1B[0m $1"
     else
         echo -e "\x20\x20\x20\x20\x1B[01;34m[-]\x1B[0m $1"
-        echo -e "$1" > "$LOGFILE"
+        echo -e "$1" >> "$LOGFILE"
     fi
 }
-
 mod_good(){
-    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+    if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x20\x20\x20\x20\x1B[01;32m[*]\x1B[0m $1"
     else
         echo -e "\x20\x20\x20\x20\x1B[01;32m[*]\x1B[0m $1"
-        echo -e "$1" > "$LOGFILE"
+        echo -e "$1" >> "$LOGFILE"
     fi
 }
-
 mod_error(){
-    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+    if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x20\x20\x20\x20\x1B[01;31m[!]\x1B[0m $1"
     else
         echo -e "\x20\x20\x20\x20\x1B[01;31m[!]\x1B[0m $1"
-        echo -e "$1" > "$LOGFILE"
+        echo -e "$1" >> "$LOGFILE"
     fi
 }
-
 mod_noti(){
-    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+    if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x20\x20\x20\x20\x1B[01;33m[!]\x1B[0m $1"
     else
         echo -e "\x20\x20\x20\x20\x1B[01;33m[!]\x1B[0m $1"
-        echo -e "$1" > "$LOGFILE"
+        echo -e "$1" >> "$LOGFILE"
     fi
 }
-
 do_break(){
         echo -e "";
 }
