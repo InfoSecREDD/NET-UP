@@ -9,6 +9,7 @@ getdir(){
 	DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 }
 getdir;
+HOMEDIR=/root/netup
 DELFILE="$DIR/$0"
 root_check_init(){
     echo "Checking for Root.."
@@ -35,15 +36,18 @@ changeperm(){
 }
 cleanup(){
 	echo -e "Cleaning up Install Script File.."
-	rm -rf "$HOMEDIR/install.sh"
-	rm -rf "$0";
+	if [ -f "$HOMEDIR/install.sh" ]; then
+		rm -rf "$HOMEDIR/install.sh";
+	fi
+	if [ -f "$0" ]; then
+		rm -rf "$0";
+	fi
 }
 run(){
 	echo -e "Running Net-UP..";
 	bash $HOMEDIR/netup
 }
 root_check_init;
-HOMEDIR=/root/netup
 if [[ -d "$HOMEDIR" ]] ; then
     echo "Directory already exists..";
     echo "Removing old copy..";
@@ -74,5 +78,8 @@ changeperm;
 cleanup;
 run;
 echo -e "Exiting.. You can now use netup anywhere in the system."
-rm -rf "$DELFILE";
-exit
+# Double checking if file exists, if so delete. Precautionary measure.
+if [ -f "$DELFILE" ]; then
+	rm -rf "$DELFILE";
+fi
+exit 0;
