@@ -4,7 +4,7 @@
 Network-based Startup Module Framework (Network Dropper)
 
 NET-UP is a Custom Bash Framework to make loading and launching Scripts that depend on
-internet connectivity to start ONLY when connected. Private-Locker use this Framework 
+internet connectivity to start ONLY when connected. Private-Locker uses this Framework 
 with a series of Modules (see below for more information) to do Security Auditing at 
 local Corperations. NET-UP also allows the use of MANY scripts to run - OSINT Scripts,
 Network Monitoring Scripts (MitM Attacks), Packet Capturing, and Basic Security 
