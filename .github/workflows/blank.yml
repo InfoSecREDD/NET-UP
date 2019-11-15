@@ -10,4 +10,4 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Checking Core of NET-UP
-      run: /bin/bash netup
+      run: bash netup
