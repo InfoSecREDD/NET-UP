@@ -1,4 +1,4 @@
-# NET-UP [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+# NET-UP [![HitCount](http://hits.dwyl.io/private-locker/NET-UP.svg)](http://hits.dwyl.io/private-locker/NET-UP) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/private-locker/NET-UP/issues)
 Network-based Startup Module Framework (Network Dropper)
 
 NET-UP is a Custom Bash Framework to make loading and launching Scripts that depend on
