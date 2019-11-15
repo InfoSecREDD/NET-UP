@@ -145,7 +145,8 @@ AUTOEXIT=YES
 ### TODO List:
 - Add more OSINT Scripts to https://github.com/private-locker/modules
 
-
+## Buy us a Beer?
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](MN33MBKD93J9N)
 
 ## Contributors:
  - -REDD- of Private-Locker (Main Developer)
