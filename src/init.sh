@@ -84,10 +84,16 @@ runmodcommand(){
         do_break;
         mod_status "Executing module: $FILE";
         mod_status "-------------------------- ";
-        source $MODULE/$FILE.*
-        mod_checkg "Module $FILE completed.";
-        do_break;
-        check_good "Module Loader has finished..";
+        if [[ -f $MODULE/FILE.* ]]; then
+                source $MODULE/$FILE.*
+                mod_checkg "Module $FILE completed.";
+                do_break;
+                check_good "Module Loader has finished..";
+        else
+                mod_error "Module Error: There is no Module with that name."
+                do_break;
+                exitnetup;
+        fi
 }
 
 start_modules(){
