@@ -1,13 +1,13 @@
 # NET-UP - Network Based Framework
-[![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/) ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/private-locker/NET-UP/graphs/commit-activity) [![GitHub release](https://img.shields.io/github/release/private-locker/NET-UP.svg)](https://GitHub.com/private-locker/NET-UP/releases/) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/private-locker/NET-UP/issues)
+[![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/) ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/private-locker/NET-UP/graphs/commit-activity) [![GitHub release](https://img.shields.io/github/release/private-locker/NET-UP.svg)](https://GitHub.com/private-locker/NET-UP/releases/) [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/private-locker/NET-UP/issues)
 
 Network-based Startup Module Framework (Network Dropper)
 
 NET-UP is a Custom Bash Framework to make loading and launching Scripts that depend on
-internet connectivity to start ONLY when connected. Private-Locker and Myself (-REDD-)
-use this Framework with a series of Modules (see below for more information) to do Security
-Auditing at local Corperations. NET-UP also allows the use of MANY scripts to run - OSINT
-Scripts, Network Monitoring Scripts (MitM Attacks), Packet Capturing, and Basic Security 
+internet connectivity to start ONLY when connected. Private-Locker use this Framework 
+with a series of Modules (see below for more information) to do Security Auditing at 
+local Corperations. NET-UP also allows the use of MANY scripts to run - OSINT Scripts,
+Network Monitoring Scripts (MitM Attacks), Packet Capturing, and Basic Security 
 Auditing. NET-UP was also designed to just use One Command to run. Doing so allow easy
 execution of cronjobs or startup based scripts. 
 
@@ -156,7 +156,7 @@ License
 
 The MIT License
 
-Copyright (c) 2018-2019 Private-Locker, LLC. https://www.private-locker.com
+Copyright (c) 2018-2020 Private-Locker, LLC. https://www.private-locker.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
