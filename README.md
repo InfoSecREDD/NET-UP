@@ -23,22 +23,22 @@ execution of cronjobs or startup based scripts.
     (Read README.txt inside modules folder.)
 
 ### Supported OS(s):
- - Ubuntu 
+ - Ubuntu                         ⇨
  **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
- - Debian 
+ - Debian                         ⇨
  **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
- - Kali 
+ - Kali                           ⇨
  **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
- - ParrotOS 
+ - ParrotOS                       ⇨ 
  **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
- - BlackBuntu 
+ - BlackBuntu                     ⇨
  **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Unknown-lightgrey)
- - Mint 
+ - Mint                           ⇨
  **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Unknown-lightgrey)
 ## Non-Supported but semi-functional OS(s):
- - Windows Ubuntu Subsystem 
+ - Windows Ubuntu Subsystem       ⇨
  **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Errors-orange)
- - Windows Kali Subsystem:
+ - Windows Kali Subsystem:        ⇨
  **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Errors-orange)
 
 ### Developed on:
