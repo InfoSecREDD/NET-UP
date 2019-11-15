@@ -23,15 +23,23 @@ execution of cronjobs or startup based scripts.
     (Read README.txt inside modules folder.)
 
 ### Supported OS(s):
- - Ubuntu - ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
- - Debian - ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
- - Kali - ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
- - ParrotOS - ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
- - BlackBuntu - ![BuildMessage](https://img.shields.io/badge/Build-Unknown-lightgrey)
- - Mint - ![BuildMessage](https://img.shields.io/badge/Build-Unknown-lightgrey)
+ - Ubuntu 
+ **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
+ - Debian 
+ **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
+ - Kali 
+ **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
+ - ParrotOS 
+ **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
+ - BlackBuntu 
+ **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Unknown-lightgrey)
+ - Mint 
+ **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Unknown-lightgrey)
 ## Non-Supported but semi-functional OS(s):
- - Windows Ubuntu Subsystem - ![BuildMessage](https://img.shields.io/badge/Build-Errors-orange)
- - Windows Kali Subsystem - ![BuildMessage](https://img.shields.io/badge/Build-Errors-orange)
+ - Windows Ubuntu Subsystem 
+ **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Errors-orange)
+ - Windows Kali Subsystem:
+ **Status:** ![BuildMessage](https://img.shields.io/badge/Build-Errors-orange)
 
 ### Developed on:
  - Kali 2019.2 Operating System
