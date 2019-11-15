@@ -10,5 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Checking Core of NET-UP
-      run: sudo netup
+      scriptpath: $PATH
+      run: sudo $scriptpath/netup
       shell: bash
