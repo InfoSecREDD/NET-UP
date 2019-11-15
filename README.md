@@ -6,7 +6,7 @@ Network-based Startup Module Framework (Network Dropper)
 NET-UP is a Custom Bash Framework to make loading and launching Scripts that depend on
 internet connectivity to start ONLY when connected. Private-Locker uses this Framework 
 with a series of Modules (see below for more information) to do Security Auditing at 
-local Corperations. NET-UP also allows the use of MANY scripts to run - OSINT Scripts,
+local Corporations. NET-UP also allows the use of MANY scripts to run - OSINT Scripts,
 Network Monitoring Scripts (MitM Attacks), Packet Capturing, and Basic Security 
 Auditing. NET-UP was also designed to just use One Command to run. Doing so allow easy
 execution of cronjobs or startup based scripts. 
@@ -23,11 +23,15 @@ execution of cronjobs or startup based scripts.
     (Read README.txt inside modules folder.)
 
 ### Supported OS(s):
- - Ubuntu
- - Debian
- - Kali
- - Parrot
- - Mint
+ - Ubuntu - ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
+ - Debian - ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
+ - Kali - ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
+ - ParrotOS - ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)
+ - BlackBuntu - ![BuildMessage](https://img.shields.io/badge/Build-Unknown-lightgrey)
+ - Mint - ![BuildMessage](https://img.shields.io/badge/Build-Unknown-lightgrey)
+## Non-Supported but semi-functional OS(s):
+ - Windows Ubuntu Subsystem - ![BuildMessage](https://img.shields.io/badge/Build-Errors-orange)
+ - Windows Kali Subsystem - ![BuildMessage](https://img.shields.io/badge/Build-Errors-orange)
 
 ### Developed on:
  - Kali 2019.2 Operating System
