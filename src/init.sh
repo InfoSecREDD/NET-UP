@@ -2,7 +2,7 @@
 # Script-Wide Variables/Functions
 
 SLEEP=$(sleep 5)
-
+LOG=NULL
 check_good(){
     if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
         echo -e "\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
