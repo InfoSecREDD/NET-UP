@@ -1,5 +1,5 @@
 # NET-UP - Network Based Framework
-https://img.shields.io/static/v1?label=Build&message=Passed&color=green][![HitCount](http://hits.dwyl.io/private-locker/NET-UP.svg)](http://hits.dwyl.io/private-locker/NET-UP) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/private-locker/NET-UP/issues)
+[![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen)] [![HitCount](http://hits.dwyl.io/private-locker/NET-UP.svg)](http://hits.dwyl.io/private-locker/NET-UP) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/private-locker/NET-UP/issues)
 
 Network-based Startup Module Framework (Network Dropper)
 
