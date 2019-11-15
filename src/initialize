@@ -7,6 +7,7 @@ start_notice(){
     echo -e "\x1B[01;33m[!]\x1B[0m $1"
 }
 start_notice "Initializing Functions & Variables..";
+LOGVERBOSE=NULL
 source $DIR/src/init.sh
 source $DIR/src/symchk.sh
 source $DIR/src/checkdep.sh
