@@ -4,51 +4,111 @@
 SLEEP=$(sleep 5)
 
 check_good(){
-    echo -e "\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
+    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+        echo -e "\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
+    else
+        echo -e "\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
+        echo -e "$1" > "$LOGFILE"
+    fi
 }
 
 arrow_status(){
-    echo -e "\x1B[01;34m[\x3E]\x1B[0m $1"
+    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+        echo -e "\x1B[01;34m[\x3E]\x1B[0m $1"
+    else
+        echo -e "\x1B[01;34m[\x3E]\x1B[0m $1"
+        echo -e "$1" > "$LOGFILE"
+    fi
 }
 
 print_status(){
-    echo -e "\x1B[01;34m[-]\x1B[0m $1"
+    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+        echo -e "\x1B[01;34m[-]\x1B[0m $1"
+    else
+        echo -e "\x1B[01;34m[-]\x1B[0m $1"
+        echo -e "$1" > "$LOGFILE"
+    fi
 }
 
 print_good(){
-    echo -e "\x1B[01;32m[*]\x1B[0m $1"
+    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+        echo -e "\x1B[01;32m[*]\x1B[0m $1"
+    else
+        echo -e "\x1B[01;32m[*]\x1B[0m $1"
+        echo -e "$1" > "$LOGFILE"
+    fi
 }
 
 print_error(){
-    echo -e "\x1B[01;31m[!]\x1B[0m $1"
+    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+        echo -e "\x1B[01;31m[!]\x1B[0m $1"
+    else
+        echo -e "\x1B[01;31m[!]\x1B[0m $1"
+        echo -e "$1" > "$LOGFILE"
+    fi
 }
 
 print_notification(){
-    echo -e "\x1B[01;33m[!]\x1B[0m $1"
+    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+        echo -e "\x1B[01;33m[!]\x1B[0m $1"
+    else
+        echo -e "\x1B[01;33m[!]\x1B[0m $1"
+        echo -e "$1" > "$LOGFILE"
+    fi
 }
 
 mod_checkg(){
-    echo -e "\x20\x20\x20\x20\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
+    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+        echo -e "\x20\x20\x20\x20\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
+    else
+        echo -e "\x20\x20\x20\x20\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
+        echo -e "$1" > "$LOGFILE"
+    fi
 }
 
 mod_arrowstat(){
-    echo -e "\x20\x20\x20\x20\x1B[01;34m[\x3E]\x1B[0m $1"
+    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+        echo -e "\x20\x20\x20\x20\x1B[01;34m[\x3E]\x1B[0m $1"
+    else
+        echo -e "\x20\x20\x20\x20\x1B[01;34m[\x3E]\x1B[0m $1"
+        echo -e "$1" > "$LOGFILE"
+    fi
 }
 
 mod_status(){
-    echo -e "\x20\x20\x20\x20\x1B[01;34m[-]\x1B[0m $1"
+    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+        echo -e "\x20\x20\x20\x20\x1B[01;34m[-]\x1B[0m $1"
+    else
+        echo -e "\x20\x20\x20\x20\x1B[01;34m[-]\x1B[0m $1"
+        echo -e "$1" > "$LOGFILE"
+    fi
 }
 
 mod_good(){
-    echo -e "\x20\x20\x20\x20\x1B[01;32m[*]\x1B[0m $1"
+    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+        echo -e "\x20\x20\x20\x20\x1B[01;32m[*]\x1B[0m $1"
+    else
+        echo -e "\x20\x20\x20\x20\x1B[01;32m[*]\x1B[0m $1"
+        echo -e "$1" > "$LOGFILE"
+    fi
 }
 
 mod_error(){
-    echo -e "\x20\x20\x20\x20\x1B[01;31m[!]\x1B[0m $1"
+    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+        echo -e "\x20\x20\x20\x20\x1B[01;31m[!]\x1B[0m $1"
+    else
+        echo -e "\x20\x20\x20\x20\x1B[01;31m[!]\x1B[0m $1"
+        echo -e "$1" > "$LOGFILE"
+    fi
 }
 
 mod_noti(){
-    echo -e "\x20\x20\x20\x20\x1B[01;33m[!]\x1B[0m $1"
+    if [ "$LOG" == "" ] || [ "$LOG" == "NULL" ]; then
+        echo -e "\x20\x20\x20\x20\x1B[01;33m[!]\x1B[0m $1"
+    else
+        echo -e "\x20\x20\x20\x20\x1B[01;33m[!]\x1B[0m $1"
+        echo -e "$1" > "$LOGFILE"
+    fi
 }
 
 do_break(){
