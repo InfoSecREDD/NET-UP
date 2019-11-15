@@ -84,7 +84,7 @@ runmodcommand(){
         do_break;
         mod_status "Executing module: $FILE";
         mod_status "-------------------------- ";
-        if [[ -f $MODULE/FILE.* ]]; then
+        if [ -f $MODULE/$FILE.* ]; then
                 source $MODULE/$FILE.*
                 mod_checkg "Module $FILE completed.";
                 do_break;
