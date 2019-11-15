@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script-Wide Variables/Functions
 
-SLOGVERBOSE=NULL
+LOGVERBOSE=NULL
 LOGFILE=$DIR/netup.log
 chklog_status(){
     if [[ $LOGVERBOSE != NULL ]]; then
