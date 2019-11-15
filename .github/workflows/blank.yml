@@ -10,5 +10,5 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Checking Core of NET-UP
-      run: sudo $PATH/netup
+      run: bash .github/workflows/checkbuild.sh
       shell: bash
