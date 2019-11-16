@@ -6,7 +6,7 @@ MODULELOGFILE=$NETUPLOGDIR/netup-modules.log
 LOGDATE=$(date '+%Y-%m-%d %H:%M:%S')
 chklog_status(){
     if [[ $LOGVERBOSE != NULL ]]; then
-    	if [[ ! -d "$NETUPLOGDIR" ]]; then
+    	if [[ ! -e "$NETUPLOGDIR" ]]; then
 		mkdir -p "$NETUPLOGDIR";
 	fi
 	if [[ ! -f "$NETUPLOGFILE" ]]; then
