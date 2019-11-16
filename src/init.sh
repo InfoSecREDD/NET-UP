@@ -4,11 +4,13 @@ NETUPLOGDIR=$DIR/logs
 NETUPLOGFILE=$NETUPLOGDIR/netup.log
 MODULELOGFILE=$NETUPLOGDIR/netup-modules.log
 LOGDATE=$(date '+%Y-%m-%d %H:%M:%S')
+if [[ $LOGVERBOSE != NULL ]]; then
+if [[ ! -e $NETUPLOGDIR ]]; then
+        mkdir -p "$NETUPLOGDIR";
+fi
+fi
 chklog_status(){
     if [[ $LOGVERBOSE != NULL ]]; then
-    	if [[ ! -e "$NETUPLOGDIR" ]]; then
-		mkdir -p "$NETUPLOGDIR";
-	fi
 	if [[ ! -f "$NETUPLOGFILE" ]]; then
 	     touch "$NETUPLOGFILE";
 	fi
