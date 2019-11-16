@@ -1,11 +1,10 @@
 #!/bin/bash
 # Script-Wide Variables/Functions
-
+NETUPLOGFILE=$DIR/netup.log
+MODULELOGFILE=$DIR/netup-modules.log
+LOGDATE=$(date '+%Y-%m-%d %H:%M:%S')
 chklog_status(){
     if [[ $LOGVERBOSE != NULL ]]; then
-	NETUPLOGFILE=$DIR/netup.log
-	MODULELOGFILE=$DIR/netup-modules.log
-	LOGDATE=$(date '+%Y-%m-%d %H:%M:%S')
 	if [[ ! -f "$NETUPLOGFILE" ]]; then
 	     touch "$NETUPLOGFILE";
 	fi
