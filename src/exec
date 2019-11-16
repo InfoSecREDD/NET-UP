@@ -225,6 +225,9 @@ do_console() {
 }
 
 do_usage() {
+        if [ "${@: -1}" == "-v" ] || [ "${@: -1}" == "--verbose" ];then
+                LOGVERBOSE=YES
+        fi
 	case "$1" in
 		update)
 			shift
