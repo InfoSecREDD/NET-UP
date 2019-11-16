@@ -5,6 +5,7 @@ chklog_status(){
     if [[ $LOGVERBOSE != NULL ]]; then
 	NETUPLOGFILE=$DIR/netup.log
 	MODULELOGIFLE=$DIR/netup-modules.log
+	LOGDATE=$(date '+%Y-%m-%d %H:%M:%S')
 	if [[ ! -f "$NETUPLOGFILE" ]]; then
 	     touch "$NETUPLOGFILE";
 	fi
@@ -19,7 +20,7 @@ check_good(){
         echo -e "\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
     else
         echo -e "\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
-        echo -e "$1" >> "$NETUPLOGFILE"
+        echo -e "[$LOGDATE] $1" >> "$NETUPLOGFILE"
     fi
 }
 arrow_status(){
@@ -27,7 +28,7 @@ arrow_status(){
         echo -e "\x1B[01;34m[\x3E]\x1B[0m $1"
     else
         echo -e "\x1B[01;34m[\x3E]\x1B[0m $1"
-        echo -e "$1" >> "$NETUPLOGFILE"
+        echo -e "[$LOGDATE] $1" >> "$NETUPLOGFILE"
     fi
 }
 print_status(){
@@ -35,7 +36,7 @@ print_status(){
         echo -e "\x1B[01;34m[-]\x1B[0m $1"
     else
         echo -e "\x1B[01;34m[-]\x1B[0m $1"
-        echo -e "$1" >> "$NETUPLOGFILE"
+        echo -e "[$LOGDATE] $1" >> "$NETUPLOGFILE"
     fi
 }
 print_good(){
@@ -43,7 +44,7 @@ print_good(){
         echo -e "\x1B[01;32m[*]\x1B[0m $1"
     else
         echo -e "\x1B[01;32m[*]\x1B[0m $1"
-        echo -e "$1" >> "$NETUPLOGFILE"
+        echo -e "[$LOGDATE] $1" >> "$NETUPLOGFILE"
     fi
 }
 print_error(){
@@ -51,7 +52,7 @@ print_error(){
         echo -e "\x1B[01;31m[!]\x1B[0m $1"
     else
         echo -e "\x1B[01;31m[!]\x1B[0m $1"
-        echo -e "$1" >> "$NETUPLOGFILE"
+        echo -e "[$LOGDATE] $1" >> "$NETUPLOGFILE"
     fi
 }
 print_notification(){
@@ -59,7 +60,7 @@ print_notification(){
         echo -e "\x1B[01;33m[!]\x1B[0m $1"
     else
         echo -e "\x1B[01;33m[!]\x1B[0m $1"
-        echo -e "$1" >> "$NETUPLOGFILE"
+        echo -e "[$LOGDATE] $1" >> "$NETUPLOGFILE"
     fi
 }
 mod_checkg(){
@@ -67,7 +68,7 @@ mod_checkg(){
         echo -e "\x20\x20\x20\x20\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
     else
         echo -e "\x20\x20\x20\x20\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
-        echo -e "$1" >> "$MODULELOGFILE"
+        echo -e "[$LOGDATE] $1" >> "$MODULELOGFILE"
     fi
 }
 mod_arrowstat(){
@@ -75,7 +76,7 @@ mod_arrowstat(){
         echo -e "\x20\x20\x20\x20\x1B[01;34m[\x3E]\x1B[0m $1"
     else
         echo -e "\x20\x20\x20\x20\x1B[01;34m[\x3E]\x1B[0m $1"
-        echo -e "$1" >> "$MODULELOGFILE"
+        echo -e "[$LOGDATE] $1" >> "$MODULELOGFILE"
     fi
 }
 mod_status(){
@@ -83,7 +84,7 @@ mod_status(){
         echo -e "\x20\x20\x20\x20\x1B[01;34m[-]\x1B[0m $1"
     else
         echo -e "\x20\x20\x20\x20\x1B[01;34m[-]\x1B[0m $1"
-        echo -e "$1" >> "$MODULELOGFILE"
+        echo -e "[$LOGDATE] $1" >> "$MODULELOGFILE"
     fi
 }
 mod_good(){
@@ -91,7 +92,7 @@ mod_good(){
         echo -e "\x20\x20\x20\x20\x1B[01;32m[*]\x1B[0m $1"
     else
         echo -e "\x20\x20\x20\x20\x1B[01;32m[*]\x1B[0m $1"
-        echo -e "$1" >> "$MODULELOGFILE"
+        echo -e "[$LOGDATE] $1" >> "$MODULELOGFILE"
     fi
 }
 mod_error(){
@@ -99,7 +100,7 @@ mod_error(){
         echo -e "\x20\x20\x20\x20\x1B[01;31m[!]\x1B[0m $1"
     else
         echo -e "\x20\x20\x20\x20\x1B[01;31m[!]\x1B[0m $1"
-        echo -e "$1" >> "$MODULELOGFILE"
+        echo -e "[$LOGDATE] $1" >> "$MODULELOGFILE"
     fi
 }
 mod_noti(){
@@ -107,7 +108,7 @@ mod_noti(){
         echo -e "\x20\x20\x20\x20\x1B[01;33m[!]\x1B[0m $1"
     else
         echo -e "\x20\x20\x20\x20\x1B[01;33m[!]\x1B[0m $1"
-        echo -e "$1" >> "$MODULELOGFILE"
+        echo -e "[$LOGDATE] $1" >> "$MODULELOGFILE"
     fi
 }
 do_break(){
