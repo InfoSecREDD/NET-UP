@@ -4,22 +4,6 @@ NETUPLOGDIR=$DIR/logs
 NETUPLOGFILE=$NETUPLOGDIR/netup.log
 MODULELOGFILE=$NETUPLOGDIR/netup-modules.log
 LOGDATE=$(date '+%Y-%m-%d %H:%M:%S')
-if [[ $LOGVERBOSE != NULL ]]; then
-if [[ ! -e $NETUPLOGDIR ]]; then
-        mkdir -p "$NETUPLOGDIR";
-fi
-fi
-chklog_status(){
-    if [[ $LOGVERBOSE != NULL ]]; then
-	if [[ ! -f "$NETUPLOGFILE" ]]; then
-	     touch "$NETUPLOGFILE";
-	fi
-	if [[ ! -f "$MODULELOGFILE" ]]; then
-	     touch "$MODULELOGFILE";
-	fi
-    fi
-}
-chklog_status;
 check_good(){
     if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
