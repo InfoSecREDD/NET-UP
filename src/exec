@@ -226,7 +226,18 @@ do_console() {
 
 do_usage() {
         if [ "${@: -1}" == "-v" ] || [ "${@: -1}" == "--verbose" ];then
-                LOGVERBOSE=YES
+                LOGVERBOSE="1"
+                        if [[ "$LOGVERBOSE" == "1" ]]; then
+                                if [[ ! -d "$DIR/logs" ]]; then
+                                        mkdir -p "$DIR/logs";
+                                fi
+                        if [[ ! -f "$NETUPLOGFILE" ]]; then
+                                touch "$NETUPLOGFILE";
+                        fi
+                        if [[ ! -f "$MODULELOGFILE" ]]; then
+                                touch "$MODULELOGFILE";
+                        fi
+                fi
         fi
 	case "$1" in
 		update)
