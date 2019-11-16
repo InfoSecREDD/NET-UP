@@ -4,7 +4,7 @@
 chklog_status(){
     if [[ $LOGVERBOSE != NULL ]]; then
 	NETUPLOGFILE=$DIR/netup.log
-	MODULELOGIFLE=$DIR/netup-modules.log
+	MODULELOGFILE=$DIR/netup-modules.log
 	LOGDATE=$(date '+%Y-%m-%d %H:%M:%S')
 	if [[ ! -f "$NETUPLOGFILE" ]]; then
 	     touch "$NETUPLOGFILE";
