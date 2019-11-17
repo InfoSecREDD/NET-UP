@@ -1,4 +1,10 @@
 run_netup(){
+	if [[ "$INTERFACE" == "NOTSETUP" ]]; then
+		print_error "Please adjust the INTERFACE Variable to reflect your Main Adapter.";
+		print_error " OR type 'netup interface' to have NET-UP auto-detect your adapter.";
+		$BREAK;
+		exitnetup;
+	fi
         while true; do
                 for i in {1..25}; do
                         if ifup $INTERFACE; then

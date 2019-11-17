@@ -1,9 +1,15 @@
 #!/bin/bash
 # Script-Wide Variables/Functions
-NETUPLOGDIR=$DIR/logs
-NETUPLOGFILE=$NETUPLOGDIR/$d/netup.log
-MODULELOGFILE=$NETUPLOGDIR/$d/netup-modules.log
-LOGDATE=$(date '+%Y-%m-%d %H:%M:%S')
+do_sleep(){
+	WAITTIME=NULL
+	if [[ $1 != "" ]]; then
+		WAITTIME=$1
+		sleep $WAITTIME
+	else
+		WAITTIME=2
+		sleep $WAITTIME
+	fi
+}
 check_good(){
     if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"

@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 source $DIR/etc/vers
-MODULEREPO=https://github.com/private-locker/modules
-GITHUBREPO=https://github.com/private-locker/Net-UP
 source $DIR/etc/auth.mk
 start_notice(){
     echo -e "\x1B[01;33m[!]\x1B[0m $1"
 }
 start_notice "Initializing Functions & Variables..";
-LOGVERBOSE=NULL
+source $DIR/src/sys_vars
 source $DIR/src/init.sh
 source $DIR/src/symchk.sh
 source $DIR/src/checkdep.sh
@@ -20,14 +18,4 @@ source $DIR/src/core
 os_check;
 check_dep;
 BREAK=$(do_break)
-MODULE=$DIR/modules
-LOG=$DIR/logs
-LOCAL=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk -F'[/ ]+' '{print $3}')
-SUBNET=$(ipcalc $LOCAL | awk '/Network/ {print $2}')
-d=$(date +%Y-%m-%d)
-NETUPCRED1="          - NET-UP has Finished. -"
-AUTOBOOTON="AUTOREBOOT=YES"
-AUTOBOOTOFF="AUTOREBOOT=NO"
-AUTOEXITON="AUTOEXIT=YES"
-AUTOEXITOFF="AUTOEXIT=NO"
-INTVAR="INTERFACE"
+SLEEP=$(do_sleep)

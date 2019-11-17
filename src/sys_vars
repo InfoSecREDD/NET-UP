@@ -1,0 +1,23 @@
+#!/bin/bash
+MODULEREPO=https://github.com/private-locker/modules
+MODULEDIR=$DIR/modules
+GITHUBREPO=https://github.com/private-locker/NET-UP
+GITDIR=$HOME/netup
+HOMEDIR=$GITDIR
+MODULE=$MODULEDIR
+LOG=$DIR/logs
+LOGVERBOSE=NULL
+NETUPLOGDIR=$LOG
+d=$(date +%Y-%m-%d)
+NETUPLOGFILE=$NETUPLOGDIR/$d/netup.log
+MODULELOGFILE=$NETUPLOGDIR/$d/netup-modules.log
+LOGDATE=$(date '+%Y-%m-%d %H:%M:%S')
+PUBLICIP=$(dig +short myip.opendns.com @resolver1.opendns.com)
+LOCAL=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk -F'[/ ]+' '{print $3}')
+SUBNET=$(ipcalc $LOCAL | awk '/Network/ {print $2}')
+NETUPCRED1="          - NET-UP has Finished. -"
+AUTOBOOTON="AUTOREBOOT=YES"
+AUTOBOOTOFF="AUTOREBOOT=NO"
+AUTOEXITON="AUTOEXIT=YES"
+AUTOEXITOFF="AUTOEXIT=NO"
+INTVAR="INTERFACE"

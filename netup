@@ -23,19 +23,9 @@ source $DIR/src/exec
 ##   the README.txt in the modules folder.                 ##
 #############################################################
 
-INTERFACE=eth0
+INTERFACE=NOTSETUP
 AUTOREBOOT=NO
 AUTOEXIT=YES
-
-# Future Debugging Variables
-#DEBUG=1
-#LOGFILE=~/logs/netup.log
-
-# Future Debuggin Logfiles..
-#function debug() {
-#       printf 'DEBUG: '
-#}
-
 
 do_usage $@
 do_init $@

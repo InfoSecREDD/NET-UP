@@ -36,23 +36,23 @@ do_update() {
 
 do_autoexit() {
         if [ "$1" = "off" ] ||  [ "$1" = "OFF" ] || [ "$1" = "" ]; then
-                if grep -q "$AUTOEXITOFF" "$HOME/netup/netup"
+                if grep -q "$AUTOEXITOFF" "$HOMEDIR/netup"
                         then
 			echo -e ""
                         print_notification "Automatic Exit is already disabled."
                 else
 			echo -e ""
-			sed -i "s/$AUTOEXITON/$AUTOEXITOFF/g" "$HOME/netup/netup"
+			sed -i "s/$AUTOEXITON/$AUTOEXITOFF/g" "$HOMEDIR/netup"
                         check_good "Changed Automatic Exit of Script to OFF."
                 fi
                 elif [ "$1" = "on" ] ||  [ "$1" = "ON" ]; then
-                        if grep -q "$AUTOEXITON" "$HOME/netup/netup"
+                        if grep -q "$AUTOEXITON" "$HOMEDIR/netup"
                         then
 			echo -e "";
                         print_notification "Automatic Exit is already enabled."
                 else
 			echo -e ""
-			sed -i "s/$AUTOEXITOFF/$AUTOEXITON/g" "$HOME/netup/netup"
+			sed -i "s/$AUTOEXITOFF/$AUTOEXITON/g" "$HOMEDIR/netup"
                         check_good "Changed Automatic Exit of Script to ON."
                 fi
                 else
@@ -63,23 +63,23 @@ do_autoexit() {
 
 do_autoreboot() {
         if [ "$1" = "off" ] ||  [ "$1" = "OFF" ] || [ "$1" = "" ]; then
-		if grep -q "$AUTOBOOTOFF" "$HOME/netup/netup"
+		if grep -q "$AUTOBOOTOFF" "$HOMEDIR/netup"
 			then
 			echo -e ""
     			print_notification "Automatic Reboot is already disabled."
 		else
 			echo -e ""
-			sed -i "s/$AUTOBOOTON/$AUTOBOOTOFF/g" "$HOME/netup/netup"
+			sed -i "s/$AUTOBOOTON/$AUTOBOOTOFF/g" "$HOMEDIR/netup"
 			check_good "Changed Automatic Reboot after Script Completes to OFF."
 		fi
                 elif [ "$1" = "on" ] ||  [ "$1" = "ON" ]; then
-			if grep -q "$AUTOBOOTON" "$HOME/netup/netup"
+			if grep -q "$AUTOBOOTON" "$HOMEDIR/netup"
                         then
 			echo -e ""
 			print_notification "Automatic Reboot is already enabled."
 		else
 			echo -e ""
-			sed -i "s/$AUTOBOOTOFF/$AUTOBOOTON/g" "$HOME/netup/netup"
+			sed -i "s/$AUTOBOOTOFF/$AUTOBOOTON/g" "$HOMEDIR/netup"
 			check_good "Changed Automatic Reboot after Script Completes to ON."
 		fi
                 else
@@ -112,7 +112,7 @@ do_interface() {
 		echo -e "";
 		print_notification "Automatticially detecting active Adapter.";
 		print_notification "Setting $INTVAR Variable to $AUTODETECT";
-		sed -i "s/$INTVAR=.*/$INTVAR=$AUTODETECT/g" "$HOME/netup/netup";
+		sed -i "s/$INTVAR=.*/$INTVAR=$AUTODETECT/g" "$HOMEDIR/netup";
 		check_good "Done."
 		exitnetup;
 	fi
@@ -125,10 +125,10 @@ do_enablemod() {
         else
 		SELECTED=$1
                 print_notification "Attempting to Enable Module: $SELECTED."
-		if [ -f $DIR/modules/$SELECTED.tmp ]; then
+		if [ -f $MODULEDIR/$SELECTED.tmp ]; then
 			print_notification "Checking if Module was Enabled."
-			/bin/bash $DIR/modules/enablemod -f $DIR/modules/$SELECTED
-			if [ -f "$DIR/modules/$SELECTED.mdu" ]; then
+			/bin/bash $MODULEDIR/enablemod -f $MODULEDIR/$SELECTED
+			if [ -f "$MODULEDIR/$SELECTED.mdu" ]; then
 				check_good "Module $SELECTED Enabled!"
 			else
 				print_error "Module $SELECTED was not Enabled please contact contact@private-locker.com";
@@ -148,10 +148,10 @@ do_disablemod() {
         else
 		SELECTED=$1
 		print_notification "Attempting to Disable Module: $SELECTED"
-		if [ -f $DIR/modules/$SELECTED.mdu ]; then
+		if [ -f $MODULEDIR/$SELECTED.mdu ]; then
 			print_notification "Checking if Module was Disabled."
-			/bin/bash $DIR/modules/disablemod -f $DIR/modules/$SELECTED
-			if [ -f "$DIR/modules/$SELECTED.tmp" ]; then
+			/bin/bash $MODULEDIR/disablemod -f $MODULEDIR/$SELECTED
+			if [ -f "$MODULEDIR/$SELECTED.tmp" ]; then
 				check_good "Module $SELECTED Disabled!"
 			else
 				print_error "Module $SELECTED was not Disabled please contact contact@private-locker.com";
@@ -166,19 +166,19 @@ do_disablemod() {
 
 do_disablemods() {
 	tempmodcount=0
-	for file in `ls $DIR/modules/*.mdu 2>/dev/null`; do
+	for file in `ls $MODULEDIR/*.mdu 2>/dev/null`; do
 		basefile=$(basename "$file" .mdu)
 		tempmodcount=1
 		print_notification "Disabling Module: $basefile."
-		mv "$file" "$DIR/modules/$(basename "$file" .mdu).tmp"
+		mv "$file" "$MODULEDIR/$(basename "$file" .mdu).tmp"
 		print_notification "Checking if Module was Disabled."
-		if [ ! -f "$DIR/modules/$file.tmp" ]; then
+		if [ ! -f "$MODULEDIR/$file.tmp" ]; then
 			check_good "Module $basefile Disabled!"
 		else
 			print_error "Module $basefile was not Disabled please contact contact@private-locker.com";
 		fi
 	done
-	if [ ! -f "$DIR/modules/*.mdu" ] && [ "$tempmodcount" -eq "0" ]; then
+	if [ ! -f "$MODULEDIR/*.mdu" ] && [ "$tempmodcount" -eq "0" ]; then
 		print_error "There is no Enabled Modules."
 		exitnetup
 	fi
@@ -187,20 +187,20 @@ do_disablemods() {
 
 do_enablemods() {
 	tempmodcount=0
-	for file in `ls $DIR/modules/*.tmp 2>/dev/null`; do
+	for file in `ls $MODULEDIR/*.tmp 2>/dev/null`; do
 		basefile=$(basename "$file" .tmp)
 		tempmodcount=1
 		print_notification "Enabling Module: $basefile."
-		mv "$file" "$DIR/modules/$(basename "$file" .tmp).mdu"
+		mv "$file" "$MODULEDIR/$(basename "$file" .tmp).mdu"
 		print_notification "Checking if Module was Enabled."
-		if [ ! -f "$DIR/modules/$file.tmp" ]; then
+		if [ ! -f "$MODULEDIR/$file.tmp" ]; then
 			check_good "Module $basefile Enabled!"
 		else
 			print_error "Module $basefile was not Enabled please contact contact@private-locker.com";
 		fi
 		
 	done
-	if [ ! -f "$DIR/modules/*.mdu" ] && [ "$tempmodcount" -eq "0" ]; then
+	if [ ! -f "$MODULEDIR/*.mdu" ] && [ "$tempmodcount" -eq "0" ]; then
 		print_error "There is no Disabled Modules."
 		exitnetup
 	fi
@@ -231,6 +231,9 @@ do_usage() {
                                 if [[ ! -d "$DIR/logs" ]]; then
                                         mkdir -p "$DIR/logs";
                                 fi
+				if [[ ! -d "$NETUPLOGDIR/$d" ]]; then
+					mkdir -p "$NETUPLOGDIR/$d";
+				fi
                         if [[ ! -f "$NETUPLOGFILE" ]]; then
                                 touch "$NETUPLOGFILE";
                         fi
