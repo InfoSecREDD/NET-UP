@@ -1,8 +1,8 @@
 #!/bin/bash
 # Script-Wide Variables/Functions
 NETUPLOGDIR=$DIR/logs
-NETUPLOGFILE=$NETUPLOGDIR/netup.log
-MODULELOGFILE=$NETUPLOGDIR/netup-modules.log
+NETUPLOGFILE=$NETUPLOGDIR/$d/netup.log
+MODULELOGFILE=$NETUPLOGDIR/$d/netup-modules.log
 LOGDATE=$(date '+%Y-%m-%d %H:%M:%S')
 check_good(){
     if [[ $LOGVERBOSE == NULL ]]; then
