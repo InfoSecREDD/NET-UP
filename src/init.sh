@@ -10,6 +10,13 @@ do_sleep(){
 		sleep $WAITTIME
 	fi
 }
+runproject(){
+	if [ -f $1 ]; then
+		source $1
+	else
+		print_error "No Module located.";
+	fi
+}
 check_good(){
     if [[ $LOGVERBOSE == NULL ]]; then
         echo -e "\x1B[01;32m[\xE2\x9C\x94]\x1B[0m $1"
