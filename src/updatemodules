@@ -11,16 +11,16 @@ updatemods(){
         if [[ $REPLY =~ ^[Yy]$ ]]; then
                 print_status "Removing Old Modules Directory..";
                 echo -e "";
-				cd;
-				cd netup;
-				rm -rf modules
-                git clone $MODULEREPO modules
-				chmod +x modules/disablemod
-				chmod +x modules/enablemod
+		cd $HOME;
+		cd $HOMEDIR;
+		rm -rf $MODULEDIR
+		git clone $MODULEREPO $MODULEDIR
+		chmod +x $MODULEDIR/disablemod
+		chmod +x $MODULEDIR/enablemod
                 echo -e "";
                 print_status "Modules have been synced to Private-Locker's Modules Repo.";
         else
-				echo -e "";
+		echo -e "";
                 print_status "Not Updating NET-UP Modules. Exiting.";
         fi
 }

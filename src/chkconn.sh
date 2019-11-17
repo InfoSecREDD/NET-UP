@@ -5,7 +5,7 @@
 
 function ifup {
     if [[ ! -d /sys/class/net/${1} ]]; then
-        printf 'No such interface: %s\n' "$1" >&2
+        echo -e "Please check interface $1.";
         return 1
     else
         [[ $(</sys/class/net/${1}/operstate) == up ]]

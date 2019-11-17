@@ -228,8 +228,8 @@ do_usage() {
         if [ "${@: -1}" == "-v" ] || [ "${@: -1}" == "--verbose" ];then
                 LOGVERBOSE="1"
                         if [[ "$LOGVERBOSE" == "1" ]]; then
-                                if [[ ! -d "$DIR/logs" ]]; then
-                                        mkdir -p "$DIR/logs";
+                                if [[ ! -d "$NETUPLOGDIR" ]]; then
+                                        mkdir -p "$NETUPLOGDIR";
                                 fi
 				if [[ ! -d "$NETUPLOGDIR/$d" ]]; then
 					mkdir -p "$NETUPLOGDIR/$d";
@@ -288,8 +288,8 @@ do_usage() {
             exitnetup ;;
         *)
 			if [ -z "$1" ]
-  			then
-    				do_init
+			then
+				do_init
 			else
 				nocommands
 			fi
