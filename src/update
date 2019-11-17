@@ -33,13 +33,12 @@ fastupdatenetuponly(){
 	echo -e "";
 	print_status "Cloning NET-UP and setting Permissions..";
 	rm -rf $HOMEDIR
-	cd $HOME;
         git clone $GITHUBREPO $HOMEDIR
         chmod +x $HOMEDIR/netup;
         cd $HOMEDIR
 	echo -e "";
 	print_status "Re-Creating Modules Folder.";
-	mkdir -p modules;
+	mkdir -p $MODULEDIR;
 	print_status "Restoring Old Modules to Current NET-UP Directory..";
 	cp -rf /tmp/netuptmpmods/. $MODULEDIR;
 	rm -rf /tmp/netuptmpmods;
@@ -63,7 +62,7 @@ updatenetuponly(){
         if [[ $REPLY =~ ^[Yy]$ ]]; then
 		echo -e "";
                 print_status "Removing Old NET-UP Directory Contents except Modules Folder..";
-                cd $HOME/netup;
+                cd $HOMEDIR;
                 ls | grep -v modules | xargs rm -rf
                 echo -e "";
 		print_status "Backing up Existing Modules..";
@@ -72,13 +71,12 @@ updatenetuponly(){
 		echo -e "";
 		print_status "Cloning NET-UP and setting Permissions..";
 		rm -rf $HOMEDIR
-		cd $HOME;
                 git clone $GITHUBREPO $HOMEDIR
                 chmod +x $HOMEDIR/netup;
                 cd $HOMEDIR
 		echo -e "";
 		print_status "Re-Creating Modules Folder.";
-		mkdir -p modules;
+		mkdir -p $MODULEDIR;
 		print_status "Restoring Old Modules to Current NET-UP Directory..";
 		cp -rf /tmp/netuptmpmods/. $MODULEDIR;
 		rm -rf /tmp/netuptmpmods;
@@ -86,8 +84,8 @@ updatenetuponly(){
 		print_status "Entire NET-UP was synced to Private-Locker's Repo.";
                 echo -e "";
                 print_error "Removing install script.";
-                rm -rf $HOME/netup/install.sh
-                touch $HOME/netup/.conf
+                rm -rf $HOMEDIR/install.sh
+                touch $HOMEDIR/.conf
                 echo -e "";
                 cd;
 		exitnetup;
