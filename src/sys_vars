@@ -1,5 +1,5 @@
 #!/bin/bash
-MODULEREPO=https://github.com/private-locker/modules
+MODULEREPO=https://github.com/private-locker/NET-UP-modules
 MODULEDIR=$DIR/modules
 GITHUBREPO=https://github.com/private-locker/NET-UP
 GITDIR=$HOME/netup
