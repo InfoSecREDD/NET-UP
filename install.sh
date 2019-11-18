@@ -57,22 +57,21 @@ else
 fi
 if [ "$DIR" != "$HOMEDIR" ]; then
         if [ -f "$DIR/netup" ]; then
+		cd "$HOME"
 		mkdir "$HOMEDIR"
-                cp -Rf $DIR/* "$HOMEDIR/"
+                cp -rf $DIR/* "$HOMEDIR/"
 		rm -rf "$DIR"
-		cd "$HOMEDIR"
 		clonemods;
 	else
-		cd /root/
+		cd "$HOME"
 		clonemain;
 		clonemods;
 		cd "$HOMEDIR"
 	fi
 else
-	cd /root/
+	cd "$HOME"
 	clonemain;
 	clonemods;
-	cd "$HOMEDIR"
 fi
 changeperm;
 cleanup;
