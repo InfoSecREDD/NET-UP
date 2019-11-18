@@ -32,6 +32,7 @@ fastupdatenetuponly(){
 	cp -rf $MODULEDIR/. /tmp/netuptmpmods/
 	echo -e "";
 	print_status "Cloning NET-UP and setting Permissions..";
+	cd $HOME
 	rm -rf $HOMEDIR
         git clone $GITHUBREPO $HOMEDIR
         chmod +x $HOMEDIR/netup;
@@ -69,6 +70,7 @@ updatenetuponly(){
 		mkdir -p /tmp/netuptmpmods
 		cp -rf $MODULEDIR/. /tmp/netuptmpmods/
 		echo -e "";
+		cd $HOME
 		print_status "Cloning NET-UP and setting Permissions..";
 		rm -rf $HOMEDIR
                 git clone $GITHUBREPO $HOMEDIR
@@ -141,7 +143,7 @@ fastupdategithub() {
                                 chmod +x $HOMEDIR/netup;
                                 cd $HOMEDIR
                                 rm -rf $MODULEDIR
-                            git clone $MODULEREPO $MODULEDIR
+                                git clone $MODULEREPO $MODULEDIR
                                 chmod +x $MODULEDIR/disablemod
                                 chmod +x $MODULEDIR/enablemod
                 echo -e "";
