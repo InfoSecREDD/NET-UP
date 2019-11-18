@@ -52,7 +52,7 @@ execution of cronjobs or startup based scripts.
 - IPInfo - Script forked from https://github.com/niklasberglund/ipinfo (needs work)
 - More to come.. (Community Published Modules are welcome)
 
-(For More Reference on Modules/Scripts used for NET-UP, Please Check https://github.com/private-locker/modules)
+(For More Reference on Modules/Scripts used for NET-UP, Please Check https://github.com/private-locker/NET-UP-modules)
 
 ## Easy Install Script:
 ```
