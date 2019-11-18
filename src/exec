@@ -118,6 +118,13 @@ do_interface() {
 	fi
 }
 
+do_information() {
+	print_good "NET-UP Version: $VERS"
+	print_good "NET-UP Directory: $HOMEDIR"
+	print_good "Modules Directory: $MODULEDIR"
+	exitnetup;
+}
+
 do_enablemod() {
 	if [ -z "$1" ]; then
                 print_error "No Module input given."
@@ -252,8 +259,11 @@ do_usage() {
 		run)
 			shift
 			do_run $@ ;;
-        console)
-            do_console ;;
+		information|info)
+			shift
+			do_information;;
+		console)
+			do_console ;;
 		enable|enablemod)
 			shift
 			do_enablemod $@ ;;
