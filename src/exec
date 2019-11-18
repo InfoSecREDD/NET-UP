@@ -119,9 +119,19 @@ do_interface() {
 }
 
 do_information() {
+	echo -e "";
 	print_good "NET-UP Version: $VERS"
+	print_good "NET-UP GitHub: $GITHUBREPO"
 	print_good "NET-UP Directory: $HOMEDIR"
+	echo -e "";
+	print_good "Module GitHub: $MODULEREPO"
 	print_good "Modules Directory: $MODULEDIR"
+	echo -e "";
+	print_good "NET-UP Log Directory: $NETUPLOGDIR"
+	echo -e "";
+	print_good "Local Subnet: $SUBNET"
+	print_good "Public IP: $PUBLICIP"
+	echo -e "";
 	exitnetup;
 }
 
