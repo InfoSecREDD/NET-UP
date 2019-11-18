@@ -65,7 +65,8 @@ $ su
 # cd
 # git clone https://github.com/private-locker/NET-UP.git netup
 # cd netup
-# ./netup
+# chmod +x install.sh
+# ./install.sh
 ```
 
 Once Installed, allows you to:
@@ -73,6 +74,10 @@ Once Installed, allows you to:
 ## Run NET-UP:
 ```
 # netup
+```
+## Show NET-UP Directory/Version Information:
+```
+# netup information
 ```
 ## Auto-detect Active Network Interface:
 ```
@@ -109,7 +114,9 @@ Syntax: ./netup
 Examples:
     ./netup help                    - This help screen displayed.
     ./netup update                  - Updates entire NET-UP & Modules with Public Repo.
+    ./netup information             - Displays current NET-UP Information.
     ./netup interface               - Automattically sets INTERFACE Variable.
+    ./netup update                  - Updates NET-UP to Current GitHub Version.
     ./netup enablemods              - Enables all Modules in the Modules Folder.
     ./netup disablemods             - Disables all Modules in the Modules Folder.
     ./netup updatemods              - Syncs all Modules with Public Repo.
