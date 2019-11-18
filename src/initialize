@@ -6,7 +6,7 @@ start_notice(){
 }
 start_notice "Initializing Functions & Variables..";
 source $DIR/src/sys_vars
-source $DIR/src/waittimers
+source $DIR/src/misc
 source $DIR/src/init.sh
 if [ ! -f $DIR/.conf ]; then
         source $DIR/src/symchk.sh
