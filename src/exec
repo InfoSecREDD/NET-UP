@@ -20,7 +20,7 @@ do_run() {
 }
 
 do_update() {
-	if [ "$1" = "-y" ]; then
+	if [ "$1" = "-y" ] || [ "$1" = "-f" ]; then
 		fastupdategithub
 	elif [ "$1" = "--netup-only" ] || [ "$1" = "-n" ]; then
 		if [ "$2" = "-y" ]; then

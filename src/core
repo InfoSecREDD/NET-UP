@@ -38,11 +38,6 @@ do_init() {
 	# AutoExit Check.
 	autoexitcheck
 
-	# Check if anything needs installed.
-	print_status "Checking for dependencies.."
-	check_dep
-	check_good "Done!"
-
 	# Start NET-UP
 	print_notification "Starting Net-UP Core.."
 	run_netup
