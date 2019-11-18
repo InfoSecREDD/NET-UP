@@ -34,8 +34,6 @@ run_netup(){
 }
 
 do_init() {
-	# Check for or create symlink to system wide script
-	sym_check
 
 	# AutoExit Check.
 	autoexitcheck
