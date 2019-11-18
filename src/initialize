@@ -21,7 +21,5 @@ source $DIR/src/updatemodules
 source $DIR/src/update
 source $DIR/src/cron
 source $DIR/src/core
-os_check;
-check_dep;
 BREAK=$(do_break)
 SLEEP=$(do_sleep)
