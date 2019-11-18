@@ -19,9 +19,7 @@ fi
 source $DIR/src/updatemodules
 source $DIR/src/update
 source $DIR/src/cron
-if [[ "$AUTOEXIT" == "OFF" ]]; then
-        source $DIR/src/chkconn.sh
-fi
+source $DIR/src/chkconn.sh
 source $DIR/src/core
 BREAK=$(do_break)
 SLEEP=$(do_sleep)
