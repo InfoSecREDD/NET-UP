@@ -1,0 +1,71 @@
+#!/bin/bash
+# This is a unlinked file reserved for Wait Timers and other useless functions right now. - REDD
+wtimer_periods(){
+        printf "\r$1"
+        sleep .25
+        printf "."
+        sleep .25
+        printf "."
+        sleep .25
+        printf "."
+        sleep .25
+        printf "\r$1   "
+}
+
+wtimer_dancemanbuff(){
+	printf "\n"
+	printf "\n"
+	printf "\n"
+	printf "\n"
+	printf "\n"
+	printf "\n"
+	printf "\n"
+}
+wtimer_rplbuff(){
+        printf "\e[6A"
+	echo -e "               "
+	echo -e "               "
+	echo -e "               "
+	echo -e "               "
+	echo -e "               "
+	echo -e "               "
+}
+wtimer_danceman(){
+	# Dancing Man Loader  -  REDD
+	printf "\e[7A"
+	printf "\n"
+        printf "               \n"
+	printf "         O  \n"
+	printf "        /|\ \n"
+	printf "        /'\ \n"
+	printf "\n\n"
+	sleep .15
+
+	printf "\e[7A"
+	printf "\n"
+        printf "               \n"
+	printf "         O  \n"
+	printf "        v|v \n"
+	printf "        /'\ \n"
+	printf "\n\n"
+	sleep .15
+
+	printf "\e[7A"
+	printf "\n"
+	printf "               \n"
+	printf "        \O/ \n"
+	printf "         |  \n"
+	printf "        /'\ \n"
+	printf "\n\n"
+	sleep .15
+
+        printf "\e[7A"
+	printf "\n"
+        printf "      Woo-hoo!\n"
+        printf "        \O/ \n"
+        printf "         |  \n"
+        printf "        /'\ \n"
+        printf "\n\n"
+        sleep .15
+
+}
