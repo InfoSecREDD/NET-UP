@@ -10,6 +10,30 @@ do_sleep(){
 		sleep $WAITTIME
 	fi
 }
+do_wtimer_danceman(){
+	WAITMESSAGE="$1"
+	WAITTIME="$2"
+	SECONDS=0
+	i=$SECONDS
+	echo -e "$WAITMESSAGE"
+	wtimer_dancemanbuff;
+	while [ $i -le $WAITTIME ]; do
+		wtimer_danceman;
+		i=$SECONDS
+	done
+	wtimer_rplbuff;
+}
+do_wtimer_periods(){
+	WAITMESSAGE="$1"
+	WAITTIME="$2"
+	SECONDS=0
+	i=$SECONDS
+	while [ $i -le $WAITTIME ]; do
+		wtimer_periods "$WAITMESSAGE"
+		i=$SECONDS
+	done
+	echo -e "";
+}
 runproject(){
 	if [ -f $1 ]; then
 		source $1
