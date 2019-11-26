@@ -8,6 +8,7 @@ start_notice "Initializing Functions & Variables..";
 source $DIR/src/sys_vars
 source $DIR/src/misc
 source $DIR/src/init.sh
+subsystem
 if [ ! -f $DIR/.conf ]; then
         source $DIR/src/symchk.sh
         source $DIR/src/checkdep.sh
