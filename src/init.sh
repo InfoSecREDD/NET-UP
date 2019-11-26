@@ -34,6 +34,13 @@ do_wtimer_periods(){
 	done
 	echo -e "";
 }
+subsystem(){
+        VAR="Windows Subsystem"
+        SUBCHECK=$(lscpu | grep 'Hypervisor vendor:' | head -1 | awk '{print $3,$4}')
+        if [[ "$SUBCHECK" == "$VAR" ]]; then
+                print_error "WARNING: SOME FUNCTIONS WILL NOT WORK CORRECTLY ON WINDOWS SUBSYSTEM!";
+        fi
+}
 runproject(){
 	if [ -f $1 ]; then
 		source $1
