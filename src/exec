@@ -247,7 +247,7 @@ do_information() {
                                 printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 4   :" ${RAM_MOD_MEMTOTAL[3]}
                         fi
                 fi
-                if [[ ${RAM_MOD_MEMTOTAL[4]} != "" ]]; then
+                if [[ ${RAM_MOD_MEMTOTAL[4]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[4]} != " Not Installed" ]]; then
                         if [[ ${RAM_TYPE_MEMTOTAL[4]} != " DDR" ]]; then
                                 printf "  %-14s$DCOLOR$BWHITE %s%s %s %s %s\n" "RAM Slot 5   :" ${RAM_MOD_MEMTOTAL[4]} ${RAM_TYPE_MEMTOTAL[4]}
                         else
