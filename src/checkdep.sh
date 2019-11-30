@@ -29,4 +29,9 @@ check_dep(){
         	sudo -k apt-get install -y lscpu &>/dev/null
         	check_success;
 	fi
+	if ! command_exists finger ; then
+        	print_notification "Attempting to install finger..";
+        	sudo -k apt-get install -y finger &>/dev/null
+        	check_success;
+	fi
 }
