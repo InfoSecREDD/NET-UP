@@ -24,4 +24,9 @@ check_dep(){
         	sudo -k apt-get install -y ipcalc &>/dev/null
         	check_success;
 	fi
+	if ! command_exists lscpu ; then
+        	print_notification "Attempting to install lscpu..";
+        	sudo -k apt-get install -y lscpu &>/dev/null
+        	check_success;
+	fi
 }
