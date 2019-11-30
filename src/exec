@@ -211,7 +211,7 @@ do_information() {
 		RAM_TYPE_MEM=$(dmidecode  -t memory  | grep "Type:" | sed -e 's/Type:\s{1}//g'| awk -F':' '{print $2}' | sed -n '1!p')
                 readarray -t RAM_TYPE_MEMTOTAL < <(echo "$RAM_TYPE_MEM")
                 printf "$BLUE|#######################[$DCOLOR $UNDL$YELLOW%s$DCOLOR $UNDL$YELLOW%s$DCOLOR $BLUE]##########################| $BWHITE\n" "RAM" "Information"
-                if [[ ${RAM_MOD_MEMTOTAL[0]} == "" ]] || [[ ${RAM_MOD_MEMTOTAL[0]} == "NotInstalled" ]]; then
+                if [[ ${RAM_MOD_MEMTOTAL[0]} == "" ]] || [[ ${RAM_MOD_MEMTOTAL[0]} != " Not Installed" ]]; then
                         printf "  %-14s$DCOLOR$BWHITE No Slot Available\n" "RAM Slot 1   :"
                 else
 			if [[ ${RAM_TYPE_MEMTOTAL[0]} != " DDR" ]]; then
@@ -220,7 +220,7 @@ do_information() {
 				printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 1   :" ${RAM_MOD_MEMTOTAL[0]}
 			fi
                 fi
-                if [[ ${RAM_MOD_MEMTOTAL[1]} == "" ]] || [[ ${RAM_MOD_MEMTOTAL[1]} == "NotInstalled" ]]; then
+                if [[ ${RAM_MOD_MEMTOTAL[1]} == "" ]] || [[ ${RAM_MOD_MEMTOTAL[1]} != " Not Installed" ]]; then
                         printf "  %-14s$DCOLOR$BWHITE No Slot Available\n" "RAM Slot 2   :"
                 else
                         if [[ ${RAM_TYPE_MEMTOTAL[1]} != " DDR" ]]; then
@@ -229,7 +229,7 @@ do_information() {
                                 printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 2   :" ${RAM_MOD_MEMTOTAL[1]}
                         fi
                 fi
-                if [[ ${RAM_MOD_MEMTOTAL[2]} == "" ]] || [[ ${RAM_MOD_MEMTOTAL[2]} == "NotInstalled" ]]; then
+                if [[ ${RAM_MOD_MEMTOTAL[2]} == "" ]] || [[ ${RAM_MOD_MEMTOTAL[2]} != " Not Installed" ]]; then
                         printf "  %-14s$DCOLOR$BWHITE No Slot Available\n" "RAM Slot 3   :"
                 else
                         if [[ ${RAM_TYPE_MEMTOTAL[2]} != " DDR" ]]; then
@@ -238,7 +238,7 @@ do_information() {
                                 printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 3   :" ${RAM_MOD_MEMTOTAL[2]}
                         fi
                 fi
-                if [[ ${RAM_MOD_MEMTOTAL[3]} == "" ]] || [[ ${RAM_MOD_MEMTOTAL[3]} == "NotInstalled" ]]; then
+                if [[ ${RAM_MOD_MEMTOTAL[3]} == "" ]] || [[ ${RAM_MOD_MEMTOTAL[3]} != " Not Installed" ]]; then
                         printf "  %-14s$DCOLOR$BWHITE No Slot Available\n" "RAM Slot 4   :"
                 else
                         if [[ ${RAM_TYPE_MEMTOTAL[3]} != " DDR" ]]; then
@@ -247,56 +247,56 @@ do_information() {
                                 printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 4   :" ${RAM_MOD_MEMTOTAL[3]}
                         fi
                 fi
-                if [[ ${RAM_MOD_MEMTOTAL[4]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[4]} == "NotInstalled" ]]; then
+                if [[ ${RAM_MOD_MEMTOTAL[4]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[4]} != " Not Installed" ]]; then
                         if [[ ${RAM_TYPE_MEMTOTAL[4]} != " DDR" ]]; then
                                 printf "  %-14s$DCOLOR$BWHITE %s%s %s %s %s\n" "RAM Slot 5   :" ${RAM_MOD_MEMTOTAL[4]} ${RAM_TYPE_MEMTOTAL[4]}
                         else
                                 printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 5   :" ${RAM_MOD_MEMTOTAL[4]}
                         fi
                 fi
-                if [[ ${RAM_MOD_MEMTOTAL[5]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[5]} == "NotInstalled" ]]; then
+                if [[ ${RAM_MOD_MEMTOTAL[5]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[5]} != " Not Installed" ]]; then
                         if [[ ${RAM_TYPE_MEMTOTAL[5]} != " DDR" ]]; then
                                 printf "  %-14s$DCOLOR$BWHITE %s%s %s %s %s\n" "RAM Slot 6   :" ${RAM_MOD_MEMTOTAL[5]} ${RAM_TYPE_MEMTOTAL[5]}
                         else
                                 printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 6   :" ${RAM_MOD_MEMTOTAL[5]}
                         fi
                 fi
-		if [[ ${RAM_MOD_MEMTOTAL[6]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[6]} == "NotInstalled" ]]; then
+		if [[ ${RAM_MOD_MEMTOTAL[6]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[6]} != " Not Installed" ]]; then
                         if [[ ${RAM_TYPE_MEMTOTAL[6]} != " DDR" ]]; then
                                 printf "  %-14s$DCOLOR$BWHITE %s%s %s 5s %s\n" "RAM Slot 7   :" ${RAM_MOD_MEMTOTAL[6]} ${RAM_TYPE_MEMTOTAL[6]}
                         else
                                 printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 7   :" ${RAM_MOD_MEMTOTAL[6]}
                         fi
                 fi
-                if [[ ${RAM_MOD_MEMTOTAL[7]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[7]} == "NotInstalled" ]]; then
+                if [[ ${RAM_MOD_MEMTOTAL[7]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[7]} != " Not Installed" ]]; then
                         if [[ ${RAM_TYPE_MEMTOTAL[7]} != " DDR" ]]; then
                                 printf "  %-14s$DCOLOR$BWHITE %s%s %s %s %s\n" "RAM Slot 8   :" ${RAM_MOD_MEMTOTAL[7]} ${RAM_TYPE_MEMTOTAL[7]}
                         else
                                 printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 8   :" ${RAM_MOD_MEMTOTAL[7]}
                         fi
                 fi
-                if [[ ${RAM_MOD_MEMTOTAL[8]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[8]} == "NotInstalled" ]]; then
+                if [[ ${RAM_MOD_MEMTOTAL[8]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[8]} != " Not Installed" ]]; then
                         if [[ ${RAM_TYPE_MEMTOTAL[8]} != " DDR" ]]; then
                                 printf "  %-14s$DCOLOR$BWHITE %s%s %s %s %s\n" "RAM Slot 9   :" ${RAM_MOD_MEMTOTAL[8]} ${RAM_TYPE_MEMTOTAL[8]}
                         else
                                 printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 9   :" ${RAM_MOD_MEMTOTAL[8]}
                         fi
                 fi
-                if [[ ${RAM_MOD_MEMTOTAL[9]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[9]} == "NotInstalled" ]]; then
+                if [[ ${RAM_MOD_MEMTOTAL[9]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[9]} != " Not Installed" ]]; then
                         if [[ ${RAM_TYPE_MEMTOTAL[9]} != " DDR" ]]; then
                                 printf "  %-14s$DCOLOR$BWHITE %s%s %s %s %s\n" "RAM Slot 10   :" ${RAM_MOD_MEMTOTAL[9]} ${RAM_TYPE_MEMTOTAL[9]}
                         else
                                 printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 10   :" ${RAM_MOD_MEMTOTAL[9]}
                         fi
                 fi
-                if [[ ${RAM_MOD_MEMTOTAL[10]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[10]} == "NotInstalled" ]]; then
+                if [[ ${RAM_MOD_MEMTOTAL[10]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[10]} != " Not Installed" ]]; then
                         if [[ ${RAM_TYPE_MEMTOTAL[10]} != " DDR" ]]; then
                                 printf "  %-14s$DCOLOR$BWHITE %s%s %s %s %s\n" "RAM Slot 11  :" ${RAM_MOD_MEMTOTAL[10]} ${RAM_TYPE_MEMTOTAL[10]}
                         else
                                 printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 11  :" ${RAM_MOD_MEMTOTAL[10]}
                         fi
                 fi
-                if [[ ${RAM_MOD_MEMTOTAL[11]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[11]} == "NotInstalled" ]]; then
+                if [[ ${RAM_MOD_MEMTOTAL[11]} != "" ]] || [[ ${RAM_MOD_MEMTOTAL[11]} != " Not Installed" ]]; then
                         if [[ ${RAM_TYPE_MEMTOTAL[11]} != " DDR" ]]; then
                                 printf "  %-14s$DCOLOR$BWHITE %s%s %s %s %s\n" "RAM Slot 12  :" ${RAM_MOD_MEMTOTAL[11]} ${RAM_TYPE_MEMTOTAL[11]}
                         else
