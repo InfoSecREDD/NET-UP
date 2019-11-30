@@ -119,19 +119,163 @@ do_interface() {
 }
 
 do_information() {
-	echo -e "";
-	print_good "NET-UP Version: $VERS"
-	print_good "NET-UP GitHub: $GITHUBREPO"
-	print_good "NET-UP Directory: $HOMEDIR"
-	echo -e "";
-	print_good "Module GitHub: $MODULEREPO"
-	print_good "Modules Directory: $MODULEDIR"
-	echo -e "";
-	print_good "NET-UP Log Directory: $NETUPLOGDIR"
-	echo -e "";
-	print_good "Local Subnet: $SUBNET"
-	print_good "Public IP: $PUBLICIP"
-	echo -e "";
+		RED="\033[0;31m"
+		GREEN="\033[1;32m"
+		YELLOW="\033[1;33m"
+		BLUE="\033[1;34m"
+		PURPLE="\033[1;35m"
+		BWHITE="\033[1;37m"
+		DCOLOR="\033[0m"
+		UNDL="\033[4m"
+		clear
+		DATE_TIME_RAW=`date +%Y" "%m" "%d" "%H" "%M" "%S" "%b" "%Z" "%A" "%s`
+		TIME_NOW=`echo "${DATE_TIME_RAW}"|awk '{print $4":"$5":"$6}'`
+		TIME_NOW_TZ=`echo "${DATE_TIME_RAW}"|awk '{print $8}'`
+		DATE_NOW=`echo "${DATE_TIME_RAW}"|awk '{print $1"-"$7"-"$3}'`
+		DATE_NOW_DAY=`echo "${DATE_TIME_RAW}"|awk '{print $9}'`
+                IFS=" "
+                DATE_TIME_LIST=( $DATE_TIME_RAW )
+                UP_SINCE_RAW=`uptime -s`
+                UP_SINCE=`echo "${UP_SINCE_RAW}"|sed 's/[-]/ /g'`
+                UP_TIME_RAW=`date -d "${UP_SINCE_RAW}" +"%s"`
+                UP_TIME_STAMP=`echo "$((${DATE_TIME_LIST[9]} - ${UP_TIME_RAW}))"`
+                UP_TIME_DAYS=`echo "$(((((${DATE_TIME_LIST[9]} - ${UP_TIME_RAW}) / 24) / 60) / 60))"`
+                UP_TIME=`date -u -d @${UP_TIME_STAMP} +"%H %M %S"`
+                UP_TIME_LIST=( $UP_TIME )
+		printf "$BLUE|##################|[ $DCOLOR$YELLOW$UNDL%s$DCOLOR $UNDL$YELLOW%s$DCOLOR $UNDL$YELLOW%s$DCOLOR$BLUE ]|#####################| $DCOLOR\n" "System" "Reporting" "Script"
+		printf "$BLUE|====================================================================| $DCOLOR\n"
+		printf "$BLUE|#########[$DCOLOR $UNDL$YELLOW%s$DCOLOR $UNDL$YELLOW%s$DCOLOR $UNDL$YELLOW%s$DCOLOR$BLUE ]#######|#######[$DCOLOR $UNDL$YELLOW%s$DCOLOR $UNDL$YELLOW%s$DCOLOR $BLUE]#########| $DCOLOR\n" "Date" "and" "Time" "Current" "Uptime"
+		printf "$BWHITE"
+		printf "  %-5s$DCOLOR$BWHITE  %-9s %-16s %-20s$DCOLOR$BWHITE\n" "Time:" $TIME_NOW $TIME_NOW_TZ "Uptime Since Last Restart:"
+		printf "  %-5s$DCOLOR$BWHITE  %-9s %-22s %-3s d, %s:%s:%s\n" "Date:" $DATE_NOW $DATE_NOW_DAY $UP_TIME_DAYS ${UP_TIME_LIST[0]} ${UP_TIME_LIST[1]} ${UP_TIME_LIST[2]}
+		printf " %-36s %-10s$DCOLOR$BWHITE %-10s\n" "" "Total Seconds :" $UP_TIME_STAMP
+		printf "$DCOLOR"
+#		printf "\n"
+		printf "$BLUE|######[$DCOLOR $UNDL$YELLOW%s$DCOLOR $UNDL$YELLOW%s$DCOLOR $BLUE]#####||########[$DCOLOR $UNDL$YELLOW%s$DCOLOR $UNDL$YELLOW%s$DCOLOR$BLUE ]##########| $DCOLOR\n" "System" "Information" "Memory" "Info"
+		SYSINFO_OS=`uname -s`
+		SYSINFO_ARCH=`uname -m`
+		SYSINFO_REL=`uname -r`
+		SYSINFO_OS2=`lsb_release -si`
+		SYSINFO_OS3=`lsb_release -sr`
+		SYSINFO_HOST=`echo $HOSTNAME`
+                MEM_RAW=`free -m`
+                MEM_TOTAL=`echo "${MEM_RAW}"|awk 'NR==2{print $2}'`
+                MEM_USED=`echo "${MEM_RAW}"|awk 'NR==2{print $3}'`
+                MEM_FREE=`echo "${MEM_RAW}"|awk 'NR==2{print $7}'`
+                MEM_FREE_PERC=`echo "${MEM_RAW}"|awk 'NR==2{print ($7*100/$2)}'`
+		printf "$BWHITE"
+		printf "  %-10s$DCOLOR$BWHITE %-10s %-15s %-11s$DCOLOR$BWHITE " "OS Name  :" $SYSINFO_OS2 $SYSINFO_OS3 "MEM Status  :"
+		if [ `echo "${MEM_FREE_PERC} < 20.0"|bc` -eq 1 ]; then
+                        printf "${RED}!!MEMORY CRITICAL!!$BWHITE\n"
+                elif [ `echo "${MEM_FREE_PERC} < 25.0"|bc` -eq 1 ]; then
+                        printf "${RED}!MEMORY LOW!$BWHITE\n"
+                elif [ `echo "${MEM_FREE_PERC} < 30.0"|bc` -eq 1 ]; then
+                        printf "${YELLOW}MEMORY LIMITED$BWHITE\n"
+                elif [ `echo "${MEM_FREE_PERC} < 40.0"|bc` -eq 1 ]; then
+                        printf "${YELLOW}MEMORY OK$BWHITE\n"
+                else
+                        printf "${GREEN}MEMORY GOOD$BWHITE\n"
+                fi
+		printf "  %-9s$DCOLOR$BWHITE %-10s %-17s" "Core OS  :" $SYSINFO_OS
+                if [ `echo "${MEM_FREE_PERC} < 20.0"|bc` -eq 1 ]; then
+                        printf "${RED}%sMB${BWHITE}/%sMB ${RED}(%.2f%%)$BWHITE\n" $MEM_FREE $MEM_TOTAL $MEM_FREE_PERC
+                elif [ `echo "${MEM_FREE_PERC} < 25.0"|bc` -eq 1 ]; then
+                        printf "${RED}%sMB${BWHITE}/%sMB ${RED}(%.2f%%)$BWHITE\n" $MEM_FREE $MEM_TOTAL $MEM_FREE_PERC
+                elif [ `echo "${MEM_FREE_PERC} < 30.0"|bc` -eq 1 ]; then
+                        printf "${YELLOW}%sMB${BWHITE}/%sMB ${YELLOW}(%.2f%%)$BWHITE\n" $MEM_FREE $MEM_TOTAL $MEM_FREE_PERC
+                elif [ `echo "${MEM_FREE_PERC} < 40.0"|bc` -eq 1 ]; then
+                        printf "${YELLOW}%sMB$B{WHITE}/%sMB ${YELLOW}(%.2f%%)$BWHITE\n" $MEM_FREE $MEM_TOTAL $MEM_FREE_PERC
+                else
+                        printf "${GREEN}%sMB${BWHITE}/%sMB ${GREEN}(%.2f%%)${BWHITE} \n" $MEM_FREE $MEM_TOTAL $MEM_FREE_PERC
+                fi
+		CURR_PROC=`ps ax|wc -l`
+		printf "  %-10s$DCOLOR$BWHITE %-16s     $BLUE%s$YELLOW $UNDL%s$DCOLOR $BLUE%s $DCOLOR\n" "Kernel   :" $SYSINFO_REL "|#########[" "Processes" "]###########|"
+		printf "$BWHITE"
+		printf "  %-10s$DCOLOR$BWHITE %-23s  %-15s$DCOLOR$BWHITE %s\n" "Arch     :" $SYSINFO_ARCH "Total Overall :" $CURR_PROC
+		printf "  %-10s$DCOLOR$BWHITE %s\n" "Hostname :" $SYSINFO_HOST
+#		printf "\n"
+		CPU_SPECS=$(lscpu | grep "Model name:" | sed -r 's/Model name:\s{1,}//g')
+                CPU_THREADS=$(lscpu | grep "CPU(s):" | sed -r 's/CPU(s):\s{1}//g' |  head -n 1 | awk -F':' '{print $2}')
+		CPU_CORES=$(lscpu | grep "Core(s) per socket:" | sed -r 's/Core(s) per socket:\s{1}//g' |  head -n 1 | awk -F':' '{print $2}')
+		CPU_L2=$(lscpu | grep "L2 cache:" | sed -r 's/L2 cache:\s{1}//g' |  head -n 1 | awk -F':' '{print $1}')
+		CPU_L3=$(lscpu | grep "L3 cache:" | sed -r 's/L3 cache:\s{1}//g' |  head -n 1 | awk -F':' '{print $1}')
+		printf "$BLUE|#######################[$DCOLOR $UNDL$YELLOW%s$DCOLOR $UNDL$YELLOW%s$DCOLOR $BLUE]##########################| $BWHITE\n" "CPU" "Information"
+		printf "  %-14s$DCOLOR$BWHITE %s %s %s %s %s %s %s %s\n" "CPU Info     :" $CPU_SPECS
+		printf "  %-14s$DCOLOR$BWHITE %-22s  %-14s %s\n" "CPU Threads  :" $CPU_THREADS "CPU Cores  :" $CPU_CORES
+		printf "  %-14s$DCOLOR$BWHITE %s%s\n" "L2 Cache     :" $CPU_L2
+		printf "  %-14s$DCOLOR$BWHITE %s%s\n" "L3 Cache     :" $CPU_L3
+		printf "$DCOLOR"
+#		printf "\n"
+		RAM_MOD_MEM=$(dmidecode  -t memory  | grep "Size:" | sed -e 's/Size:\s{1}//g'| awk -F':' '{print $2}')
+		readarray -t RAM_MOD_MEMTOTAL < <(echo "$RAM_MOD_MEM")
+		RAM_TYPE_MEM=$(dmidecode  -t memory  | grep "Type:" | sed -e 's/Type:\s{1}//g'| awk -F':' '{print $2}' | sed -n '1!p')
+                readarray -t RAM_TYPE_MEMTOTAL < <(echo "$RAM_TYPE_MEM")
+                printf "$BLUE|#######################[$DCOLOR $UNDL$YELLOW%s$DCOLOR $UNDL$YELLOW%s$DCOLOR $BLUE]##########################| $BWHITE\n" "RAM" "Information"
+                if [[ ${RAM_MOD_MEMTOTAL[0]} == "" ]]; then
+                        printf "  %-14s$DCOLOR$BWHITE No Slot Available\n" "RAM Slot 1   :"
+                else
+			if [[ ${RAM_TYPE_MEMTOTAL[0]} != " DDR" ]]; then
+                        	printf "  %-14s$DCOLOR$BWHITE %s%s %s\n" "RAM Slot 1   :" ${RAM_MOD_MEMTOTAL[0]} ${RAM_TYPE_MEMTOTAL[0]}
+			else
+				printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 1   :" ${RAM_MOD_MEMTOTAL[0]}
+			fi
+                fi
+                if [[ ${RAM_MOD_MEMTOTAL[1]} == "" ]]; then
+                        printf "  %-14s$DCOLOR$BWHITE No Slot Available\n" "RAM Slot 2   :"
+                else
+                        if [[ ${RAM_TYPE_MEMTOTAL[1]} != " DDR" ]]; then
+                                printf "  %-14s$DCOLOR$BWHITE %s%s %s\n" "RAM Slot 2   :" ${RAM_MOD_MEMTOTAL[1]} ${RAM_TYPE_MEMTOTAL[1]}
+                        else
+                                printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 2   :" ${RAM_MOD_MEMTOTAL[1]}
+                        fi
+                fi
+                if [[ ${RAM_MOD_MEMTOTAL[2]} == "" ]]; then
+                        printf "  %-14s$DCOLOR$BWHITE No Slot Available\n" "RAM Slot 3   :"
+                else
+                        if [[ ${RAM_TYPE_MEMTOTAL[2]} != " DDR" ]]; then
+                                printf "  %-14s$DCOLOR$BWHITE %s%s %s\n" "RAM Slot 3   :" ${RAM_MOD_MEMTOTAL[2]} ${RAM_TYPE_MEMTOTAL[2]}
+                        else
+                                printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 3   :" ${RAM_MOD_MEMTOTAL[2]}
+                        fi
+                fi
+                if [[ ${RAM_MOD_MEMTOTAL[3]} == "" ]]; then
+                        printf "  %-14s$DCOLOR$BWHITE No Slot Available\n" "RAM Slot 4   :"
+                else
+                        if [[ ${RAM_TYPE_MEMTOTAL[3]} != " DDR" ]]; then
+                                printf "  %-14s$DCOLOR$BWHITE %s%s %s\n" "RAM Slot 4   :" ${RAM_MOD_MEMTOTAL[3]} ${RAM_TYPE_MEMTOTAL[3]}
+                        else
+                                printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 4   :" ${RAM_MOD_MEMTOTAL[3]}
+                        fi
+                fi
+                if [[ ${RAM_MOD_MEMTOTAL[4]} != "" ]]; then
+                        if [[ ${RAM_TYPE_MEMTOTAL[4]} != " DDR" ]]; then
+                                printf "  %-14s$DCOLOR$BWHITE %s%s %s\n" "RAM Slot 5   :" ${RAM_MOD_MEMTOTAL[4]} ${RAM_TYPE_MEMTOTAL[4]}
+                        else
+                                printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 5   :" ${RAM_MOD_MEMTOTAL[4]}
+                        fi
+                fi
+                if [[ ${RAM_MOD_MEMTOTAL[5]} != "" ]]; then
+                        if [[ ${RAM_TYPE_MEMTOTAL[5]} != " DDR" ]]; then
+                                printf "  %-14s$DCOLOR$BWHITE %s%s %s\n" "RAM Slot 6   :" ${RAM_MOD_MEMTOTAL[5]} ${RAM_TYPE_MEMTOTAL[5]}
+                        else
+                                printf "  %-14s$DCOLOR$BWHITE %s %s %s %s\n" "RAM Slot 6   :" ${RAM_MOD_MEMTOTAL[5]}
+                        fi
+                fi
+                printf "$DCOLOR"
+#		printf "\n"
+		printf "$BLUE|#######################[$DCOLOR $UNDL$YELLOW%s$DCOLOR $UNDL$YELLOW%s$DCOLOR $BLUE]#########################| $BWHITE\n" "User" "Information"
+		printf "  %-14s$DCOLOR$BWHITE %-20s  %-15s$DCOLOR$BWHITE %s\n" "Username     :" $USER "Home Directory:" $HOME
+		SHELL=$(finger $USERNAME | grep "Directory:" | sed -r 's/Directory:\s{1}//g' |  head -n 1 | awk -F':' '{print $2}')
+		printf "  %-14s$DCOLOR$BWHITE %-20s  %-15s$DCOLOR$BWHITE %s\n" "Shell Type   :" $SHELL "NET-UP Version:" $VERS
+		printf "  %-14s$DCOLOR$BWHITE %s\n" "NET-UP GitHub:" $GITHUBREPO
+		printf "  %-14s$DCOLOR$BWHITE %s\n" "NET-UP Folder:" $HOMEDIR
+		printf "  %-14s$DCOLOR$BWHITE %s\n" "Module GitHub:" $MODULEREPO
+		printf "  %-14s$DCOLOR$BWHITE %s\n" "Module Folder:" $MODULEDIR
+		if [[ "$SUBNET" != "" ]]; then
+			printf "  %-14s$DCOLOR$BWHITE %-20s  %-14s$DCOLOR$BWHITE %-20s\n" "Local Subnet :" $SUBNET "Public IP     :" $PUBLICIP
+		fi
+                printf "$BLUE|####################################################################| $DCOLOR\n"
+		printf "\n"
 	exitnetup;
 }
 
