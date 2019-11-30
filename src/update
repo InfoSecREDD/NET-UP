@@ -48,7 +48,7 @@ fastupdatenetuponly(){
         echo -e "";
         print_error "Removing install script.";
         rm -rf $HOMEDIR/install.sh
-        touch $HOMEDIR/.conf
+#        touch $HOMEDIR/.conf
         echo -e "";
         cd;
 	exitnetup;
@@ -87,7 +87,7 @@ updatenetuponly(){
                 echo -e "";
                 print_error "Removing install script.";
                 rm -rf $HOMEDIR/install.sh
-                touch $HOMEDIR/.conf
+#                touch $HOMEDIR/.conf
                 echo -e "";
                 cd;
 		exitnetup;
@@ -124,7 +124,7 @@ updategithub(){
 				echo -e "";
 				print_error "Removing install script.";
 				rm -rf $HOMEDIR/install.sh
-				touch $HOMEDIR/.conf
+#				touch $HOMEDIR/.conf
 				echo -e "";
 				cd;
 
@@ -151,7 +151,7 @@ fastupdategithub() {
                                 echo -e "";
                                 print_error "Removing install script.";
                                 rm -rf $HOMEDIR/install.sh
-                                touch $HOMEDIR/.conf
+ #                               touch $HOMEDIR/.conf
                                 echo -e "";
                                 cd;
 
