@@ -34,4 +34,14 @@ check_dep(){
         	sudo -k apt-get install -y finger &>/dev/null
         	check_success;
 	fi
+	if ! command_exists lsb_release ; then
+        	print_notification "Attempting to install lsb-release..";
+        	sudo -k apt-get install -y lsb-release &>/dev/null
+        	check_success;
+	fi
+	if ! command_exists bc ; then
+        	print_notification "Attempting to install bc..";
+        	sudo -k apt-get install -y bc &>/dev/null
+        	check_success;
+	fi
 }
