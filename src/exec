@@ -347,7 +347,10 @@ do_information() {
 		printf "$BLUE|#######################[$DCOLOR $UNDL$YELLOW%s$DCOLOR $UNDL$YELLOW%s$DCOLOR $BLUE]#########################| $BWHITE\n" "User" "Information"
 		printf "  %-14s$DCOLOR$BWHITE %-20s  %-15s$DCOLOR$BWHITE %s\n" "Username     :" $USER "Home Directory:" $HOME
 		SHELL=$(finger $USERNAME | grep "Directory:" | sed -r 's/Directory:\s{1}//g' |  head -n 1 | awk -F':' '{print $2}')
-		printf "  %-14s$DCOLOR$BWHITE %-20s  %-15s$DCOLOR$BWHITE %s\n" "Shell Type   :" $SHELL "NET-UP Version:" $VERS
+                if [[ $SHELL != "" ]]; then
+                        printf "  %-14s$DCOLOR$BWHITE %-20s " "Shell Type   :" $SHELL
+                fi
+                printf " %-15s$DCOLOR$BWHITE %s\n" "NET-UP Version:" $VERS
 		printf "  %-14s$DCOLOR$BWHITE %s\n" "NET-UP GitHub:" $GITHUBREPO
 		printf "  %-14s$DCOLOR$BWHITE %s\n" "NET-UP Folder:" $HOMEDIR
 		printf "  %-14s$DCOLOR$BWHITE %s\n" "Module GitHub:" $MODULEREPO
