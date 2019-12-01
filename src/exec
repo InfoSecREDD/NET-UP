@@ -214,6 +214,13 @@ do_information() {
                 if [[ ${RAM_MOD_MEMTOTAL[0]} == "" ]]; then
                         printf "  %-14s$DCOLOR$BWHITE No Slot Available\n" "RAM Slot 1   :"
                 else
+		if [[ ${RAM_MOD_MEMTOTAL[1]} == ' 491520 MB' ]] && [[ ${RAM_MOD_MEMTOTAL[0]} == ' 32768 MB' ]]; then
+                                RAM_MOD_MEMTOTAL[0]="${RAM_MOD_MEMTOTAL[2]}"
+                                RAM_MOD_MEMTOTAL[1]="${RAM_MOD_MEMTOTAL[3]}"
+                                RAM_MOD_MEMTOTAL[2]=""
+                                RAM_MOD_MEMTOTAL[3]=""
+                                printf " ${RED}This Machine is most likely a Virtual Machine.${DCOLOR}${BWHITE}\n"
+                        fi
 			if [[ ${RAM_TYPE_MEMTOTAL[0]} != " DDR" ]]; then
                         	printf "  %-14s$DCOLOR$BWHITE %s%s %s %s %s\n" "RAM Slot 1   :" ${RAM_MOD_MEMTOTAL[0]} ${RAM_TYPE_MEMTOTAL[0]}
 			else
