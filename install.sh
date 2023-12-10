@@ -76,7 +76,7 @@ fi
 changeperm;
 cleanup;
 run;
-HOMEPATH="$HOME/netup"
+HOMEPATH="$HOME"
 HOMEDIR="/usr/local/bin/netup"
 
 if [ -L "$HOMEDIR" ]; then
