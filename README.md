@@ -64,35 +64,35 @@ Once Installed, allows you to:
 
 ## Run NET-UP:
 ```
-# netup
+netup
 ```
 ## Show NET-UP Directory/Version Information:
 ```
-# netup information
+netup information
 ```
 ## Auto-detect Active Network Interface:
 ```
-# netup interface
+netup interface
 ```
 ## List all Modules:
 ```
-# netup list
+netup list
 ```
 ## Easy Update Command:
 ```
-# netup update
+netup update
 ```
 (Press y when prompted. or "netup update -y" to force update.)
 
 ## Update only NET-UP (Backup & Restore Current Modules)
 ```
-# netup update --netup-only   (or netup update -n)
+netup update --netup-only   (or netup update -n)
 ```
 (Press y when prompted. or "netup update --netup-only -y" to force update.)
 
 ## Easy Update Modules Command:
 ```
-# netup updatemods
+netup updatemods
 ```
 (Press y when prompted. or "netup updatemods -y" to force update of modules.)
 
