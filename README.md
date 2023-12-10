@@ -1,10 +1,10 @@
 # NET-UP - Network Based Framework
-[![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/) ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/private-locker/NET-UP/graphs/commit-activity) [![GitHub release](https://img.shields.io/github/release/private-locker/NET-UP.svg)](https://GitHub.com/private-locker/NET-UP/releases/) [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/private-locker/NET-UP/issues)
+[![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/) ![BuildMessage](https://img.shields.io/badge/Build-Passed-brightgreen) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/InfoSecREDD/NET-UP/graphs/commit-activity) [![GitHub release](https://img.shields.io/github/release/InfoSecREDD/NET-UP.svg)](https://GitHub.com/InfoSecREDD/NET-UP/releases/) [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/InfoSecREDD/NET-UP/issues)
 
 Network-based Startup Module Framework (Network Dropper)
 
 NET-UP is a Custom Bash Framework to make loading and launching Scripts that depend on
-internet connectivity to start ONLY when connected. Private-Locker uses this Framework 
+internet connectivity to start ONLY when connected. InfoSecREDD uses this Framework 
 with a series of Modules (see below for more information) to do Security Auditing at 
 local Corporations. NET-UP also allows the use of MANY scripts to run - OSINT Scripts,
 Network Monitoring Scripts (MitM Attacks), Packet Capturing, and Basic Security 
@@ -52,18 +52,18 @@ execution of cronjobs or startup based scripts.
 - IPInfo - Script forked from https://github.com/niklasberglund/ipinfo (needs work)
 - More to come.. (Community Published Modules are welcome)
 
-(For More Reference on Modules/Scripts used for NET-UP, Please Check https://github.com/private-locker/NET-UP-modules)
+(For More Reference on Modules/Scripts used for NET-UP, Please Check https://github.com/InfoSecREDD/NET-UP-modules)
 
 ## Easy Install Script:
 ```
-# wget https://raw.githubusercontent.com/private-locker/NET-UP/master/install.sh && sudo /bin/bash install.sh
+# wget https://raw.githubusercontent.com/InfoSecREDD/NET-UP/master/install.sh && sudo /bin/bash install.sh
 
 ```
 ## Install NET-UP:
 ```
 $ su
 # cd
-# git clone https://github.com/private-locker/NET-UP.git netup
+# git clone https://github.com/InfoSecREDD/NET-UP.git netup
 # cd netup
 # chmod +x install.sh
 # ./install.sh
@@ -162,13 +162,10 @@ AUTOEXIT=YES
 
 
 ### TODO List:
-- Add more OSINT Scripts to https://github.com/private-locker/modules
-
-## Buy us a Beer?
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MN33MBKD93J9N)
+- Add more OSINT Scripts to https://github.com/InfoSecREDD/modules
 
 ## Contributors:
- - -REDD- of Private-Locker (Main Developer)
+ - InfoSecREDD (Main Developer)
  - Sero of Thoth (Bugfixes and alternate Coding Methods)
 
 License
@@ -176,7 +173,7 @@ License
 
 The MIT License
 
-Copyright (c) 2018-2020 Private-Locker, LLC. https://www.private-locker.com
+Copyright (c) 2018-2023 InfoSecREDD https://infosecredd.github.io
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
