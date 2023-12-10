@@ -55,18 +55,9 @@ execution of cronjobs or startup based scripts.
 (For More Reference on Modules/Scripts used for NET-UP, Please Check https://github.com/InfoSecREDD/NET-UP-modules)
 
 ## Easy Install Script:
-```
-# wget https://raw.githubusercontent.com/InfoSecREDD/NET-UP/master/install.sh && sudo /bin/bash install.sh
+```bash
+wget https://raw.githubusercontent.com/InfoSecREDD/NET-UP/master/install.sh && sudo /bin/bash install.sh
 
-```
-## Install NET-UP:
-```
-$ su
-# cd
-# git clone https://github.com/InfoSecREDD/NET-UP.git netup
-# cd netup
-# chmod +x install.sh
-# ./install.sh
 ```
 
 Once Installed, allows you to:
