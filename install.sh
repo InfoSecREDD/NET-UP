@@ -1,4 +1,4 @@
-#!/bin/bash
+P#!/bin/bash
 getdir(){
 	SOURCE="${BASH_SOURCE[0]}"
 	while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
@@ -26,7 +26,7 @@ clonemain(){
 }
 clonemods(){
         echo -e "Cloning Modules from Repo.";
-        git clone https://github.com/InfoSecREDD/modules.git $HOMEDIR/modules
+        git clone https://github.com/InfoSecREDD/NET-UP-modules.git $HOMEDIR/modules
 }
 changeperm(){
         echo -e "Changing Permissions of Files..";
