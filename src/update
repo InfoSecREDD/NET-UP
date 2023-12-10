@@ -99,7 +99,7 @@ updatenetuponly(){
 
 updategithub(){
         echo -e "";
-        print_status "Update/sync with Private-Locker's GitHub?";
+        print_status "Update/sync with InfoSecREDD's GitHub?";
         echo -e "";
 		print_error "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
         print_error "!! THIS WILL REMOVE YOUR ENTIRE NET-UP DIRECTORY !!";
