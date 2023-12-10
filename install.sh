@@ -9,7 +9,7 @@ getdir(){
 	DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 }
 getdir;
-HOMEDIR=/root/netup
+HOMEDIR=/usr/local/bin
 DELFILE="$DIR/$0"
 root_check_init(){
     echo "Checking for Root.."
