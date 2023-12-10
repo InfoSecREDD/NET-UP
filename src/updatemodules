@@ -2,7 +2,7 @@
 # Module Update
 updatemods(){
         echo -e "";
-        print_status "Update your Modules Directory and sync with Private-Locker's GitHub?";
+        print_status "Update your Modules Directory and sync with InfoSecREDD's GitHub?";
         echo -e "";
         print_error "THIS WILL REMOVE YOUR MODULES DIRECTORY!";
         echo -e "";
@@ -18,7 +18,7 @@ updatemods(){
 		chmod +x $MODULEDIR/disablemod
 		chmod +x $MODULEDIR/enablemod
                 echo -e "";
-                print_status "Modules have been synced to Private-Locker's Modules Repo.";
+                print_status "Modules have been synced to InfoSECRED's Modules Repo.";
         else
 		echo -e "";
                 print_status "Not Updating NET-UP Modules. Exiting.";
