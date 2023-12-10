@@ -4,7 +4,7 @@ function verschk {
 }
 # Module Update
 checkvers(){
-        TEMPVERCHKURL="https://raw.githubusercontent.com/private-locker/NET-UP/master/etc/vers"
+        TEMPVERCHKURL="https://raw.githubusercontent.com/InfoSecREDD/NET-UP/master/etc/vers"
         TEMPVER="$(wget -O- -q $TEMPVERCHKURL | sed 's@.*=@@')"
         echo -e "Your current NET-UP Version: $VERS";
         echo -e "Current GitHub Version is: $TEMPVER";
@@ -44,7 +44,7 @@ fastupdatenetuponly(){
 	cp -rf /tmp/netuptmpmods/. $MODULEDIR;
 	rm -rf /tmp/netuptmpmods;
         echo -e "";
-	print_status "Entire NET-UP was synced to Private-Locker's Repo.";
+	print_status "Entire NET-UP was synced to InfoSecREDD's Repo.";
         echo -e "";
         print_error "Removing install script.";
         rm -rf $HOMEDIR/install.sh
@@ -83,7 +83,7 @@ updatenetuponly(){
 		cp -rf /tmp/netuptmpmods/. $MODULEDIR;
 		rm -rf /tmp/netuptmpmods;
                 echo -e "";
-		print_status "Entire NET-UP was synced to Private-Locker's Repo.";
+		print_status "Entire NET-UP was synced to InfoSecREDD's Repo.";
                 echo -e "";
                 print_error "Removing install script.";
                 rm -rf $HOMEDIR/install.sh
@@ -120,7 +120,7 @@ updategithub(){
 				chmod +x $MODULEDIR/disablemod
 				chmod +x $MODULEDIR/enablemod
                 echo -e "";
-                print_status "Entire NET-UP was synced to Private-Locker's Repo including Modules.";
+                print_status "Entire NET-UP was synced to InfoSecREDD's Repo including Modules.";
 				echo -e "";
 				print_error "Removing install script.";
 				rm -rf $HOMEDIR/install.sh
@@ -147,7 +147,7 @@ fastupdategithub() {
                                 chmod +x $MODULEDIR/disablemod
                                 chmod +x $MODULEDIR/enablemod
                 echo -e "";
-                print_status "Entire NET-UP was synced to Private-Locker's Repo including Modules.";
+                print_status "Entire NET-UP was synced to InfoSecREDD's Repo including Modules.";
                                 echo -e "";
                                 print_error "Removing install script.";
                                 rm -rf $HOMEDIR/install.sh
