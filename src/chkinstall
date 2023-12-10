@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ "$DIR" != "/root/netup" ]; then
+if [ "$DIR" != "/usr/local/bin/netup" ]; then
 	echo -e "NET-UP is not installed into the correct directory."
 	echo -e "Running install script."
 	/bin/bash "$DIR/install.sh"
