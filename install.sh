@@ -22,11 +22,11 @@ root_check_init(){
 }
 clonemain(){
         echo -e "Cloning from GitHub..";
-        git clone https://github.com/private-locker/NET-UP.git $HOMEDIR
+        git clone https://github.com/InfoSecREDD/NET-UP.git $HOMEDIR
 }
 clonemods(){
         echo -e "Cloning Modules from Repo.";
-        git clone https://github.com/private-locker/modules.git $HOMEDIR/modules
+        git clone https://github.com/InfoSecREDD/modules.git $HOMEDIR/modules
 }
 changeperm(){
         echo -e "Changing Permissions of Files..";
@@ -79,8 +79,8 @@ run;
 HOMEPATH="$HOME/netup"
 HOMEDIR="/usr/local/bin/netup"
 
-if [ -L "$HOMEDIR" ]; then
-    rm "$HOMEDIR"
+if [ -L "$HOMEPATH" ]; then
+    rm "$HOMEPATH"
     if [ $? -eq 0 ]; then
         echo -e "Existing symlink deleted successfully."
     else
