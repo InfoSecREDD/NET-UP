@@ -162,7 +162,7 @@ AUTOEXIT=YES
 
 
 ### TODO List:
-- Add more OSINT Scripts to https://github.com/InfoSecREDD/NETUP-modules
+- Add more OSINT Scripts to https://github.com/InfoSecREDD/NET-UP-modules
 
 ## Contributors:
  - InfoSecREDD (Main Developer)
