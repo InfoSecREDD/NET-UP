@@ -76,7 +76,7 @@ fi
 changeperm;
 cleanup;
 run;
-HOMEPATH="$HOME"
+HOMEPATH="$HOME/netup"
 HOMEDIR="/usr/local/bin/netup"
 
 if [ -L "$HOMEDIR" ]; then
@@ -89,7 +89,7 @@ if [ -L "$HOMEDIR" ]; then
     fi
 fi
 
-ln -s "$HOMEPATH" "$HOMEDIR"
+ln -s "$HOMEDIR" "$HOMEPATH"
 
 if [ $? -eq 0 ]; then
     echo -e "New symlink created successfully."
