@@ -92,6 +92,10 @@ do_updatemods() {
 	updatemods
 	exitnetup
 }
+do_updatedevmods() {
+	updatedevmods
+	exitnetup
+}
 
 do_autostart() {
         if [ "$1" = "off" ] ||  [ "$1" = "OFF" ] || [ "$1" = "" ]; then
@@ -361,7 +365,94 @@ do_information() {
                 printf "$BLUE|####################################################################| $DCOLOR\n"
 	exitnetup;
 }
+do_enabledevmod() {
+	if [ -z "$1" ]; then
+                print_error "No Module input given."
+                exit_check # Check for console before exit
+        else
+		SELECTED=$1
+                print_notification "Attempting to Enable Module: $SELECTED."
+		if [ -f $DEVMODULEDIR/$SELECTED.tmp ]; then
+			print_notification "Checking if Module was Enabled."
+			/bin/bash $DEVMODULEDIR/enablemod -f $DEVMODULEDIR/$SELECTED
+			if [ -f "$DEVMODULEDIR/$SELECTED.mdu" ]; then
+				check_good "Module $SELECTED Enabled!"
+			else
+				print_error "Module $SELECTED was not Enabled";
+			fi
+			exitnetup
+		else
+			print_error "There is No Module named that, Please Try again."
+                	exitnetup
+		fi
+        fi
+}
 
+do_disabledevmod() {
+        if [ -z "$1" ]; then
+                print_error "No Module input given."
+                exit_check # Check for console before exit
+        else
+		SELECTED=$1
+		print_notification "Attempting to Disable Module: $SELECTED"
+		if [ -f $DEVMODULEDIR/$SELECTED.mdu ]; then
+			print_notification "Checking if Module was Disabled."
+			/bin/bash $DEVMODULEDIR/disablemod -f $DEVMODULEDIR/$SELECTED
+			if [ -f "$DEVMODULEDIR/$SELECTED.tmp" ]; then
+				check_good "Module $SELECTED Disabled!"
+			else
+				print_error "Module $SELECTED was not Disabled";
+			fi
+			exitnetup
+		else
+			print_error "There is No Module named that, Please Try again."
+                	exitnetup
+		fi
+        fi
+}
+
+do_disabledevmods() {
+	tempmodcount=0
+	for file in `ls $DEVMODULEDIR/*.mdu 2>/dev/null`; do
+		basefile=$(basename "$file" .mdu)
+		tempmodcount=1
+		print_notification "Disabling Module: $basefile."
+		mv "$file" "$DEVMODULEDIR/$(basename "$file" .mdu).tmp"
+		print_notification "Checking if Module was Disabled."
+		if [ ! -f "$DEVMODULEDIR/$file.tmp" ]; then
+			check_good "Module $basefile Disabled!"
+		else
+			print_error "Module $basefile was not Disabled";
+		fi
+	done
+	if [ ! -f "$DEVMODULEDIR/*.mdu" ] && [ "$tempmodcount" -eq "0" ]; then
+		print_error "There is no Enabled Modules."
+		exitnetup
+	fi
+	exitnetup
+}
+
+do_enabledevmods() {
+	tempmodcount=0
+	for file in `ls $DEVMODULEDIR/*.tmp 2>/dev/null`; do
+		basefile=$(basename "$file" .tmp)
+		tempmodcount=1
+		print_notification "Enabling Module: $basefile."
+		mv "$file" "$DEVMODULEDIR/$(basename "$file" .tmp).mdu"
+		print_notification "Checking if Module was Enabled."
+		if [ ! -f "$DEVMODULEDIR/$file.tmp" ]; then
+			check_good "Module $basefile Enabled!"
+		else
+			print_error "Module $basefile was not Enabled.";
+		fi
+		
+	done
+	if [ ! -f "$DEVMODULEDIR/*.mdu" ] && [ "$tempmodcount" -eq "0" ]; then
+		print_error "There is no Disabled Modules."
+		exitnetup
+	fi
+	exitnetup
+}
 do_enablemod() {
 	if [ -z "$1" ]; then
                 print_error "No Module input given."
@@ -507,6 +598,12 @@ do_usage() {
 		enablemods)
 			shift
 			do_enablemods $@ ;;
+		enabledev|enabledevmod)
+			shift
+			do_enabledevmod $@ ;;
+		enabledevmods)
+			shift
+			do_enabledevmods $@ ;;
 		autostart)
 			shift
 			do_autostart $@ ;;
@@ -522,6 +619,12 @@ do_usage() {
 		disable|disablemod)
 			shift
 			do_disablemod $@ ;;
+		disabledevmods)
+			shift
+			do_disabledevmods $@ ;;
+		disabledev|disabledevmod)
+			shift
+			do_disabledevmod $@ ;;
 		autoexit)
 			shift
 			do_autoexit $@ ;;
