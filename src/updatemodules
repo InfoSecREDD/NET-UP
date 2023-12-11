@@ -24,3 +24,27 @@ updatemods(){
                 print_status "Not Updating NET-UP Modules. Exiting.";
         fi
 }
+updatedevmods(){
+        echo -e "";
+        print_status "Update your DEV Modules Directory and sync with GitHub?";
+        echo -e "";
+        print_error "THIS WILL REMOVE YOUR DEV MODULES DIRECTORY!";
+        echo -e "";
+        read -p " Are you sure? [Y/n]" -n 1 -r
+        echo -e "";
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+                print_status "Removing Old DEV Modules Directory..";
+                echo -e "";
+		cd $HOME;
+		cd $HOMEDIR;
+		rm -rf $DEVMODULEDIR
+		git clone $DEVMODULEREPO $DEVMODULEDIR
+		chmod +x $DEVMODULEDIR/disablemod
+		chmod +x $DEVMODULEDIR/enablemod
+                echo -e "";
+                print_status "Modules have been synced to DEV Modules Repo.";
+        else
+		echo -e "";
+                print_status "Not Updating NET-UP DEV Modules. Exiting.";
+        fi
+}
