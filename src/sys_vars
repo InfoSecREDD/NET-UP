@@ -1,7 +1,7 @@
 #!/bin/bash
 MODULEREPO=https://github.com/InfoSecREDD/NET-UP-modules
 MODULEDIR=$DIR/modules
-DEVMODULEREPO=https://github.com/InfoSecREDD/NET-UP-modules
+DEVMODULEREPO=https://github.com/InfoSecREDD/NET-UP-devmodules
 DEVMODULEDIR=$DIR/devmodules
 GITHUBREPO=https://github.com/InfoSecREDD/NET-UP
 GITDIR=$HOME/netup
