@@ -18,6 +18,9 @@ do_help() {
         echo -e "    ./netup enablemods              - Enables all Modules in the Modules Folder."
         echo -e "    ./netup disablemods             - Disables all Modules in the Modules Folder."
         echo -e "    ./netup updatemods              - Sync's all Modules with Public Repo."
+        echo -e "    ./netup enabledevmods           - Enables all Modules in the Modules Folder."
+        echo -e "    ./netup disabledevmods          - Disables all Modules in the Modules Folder."
+        echo -e "    ./netup updatedevmods           - Sync's all Modules with Public Repo."
         echo -e "    ./netup autostart [on/off]      - Turns on/off crontab for NET-UP.";
         echo -e "    ./netup autoreboot [on/off]     - Turns on/off AUTOREBOOT for NET-UP.";
         echo -e "    ./netup autoexit [on/off]       - Turns on/off AUTOEXIT for NET-UP.";
@@ -53,6 +56,9 @@ if [[ $1 = "help" ]]; then
         echo -e "    ./netup enablemods              - Enables all Modules in the Modules Folder."
         echo -e "    ./netup disablemods             - Disables all Modules in the Modules Folder."
         echo -e "    ./netup updatemods              - Sync's all Modules with Public Repo."
+        echo -e "    ./netup enabledevmods           - Enables all Modules in the Modules Folder."
+        echo -e "    ./netup disabledevmods          - Disables all Modules in the Modules Folder."
+        echo -e "    ./netup updatedevmods           - Sync's all Modules with Public Repo."
         echo -e "    ./netup autostart [on/off]      - Turns on/off crontab for NET-UP.";
         echo -e "    ./netup autoreboot [on/off]     - Turns on/off AUTOREBOOT for NET-UP.";
         echo -e "    ./netup autoexit [on/off]       - Turns on/off AUTOEXIT for NET-UP.";
@@ -69,6 +75,7 @@ if [[ $1 != ""
         && $1 != "update"
         && $1 != "enable"
         && $1 != "enablemods"
+        && $1 != "enabledevmods"
         && $1 != "autostart"
         && $1 != "list"
         && $1 != "listmods"
@@ -78,8 +85,10 @@ if [[ $1 != ""
         && $1 != "disable"
         && $1 != "autoreboot"
         && $1 != "disablemods"
+        && $1 != "disabledevmods"
         && $1 != "run"
         && $1 != "updatemods"
+        && $1 != "updatedevmods"
         && $1 != "autoexit"
         && $1 != "console"
         && $1 != "help" ]]; then
