@@ -584,6 +584,9 @@ do_usage() {
 		updatemods)
 			shift
 			do_updatemods $@ ;;
+		updatedevmods)
+			shift
+			do_updatedevmods $@ ;;
 		run)
 			shift
 			do_run $@ ;;
