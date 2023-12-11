@@ -544,12 +544,12 @@ do_enablemods() {
 
 do_console() {
         if [ -z "$NETUP_CONSOLE" ]; then
-                print_notification "Initializing console."
+                print_notification "${BG}Initializing console...${RST}"
                 export NETUP_CONSOLE=TRUE
         fi
 
         declare -a user_input
-        read -p "Netup Console> " user_input
+        read -p "${BR}Netup Console${W}>${RST} " user_input
 
         if [ -z "$user_input" ]; then
                 do_console
