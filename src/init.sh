@@ -1,5 +1,6 @@
 #!/bin/bash
 # Script-Wide Variables/Functions
+R='\033[0;31m';G='\033[0;32m';B='\033[0;34m';Y='\033[0;33m';P='\033[0;35m';C='\033[0;36m';W='\033[0;37m';BR='\033[1;31m';BG='\033[1;32m';BB='\033[1;34m';BY='\033[1;33m';BP='\033[1;35m';BC='\033[1;36m';BW='\033[1;37m';RST='\033[0m'
 do_sleep(){
 	WAITTIME=NULL
 	if [[ $1 != "" ]]; then
