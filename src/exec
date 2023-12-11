@@ -549,7 +549,7 @@ do_console() {
         fi
 
         declare -a user_input
-        read -p "${BR}Netup Console${W}>${RST} " user_input
+        read -p "NET-UP Console> " user_input
 
         if [ -z "$user_input" ]; then
                 do_console
